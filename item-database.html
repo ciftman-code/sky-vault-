@@ -33,7 +33,7 @@
 <script>
 const $=id=>document.getElementById(id);let all=[];
 const blocked=new Set(['SWORD','BOW','WAND','DAGGER','AXE','WEAPON','CROSSBOW','SHORTBOW','LONGSWORD']);
-function safeItem(x){const c=String(x.category||'').toUpperCase(),m=String(x.material||'').toUpperCase();return !blocked.has(c)&&!/(^|_)(WEAPON|SWORD|BOW|DAGGER|WAND|AXE|CROSSBOW)(_|$)/.test(m)&&x.name&&x.id}
+function safeItem(x){const c=String(x.category||'').toUpperCase(),m=String(x.material||'').toUpperCase(),id=String(x.id||'').toUpperCase(),name=String(x.name||'');const bad=/(^|_)(WEAPON|SWORD|BOW|DAGGER|WAND|AXE|CROSSBOW|SHORTBOW|LONGSWORD)(_|$)/;return !blocked.has(c)&&!bad.test(c)&&!bad.test(m)&&!bad.test(id)&&!(/\b(sword|bow|wand|dagger|axe)\b/i.test(name))&&x.name&&x.id}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function materialSources(x){
  const raw=String(x.material||'').toUpperCase().replace(/^MINECRAFT:/,'').replace(/[^A-Z0-9_]/g,'');
