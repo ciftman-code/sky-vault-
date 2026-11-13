@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyblock Vault | By REGVON</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <i class="fa-solid fa-vault logo-icon"></i>
+            <h1>Skyblock Vault</h1>
+            <span class="author-tag">By REGVON</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#home" class="active"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">الرئيسية</span></a>
+            <a href="#stats"><i class="fa-solid fa-chart-bar"></i> <span data-i18n="nav_stats">الإحصائيات</span></a>
+            <a href="#bazaar"><i class="fa-solid fa-store"></i> <span data-i18n="nav_bazaar">البازار</span></a>
+            <a href="#minions"><i class="fa-solid fa-robot"></i> <span data-i18n="nav_minions">المينيونز</span></a>
+            <a href="#events"><i class="fa-solid fa-calendar-days"></i> <span data-i18n="nav_events">الأحداث</span></a>
+            <a href="#mods"><i class="fa-solid fa-puzzle-piece"></i> <span data-i18n="nav_mods">المودات</span></a>
+        </nav>
+        <div class="header-actions">
+            <select id="langSelect" class="lang-select">
+                <option value="ar">العربية (🇲🇦)</option>
+                <option value="en">English (🇺🇸)</option>
+                <option value="fr">Français (🇫🇷)</option>
+                <option value="es">Español (🇪🇸)</option>
+                <option value="ru">Русский (🇷🇺)</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Home / Search Section -->
+        <section id="home" class="section active-section">
+            <div class="hero">
+                <h2>Skyblock Vault</h2>
+                <p data-i18n="hero_desc">مرجعك الشامل لإحصائيات، أدوات، وأسرار Hypixel SkyBlock</p>
+                <div class="search-box">
+                    <input type="text" id="ignInput" placeholder="أدخل اسمك في ماينكرافت (IGN)...">
+                    <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="search_btn">بحث</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="section">
+            <h3 data-i18n="stats_title"><i class="fa-solid fa-chart-bar"></i> إحصائيات اللاعب والبروفايل</h3>
+            <div class="stats-grid">
+                <div class="card">
+                    <h4>Networth</h4>
+                    <p class="stat-value" id="networthVal">2,543,980,111 coins</p>
+                </div>
+                <div class="card">
+                    <h4 data-i18n="skills_level">مستوى المهارات</h4>
+                    <p class="stat-value">Combat 55 | Farming 48</p>
+                </div>
+                <div class="card">
+                    <h4>Slayers</h4>
+                    <p class="stat-value">Zombie 9 | Spider 9 | Wolf 9</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bazaar Section -->
+        <section id="bazaar" class="section">
+            <h3 data-i18n="bazaar_title"><i class="fa-solid fa-store"></i> حاسبة البازار (Bazaar Flipper)</h3>
+            <div class="bazaar-calculator">
+                <div class="form-group">
+                    <label data-i18n="item_name">اسم العنصر:</label>
+                    <input type="text" id="bazaarItem" value="Enchanted Diamond">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="buy_price">سعر الشراء:</label>
+                    <input type="number" id="buyPrice" value="2200">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="sell_price">سعر البيع:</label>
+                    <input type="number" id="sellPrice" value="3800">
+                </div>
+                <button id="calcBazaar" class="btn" data-i18n="calculate_btn">حساب الربح</button>
+                <div id="bazaarResult" class="result-box">الربح الصافي بعد ضريبة 1.25%: <strong>1,582,50 coins</strong></div>
+            </div>
+        </section>
+
+        <!-- Minions Section -->
+        <section id="minions" class="section">
+            <h3 data-i18n="minions_title"><i class="fa-solid fa-robot"></i> حاسبة أرباح المينيونز</h3>
+            <div class="minions-container">
+                <div class="form-group">
+                    <label data-i18n="minion_type">نوع المينيون:</label>
+                    <select id="minionType">
+                        <option value="slime">Slime Minion (XI)</option>
+                        <option value="sheep">Sheep Minion (XI)</option>
+                        <option value="tarantula">Tarantula Minion (IV)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="fuel_type">نوع الوقود (Fuel):</label>
+                    <select id="minionFuel">
+                        <option value="hyper">Hyper Catalyst (+70%)</option>
+                        <option value="Enchanted Lava">Enchanted Lava Bucket (+25%)</option>
+                    </select>
+                </div>
+                <div id="minionResult" class="result-box">الربح المتوقع يومياً: <strong>2,450,000 coins</strong></div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="section">
+            <h3 data-i18n="events_title"><i class="fa-solid fa-calendar-days"></i> الأحداث والأوقات (SkyBlock Events)</h3>
+            <div class="events-grid">
+                <div class="card">
+                    <h4 data-i18n="dark_auction">Dark Auction</h4>
+                    <p id="daTimer">00:14:32</p>
+                </div>
+                <div class="card">
+                    <h4 data-i18n="jacob_contest">Jacob's Farming Contest</h4>
+                    <p id="jacobTimer">01:45:00</p>
+                </div>
+            </div>
+            <div class="notification-controls">
+                <button id="toggleNotif" class="btn" data-i18n="enable_notif">تفعيل إشعارات الأحداث</button>
+                <button id="testNotif" class="btn secondary" data-i18n="test_notif">تجربة التنبيه</button>
+            </div>
+        </section>
+
+        <!-- Mods Section -->
+        <section id="mods" class="section">
+            <h3 data-i18n="mods_title"><i class="fa-solid fa-puzzle-piece"></i> أهم الإضافات والمودات المطلوبة (Mods & Addons)</h3>
+            <div class="mods-grid">
+                <div class="mod-card">
+                    <h4>NotEnoughUpdates (NEU)</h4>
+                    <p data-i18n="neu_desc">المود الأساسي لكل لاعب SkyBlock، يحتوي على Dungeon Maps، Recipes، و Price checking.</p>
+                    <a href="https://github.com/NotEnoughUpdates/NotEnoughUpdates" target="_blank" class="btn" data-i18n="download_btn">تحميل</a>
+                </div>
+                <div class="mod-card">
+                    <h4>Skytils</h4>
+                    <p data-i18n="skytils_desc>مود شامل لتحسين الواجهة، تتبع الجريمة، والحلول التلقائية للألغاز.</p>
+                    <a href="https://skytils.netlify.app/" target="_blank" class="btn" data-i18n="download_btn">تحميل</a>
+                </div>
+                <div class="mod-card">
+                    <h4>SkyBlock Addons (SBA)</h4>
+                    <p data-i18n="sba_desc">يضيف مؤشرات ضرورية للصحة، المانص، والتنبيهات الهامة أثناء اللعب.</p>
+                    <a href="https://hypixel.net/threads/forge-1-8-9-skyblockaddons.2109215/" target="_blank" class="btn" data-i18n="download_btn">تحميل</a>
+                </div>
+                <div class="mod-card">
+                    <h4>Odin Client</h4>
+                    <p data-i18n="odin_desc">مود متطور جداً مخصص لمحترفي Dungeons و Slayers لتسهيل المهام الصعبة.</p>
+                    <a href="https://odinclient.com/" target="_blank" class="btn" data-i18n="download_btn">تحميل</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Skyblock Vault &copy; 2026 - <span data-i18n="footer_by">صُمم بواسطة</span> REGVON</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
