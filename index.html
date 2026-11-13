@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0d18">
-<meta name="description" content="Skyblock Hub: Hypixel SkyBlock item database, live Bazaar prices and flip calculator, player profiles, progression guides, calculators and safe mod resources.">
+<meta name="description" content="Skyblock Hub: Hypixel SkyBlock item database, Bazaar and Craft Flip calculators, NPC flip scanner, player profiles, Garden progression guides and safe mod resources.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://skyblock-vault.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Skyblock Hub — Hypixel SkyBlock Companion">
-<meta property="og:description" content="Explore Hypixel SkyBlock items, live Bazaar market tools, guides, calculators, player tools and safe mod resources.">
+<meta property="og:description" content="Explore Hypixel SkyBlock items, Bazaar and Craft Flip tools, NPC price comparisons, Garden guides, calculators and player tools.">
 <meta property="og:url" content="https://skyblock-vault.vercel.app/">
 <title>Skyblock Hub — Hypixel SkyBlock Companion</title>
 <style>
@@ -35,7 +35,7 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 <button class="shortcut" onclick="showView('profile')"><span class="emoji">🧑</span><b>Player profile</b><small>Look up a player</small></button>
 <button class="shortcut" onclick="document.getElementById('community').scrollIntoView({behavior:'smooth'})"><span class="emoji">💬</span><b>Community</b><small>Useful links</small></button>
 </div>
-<div class="panel"><h2>✨ SkyBlock Hub at a glance</h2><div class="stats"><div class="stat"><strong id="itemCount">30+</strong><span>Starter item entries</span></div><div class="stat"><strong>6</strong><span>Tool categories</span></div><div class="stat"><strong>8</strong><span>Starter guides</span></div><div class="stat"><strong>∞</strong><span>Goals to explore</span></div></div></div>
+<div class="panel"><h2>✨ SkyBlock Hub at a glance</h2><div class="stats"><div class="stat"><strong id="itemCount">30+</strong><span>Starter item entries</span></div><div class="stat"><strong>8</strong><span>Tool categories</span></div><div class="stat"><strong>8</strong><span>Starter guides</span></div><div class="stat"><strong>∞</strong><span>Goals to explore</span></div></div></div>
 <div class="grid2"><div class="panel"><h2>🔥 Popular right now</h2><div class="tiles"><div class="tile" onclick="showView('guides')">⛏️ <b>Mining progression</b><small>Areas, milestones and gear</small></div><a class="tile smalllink" href="/bazaar">📈 <b>Bazaar Flip</b><small>Explore live market spreads</small></a><a class="tile smalllink" href="/craft-flip">🛠️ <b>Craft Flip</b><small>Check recipe margins</small></a><a class="tile smalllink" href="/npc-flips">🏪 <b>NPC Flip Scanner</b><small>Compare NPC and Bazaar values</small></a><a class="tile smalllink" href="/greenhouse-guide">🌿 <b>Greenhouse Guide</b><small>Plan your Garden progression</small></a><div class="tile" onclick="showView('tools')">💰 <b>Profit calculator</b><small>Estimate your margins</small></div><div class="tile" onclick="showView('items')">⚔️ <b>Weapons database</b><small>Browse gear examples</small></div></div></div><div class="panel"><h2>📡 Live data status</h2><p class="muted" id="apiStatus">Checking public Hypixel item resources…</p><button class="btn secondary" onclick="loadLiveItems()">Retry item data</button><div class="notice">Player lookup uses a server-side Hypixel API key. The key is never placed in this page. Do not enter passwords or Microsoft login details.</div></div></div>
 <div class="panel" id="community"><h2>🌐 Community & resources</h2><div class="tiles"><a class="tile smalllink" href="https://wiki.hypixel.net/" target="_blank" rel="noopener">📚 <b>Official Hypixel Wiki</b><small>Game information and guides ↗</small></a><a class="tile smalllink" href="https://hypixel.net/" target="_blank" rel="noopener">🛡️ <b>Hypixel Network</b><small>Official network website ↗</small></a><a class="tile smalllink" href="https://api.hypixel.net/" target="_blank" rel="noopener">🔌 <b>Hypixel API</b><small>Developer documentation ↗</small></a></div></div>
 </section>
