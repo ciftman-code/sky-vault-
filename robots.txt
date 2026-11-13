@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://skyblock-vault.vercel.app/sitemap.xml
+Sitemap: https://skyblock-vault.vercel.app/item-sitemap.xml
