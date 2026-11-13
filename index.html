@@ -67,7 +67,7 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 <div class="panel">
 <p class="muted">Enter a Minecraft Java username. Skyblock Hub will ask its own backend for the player's public SkyBlock profile and display the available data here.</p>
 <div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button></div>
-<div class="notice">This feature needs the Skyblock Hub backend and a Hypixel API key configured on the server. Never paste an API key, Minecraft password or Microsoft login details into this page or into chat.</div>
+<div class="notice">Player profile lookup is optional and requires a Hypixel developer key on the server. The item catalog, Bazaar prices, calculators and guides work without a key. Never paste an API key, Minecraft password or Microsoft login details into this page or into chat.</div>
 <div id="profileLoading" class="muted" aria-live="polite"></div>
 <div id="profileResult" class="resultbox"></div>
 </div>
@@ -155,7 +155,7 @@ async function profileLookup(){
   const dashboard='<h3>✨ '+escapeHtml(data.username||name)+' — '+escapeHtml(data.profileName||'SkyBlock profile')+'</h3><div class="stats">'+cardHtml+'</div><p class="muted" style="margin-top:12px">Data returned by Hypixel. Missing fields may be hidden by the player’s API privacy settings.</p>'+ (sections||'<p class="muted">Detailed category fields were not present in this response.</p>');
   box.innerHTML=dashboard; box.classList.add('show');
   const statsTarget=document.getElementById('statsDashboard'); if(statsTarget)statsTarget.innerHTML=dashboard;
- }catch(e){box.innerHTML='<b>Profile unavailable</b><p>'+escapeHtml(e.message)+'</p><p class="muted">Check the username, backend status, API key configuration and the player’s in-game API settings.</p>';box.classList.add('show')}
+ }catch(e){box.innerHTML='<b>Profile unavailable</b><p>'+escapeHtml(e.message)+'</p><p class="muted">Player profile lookup needs a server-side Hypixel developer key. The rest of Skyblock Hub works without one; also check the username and the player’s in-game API settings.</p>';box.classList.add('show')}
  finally{loading.textContent=''}
 }
 function formatCoins(v){return typeof v==='number'?Math.round(v).toLocaleString()+' coins':(v??'—')}
