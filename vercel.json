@@ -1,4 +1,14 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/item/:id",
+      "destination": "/api/skyblock/item-page?id=:id"
+    },
+    {
+      "source": "/item-sitemap.xml",
+      "destination": "/api/skyblock/item-sitemap"
+    }
+  ]
 }
