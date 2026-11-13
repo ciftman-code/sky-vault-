@@ -1,0 +1,26 @@
+const blocked = new Set(["SWORD","BOW","WAND","DAGGER","AXE","WEAPON","CROSSBOW","SHORTBOW","LONGSWORD"]);
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase();return !blocked.has(c)&&!/(SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+" "+m)&&x.name&&x.id;}
+function money(v){return typeof v==="number"?v.toLocaleString("en-US")+" coins":"";}
+export default async function handler(req,res){
+  const id=String(req.query?.id||"").toUpperCase();
+  if(!/^[A-Z0-9_]{2,100}$/.test(id))return res.status(400).send("Invalid item ID");
+  res.setHeader("Cache-Control","s-maxage=3600, stale-while-revalidate=86400");
+  try{
+    const upstream=await fetch("https://api.hypixel.net/v2/resources/skyblock/items");
+    const data=await upstream.json();
+    if(!upstream.ok||!Array.isArray(data.items))throw new Error("upstream");
+    const item=data.items.find(x=>x.id===id&&safe(x));
+    if(!item)return res.status(404).setHeader("Cache-Control","public, max-age=300").send("Item not found");
+    const title=item.name+" — Hypixel SkyBlock Item | SkyBlock Hub";
+    const description="View "+item.name+" in the SkyBlock Hub item guide: item ID, rarity, category, Minecraft material and available stats. Free public item data, no API key required.";
+    const stats=item.stats&&typeof item.stats==="object"?Object.entries(item.stats).map(([k,v])=>k.replace(/_/g," ")+": "+v).join(" · "):"";
+    const material=String(item.material||"").toLowerCase().replace(/^minecraft:/,"").replace(/[^a-z0-9_]/g,"");
+    const fallback=material?"https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/"+material+".png":"";
+    const icon="https://sky.shiiyu.moe/api/item/"+encodeURIComponent(item.id);
+    const structured=JSON.stringify({"@context":"https://schema.org","@type":"WebPage","name":title,"description":description,"url":"https://skyblock-vault.vercel.app/item/"+encodeURIComponent(item.id)}).replace(/</g,"\\u003c");
+    const html="<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>"+esc(title)+"</title><meta name=\"description\" content=\""+esc(description)+"\"><meta name=\"robots\" content=\"index,follow,max-image-preview:large\"><link rel=\"canonical\" href=\"https://skyblock-vault.vercel.app/item/"+encodeURIComponent(item.id)+"\"><meta property=\"og:type\" content=\"article\"><meta property=\"og:title\" content=\""+esc(title)+"\"><meta property=\"og:description\" content=\""+esc(description)+"\"><meta property=\"og:url\" content=\"https://skyblock-vault.vercel.app/item/"+encodeURIComponent(item.id)+"\"><script type=\"application/ld+json\">"+structured+"</script><style>*{box-sizing:border-box}body{margin:0;background:#090e1b;color:#f5f6ff;font:16px/1.6 system-ui,Arial}.wrap{max-width:850px;margin:40px auto;padding:22px}.card{background:#141d32;border:1px solid #34415f;border-radius:20px;padding:26px}.icon{width:150px;height:150px;object-fit:contain;image-rendering:pixelated;display:block;margin:8px auto 22px;filter:drop-shadow(0 9px 10px #0008)}h1{text-align:center;font-size:clamp(28px,5vw,44px);margin:8px 0}.sub{text-align:center;color:#aeb9d3}.tag{display:inline-block;background:#283452;border-radius:20px;padding:5px 10px;margin:4px;font-size:12px}.stats{background:#0b1325;padding:15px;border-radius:12px;color:#d2dcf4;white-space:pre-wrap}.links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.links a{color:#c7b7ff}.muted{color:#aeb9d3}a{color:#c7b7ff}</style></head><body><main class=\"wrap\"><article class=\"card\"><p><a href=\"/item-database\">← All items</a></p><img class=\"icon\" src=\""+icon+"\" alt=\""+esc(item.name)+" SkyBlock item icon\" onerror=\""+(fallback?"this.onerror=null;this.src='"+fallback+"'":"this.style.display='none'")+"\"><h1>"+esc(item.name)+"</h1><p class=\"sub\">"+esc(item.category||"SkyBlock item")+" · "+esc(item.tier||"Rarity not listed")+"</p><p style=\"text-align:center\"><span class=\"tag\">ID: "+esc(item.id)+"</span><span class=\"tag\">Material: "+esc(item.material||"Not listed")+"</span></p><h2>Item details</h2><div class=\"stats\">"+esc([stats,money(item.npc_sell_price)?"NPC sell price: "+money(item.npc_sell_price):""].filter(Boolean).join("\\n")||"No extra stats are published for this item.")+"</div><p class=\"muted\">Icon rendering uses a SkyBlock item renderer where available, with a vanilla Minecraft material texture as a fallback. Some custom resource-pack appearances may vary.</p><div class=\"links\"><a href=\"/item-database\">Browse the item database</a><a href=\"/skyblock-item-guide\">Read the item guide</a><a href=\"/bazaar\">Explore Bazaar data</a></div></article></main></body></html>";
+    res.setHeader("Content-Type","text/html; charset=utf-8");
+    return res.status(200).send(html);
+  }catch(e){return res.status(502).send("The public item resource is temporarily unavailable. <a href='/item-database'>Return to the item database</a>.");}
+}
