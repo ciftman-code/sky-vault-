@@ -1,4 +1,4 @@
-let cache = { at: 0, products: null };
+let cache = { at: 0, products: null, updatedAt: 0 };
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   if (cache.products && Date.now() - cache.at < 30000) {
     return res.status(200).json({
       products: cache.products,
-      updatedAt: cache.at,
+      updatedAt: cache.updatedAt || cache.at,
       cached: true,
       source: "Hypixel Public API"
     });
@@ -28,22 +28,16 @@ export default async function handler(req, res) {
     const data = await upstream.json().catch(() => ({}));
 
     if (!upstream.ok || data.success === false || !data.products || typeof data.products !== "object") {
-      if (!key && (upstream.status === 401 || upstream.status === 403)) {
-        return res.status(503).json({
-          error: "Live Bazaar data needs HYPIXEL_API_KEY configured in Vercel Production.",
-          configured: false
-        });
-      }
       return res.status(502).json({
         error: "Hypixel Bazaar data is temporarily unavailable.",
         configured: Boolean(key)
       });
     }
 
-    cache = { at: Date.now(), products: data.products };
+    cache = { at: Date.now(), products: data.products, updatedAt: data.lastUpdated || Date.now() };
     return res.status(200).json({
       products: cache.products,
-      updatedAt: cache.at,
+      updatedAt: cache.updatedAt,
       cached: false,
       source: "Hypixel Public API"
     });
