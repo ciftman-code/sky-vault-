@@ -1,6 +1,6 @@
 const blocked = new Set(["SWORD","BOW","WAND","DAGGER","AXE","WEAPON","CROSSBOW","SHORTBOW","LONGSWORD"]);
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase(),id=String(x.id||"").toUpperCase(),name=String(x.name||"");const bad=/(^|_)(WEAPON|SWORD|BOW|DAGGER|WAND|AXE|CROSSBOW|SHORTBOW|LONGSWORD)(_|$)/;return !blocked.has(c)&&!bad.test(c)&&!bad.test(m)&&!bad.test(id)&&!/(\\b)(sword|bow|wand|dagger|axe)(\\b)/i.test(name)&&x.name&&x.id;}
+function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase(),id=String(x.id||"").toUpperCase(),name=String(x.name||"");const bad=/(^|_)(WEAPON|SWORD|BOW|DAGGER|WAND|AXE|CROSSBOW|SHORTBOW|LONGSWORD)(_|$)/;return !blocked.has(c)&&!bad.test(c)&&!bad.test(m)&&!bad.test(id)&&!/\b(sword|bow|wand|dagger|axe)\b/i.test(name)&&x.name&&x.id;}
 function hasUsefulInfo(x){return !!((x.stats&&Object.keys(x.stats).length)||typeof x.npc_sell_price==="number"||x.requirements?.length||x.soulbound||x.origin||x.museum===true||x.glowing===true||x.unstackable===true);}
 function money(v){return typeof v==="number"?v.toLocaleString("en-US")+" coins":"";}
 export default async function handler(req,res){
@@ -13,8 +13,6 @@ export default async function handler(req,res){
     if(!upstream.ok||!Array.isArray(data.items))throw new Error("upstream");
     const item=data.items.find(x=>x.id===id&&safe(x));
     if(!item)return res.status(404).setHeader("Cache-Control","public, max-age=300").send("Item not found");
-    const title=item.name+" — Hypixel SkyBlock Item | SkyBlock Hub";
-    const description="View "+item.name+" in the SkyBlock Hub item guide: item ID, rarity, category, Minecraft material and available stats. Free public item data, no API key required.";
     const stats=item.stats&&typeof item.stats==="object"?Object.entries(item.stats).map(([k,v])=>k.replace(/_/g," ")+": "+v).join(" · "):"";
     const requirements=item.requirements?.length?item.requirements.map(r=>Object.entries(r).map(([k,v])=>k.replace(/_/g," ")+": "+(typeof v==="object"?JSON.stringify(v):v)).join(", ")).join(" | "):"";
     const title=item.name+" — Hypixel SkyBlock Item | SkyBlock Hub";
