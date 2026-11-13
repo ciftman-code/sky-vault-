@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b0d18">
+<meta name="description" content="Skyblock Hub is a free Hypixel SkyBlock companion with item search, player profiles, progression guides, calculators and safe mod resources.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://skyblock-vault.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Skyblock Hub — Hypixel SkyBlock Companion">
+<meta property="og:description" content="Explore Hypixel SkyBlock items, guides, calculators, player tools and safe mod resources.">
+<meta property="og:url" content="https://skyblock-vault.vercel.app/">
 <title>Skyblock Hub — Hypixel SkyBlock Companion</title>
 <style>
 :root{--bg:#090b15;--panel:#13172a;--panel2:#1b2038;--line:#2b3151;--text:#f4f5ff;--muted:#a8aecb;--purple:#8757ff;--purple2:#6035d7;--cyan:#57d9e8;--gold:#ffd166;--green:#65dfa0;--red:#ff7888}
@@ -15,13 +22,14 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 </style>
 </head>
 <body>
-<header><div class="nav"><div class="brand">☁️ <i>SKYBLOCK</i> HUB</div><nav id="nav"><button class="active" data-view="home">Home</button><button data-view="items">Items</button><button data-view="guides">Guides</button><button data-view="tools">Calculators</button><button data-view="quests">Quests</button><button data-view="profile">Player profile</button><button data-view="stats">Stats overview</button></nav><div class="navright"><button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button><button class="pillhide" onclick="toggleTheme()">☼</button><button class="btn" onclick="showView('profile')">Player</button></div></div></header>
+<header><div class="nav"><div class="brand">☁️ <i>SKYBLOCK</i> HUB</div><nav id="nav"><button class="active" data-view="home">Home</button><button data-view="items">Items</button><button data-view="guides">Guides</button><button data-view="mods">Mods</button><button data-view="tools">Calculators</button><button data-view="quests">Quests</button><button data-view="profile">Player profile</button><button data-view="stats">Stats overview</button></nav><div class="navright"><button class="menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button><button class="pillhide" onclick="toggleTheme()">☼</button><button class="btn" onclick="showView('profile')">Player</button></div></div></header>
 <main>
 <section class="view active" id="home">
 <div class="hero"><div class="eyebrow">Your adventure starts here</div><h1>SKYBLOCK <span>HUB</span></h1><p>One place for your Hypixel SkyBlock journey: item lookup, guides, calculators, quests and player tools.</p><div class="searchbar"><input id="globalSearch" placeholder="Search items, weapons, pets, NPCs, guides..." onkeydown="if(event.key==='Enter')globalSearch()"><button class="btn" onclick="globalSearch()">Search Hub</button></div><div class="resultbox" id="globalResult"></div></div>
 <div class="shortcuts">
 <button class="shortcut" onclick="showView('guides')"><span class="emoji">📘</span><b>Guides</b><small>Learn and improve</small></button>
 <button class="shortcut" onclick="showView('tools')"><span class="emoji">🧮</span><b>Calculators</b><small>Plan & optimize</small></button>
+<button class="shortcut" onclick="showView('mods')"><span class="emoji">🧩</span><b>Mods & downloads</b><small>Official safe sources</small></button>
 <button class="shortcut" onclick="showView('items')"><span class="emoji">📦</span><b>Item database</b><small>Find SkyBlock items</small></button>
 <button class="shortcut" onclick="showView('quests')"><span class="emoji">📜</span><b>Quest tracker</b><small>Track your goals</small></button>
 <button class="shortcut" onclick="showView('profile')"><span class="emoji">🧑</span><b>Player profile</b><small>Look up a player</small></button>
@@ -32,6 +40,17 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 <div class="panel" id="community"><h2>🌐 Community & resources</h2><div class="tiles"><a class="tile smalllink" href="https://wiki.hypixel.net/" target="_blank" rel="noopener">📚 <b>Official Hypixel Wiki</b><small>Game information and guides ↗</small></a><a class="tile smalllink" href="https://hypixel.net/" target="_blank" rel="noopener">🛡️ <b>Hypixel Network</b><small>Official network website ↗</small></a><a class="tile smalllink" href="https://api.hypixel.net/" target="_blank" rel="noopener">🔌 <b>Hypixel API</b><small>Developer documentation ↗</small></a></div></div>
 </section>
 <section class="view" id="items"><div class="sectionhead"><h2>📦 Item database</h2><span class="badge" id="dbBadge">Starter catalog</span></div><p class="muted">Search the starter catalog and the live Hypixel item database. Search checks item names, IDs, categories and descriptions.</p><div class="toolbar"><input class="field" id="itemSearch" placeholder="Search by item name or ID..." oninput="renderItems()"><select class="field" id="itemCategory" onchange="renderItems()"><option value="all">All categories</option><option>Weapon</option><option>Armor</option><option>Pet</option><option>Mining</option><option>Farming</option><option>Other</option></select><button class="btn secondary" onclick="loadLiveItems()">Refresh live data</button></div><div class="itemgrid" id="itemGrid"></div><div class="notice">Item names and IDs come from Hypixel public resources when available. This is not a live Bazaar price feed.</div></section>
+<section class="view" id="mods">
+<div class="sectionhead"><h2>🧩 Mods & safe downloads</h2><span class="badge">Official sources</span></div>
+<p class="muted">A small directory of client-side tools that Hypixel names as examples in its modification guide. Always re-check the current rules and the exact features you enable before joining the network.</p>
+<div class="guidegrid">
+<article class="card"><span class="emoji">⚡</span><h3>OptiFine</h3><p>Client performance and graphics options. Check the Minecraft version shown on the official download page before installing.</p><div style="margin-top:12px"><a class="btn" href="https://www.optifine.net/downloads" target="_blank" rel="noopener noreferrer">Official downloads ↗</a></div></article>
+<article class="card"><span class="emoji">🎥</span><h3>Replay Mod</h3><p>Record and replay gameplay footage. Use replay controls for recordings only, not to change live gameplay.</p><div style="margin-top:12px"><a class="btn" href="https://www.replaymod.com/" target="_blank" rel="noopener noreferrer">Official website ↗</a></div></article>
+<article class="card"><span class="emoji">📜</span><h3>Hypixel mod rules</h3><p>Read the official allowed-modification categories and examples. Hypixel says all modifications are used at your own risk.</p><div style="margin-top:12px"><a class="btn secondary" href="https://support.hypixel.net/hc/en-us/articles/6472550754962-Hypixel-Allowed-Modifications" target="_blank" rel="noopener noreferrer">Read official rules ↗</a></div></article>
+</div>
+<div class="notice"><b>Stay safe:</b> Download only from the creator's official website. Avoid random re-uploads, files from video descriptions, macros, automation, and anything that gives an unfair advantage. Never enter your Microsoft password or session details into a mod website.</div>
+<div class="notice">Hypixel's rules can change, and a mod's features can change after an update. A mod being mentioned as an example does not guarantee every version or every optional feature is safe.</div>
+</section>
 <section class="view" id="guides"><div class="sectionhead"><h2>📘 Guides & progression</h2><span class="badge">Starter library</span></div><div class="toolbar"><input class="field" id="guideSearch" placeholder="Filter guides..." oninput="renderGuides()"></div><div class="guidegrid" id="guideGrid"></div></section>
 <section class="view" id="tools"><div class="sectionhead"><h2>🧮 SkyBlock calculators</h2><span class="badge">Offline tools</span></div><div class="calcgrid">
 <div class="calcbox"><h3>💰 Profit calculator</h3><p>Estimate coins earned after costs.</p><label>Sell value (coins)<input class="field" type="number" id="sell" min="0" placeholder="e.g. 125000"></label><label>Total cost (coins)<input class="field" type="number" id="cost" min="0" placeholder="e.g. 80000"></label><button class="btn" onclick="profitCalc()">Calculate profit</button><div class="output" id="profitOut">Your result appears here.</div></div>
