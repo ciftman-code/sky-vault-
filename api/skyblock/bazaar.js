@@ -27,9 +27,8 @@ export default async function handler(req, res) {
     const data = await upstream.json().catch(() => ({}));
 
     if (!upstream.ok || data.success === false || !data.products || typeof data.products !== "object") {
-      return res.status(502).json({
-        error: "Hypixel Bazaar data is temporarily unavailable."
-      });
+      if (cache.products) return res.status(200).json({ products: cache.products, updatedAt: cache.updatedAt || cache.at, cached: true, stale: true, source: "Cached Hypixel Public API data", warning: "Live Bazaar refresh is temporarily unavailable." });
+      return res.status(502).json({ error: "Hypixel Bazaar data is temporarily unavailable." });
     }
 
     cache = { at: Date.now(), products: data.products, updatedAt: data.lastUpdated || Date.now() };
@@ -40,8 +39,7 @@ export default async function handler(req, res) {
       source: "Hypixel Public API"
     });
   } catch {
-    return res.status(502).json({
-      error: "Could not connect to Hypixel Bazaar right now."
-    });
+    if (cache.products) return res.status(200).json({ products: cache.products, updatedAt: cache.updatedAt || cache.at, cached: true, stale: true, source: "Cached Hypixel Public API data", warning: "Live Bazaar refresh is temporarily unavailable." });
+    return res.status(502).json({ error: "Could not connect to Hypixel Bazaar right now." });
   }
 }
