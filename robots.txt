@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skyblock-vault.vercel.app/sitemap.xml
