@@ -45,7 +45,7 @@ function materialSources(x){
 function imgHtml(x){
  const p=materialSources(x);
  if(!p.legacy)return '<span class="fallback">📦</span>';
- return '<img loading="lazy" decoding="async" src="'+p.legacy+'" alt="'+esc(x.name)+' Minecraft item icon" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==='1'&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display='none';this.nextElementSibling.style.display='block'}"><span class="fallback" style="display:none">📦</span>';
+ return '<img loading="lazy" decoding="async" src="'+p.legacy+'" alt="'+esc(x.name)+' Minecraft item icon" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==1&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display=\\'none\\';this.nextElementSibling.style.display=\\'block\\'}"><span class="fallback" style="display:none">📦</span>';
 }
 let shown=60,filteredItems=[];
 function render(){
