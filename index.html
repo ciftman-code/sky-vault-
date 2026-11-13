@@ -112,7 +112,7 @@ function itemTextureSources(x){
 function itemIconMarkup(x){
  const p=itemTextureSources(x);
  if(!p.legacy)return escapeHtml(x.icon||'📦');
- return '<img loading="lazy" decoding="async" alt="'+escapeHtml(x.name)+' Minecraft item icon" src="'+p.legacy+'" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==='1'&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display=\'none\';this.parentElement.textContent=\'📦\'}">';
+ return '<img loading="lazy" decoding="async" alt="'+escapeHtml(x.name)+' Minecraft item icon" src="'+p.legacy+'" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==1&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display=\'none\';this.parentElement.textContent=\'📦\'}">';
 }
 let items=starterItems.filter(isCatalogItemAllowed);
 const guides=[
