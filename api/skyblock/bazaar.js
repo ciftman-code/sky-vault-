@@ -16,9 +16,8 @@ export default async function handler(req, res) {
     });
   }
 
-  const key = process.env.HYPIXEL_API_KEY;
+  // Hypixel Bazaar is a public endpoint; no developer key is required.
   const headers = { Accept: "application/json" };
-  if (key) headers["API-Key"] = key;
 
   try {
     const upstream = await fetch("https://api.hypixel.net/v2/skyblock/bazaar", {
@@ -29,8 +28,7 @@ export default async function handler(req, res) {
 
     if (!upstream.ok || data.success === false || !data.products || typeof data.products !== "object") {
       return res.status(502).json({
-        error: "Hypixel Bazaar data is temporarily unavailable.",
-        configured: Boolean(key)
+        error: "Hypixel Bazaar data is temporarily unavailable."
       });
     }
 
@@ -43,8 +41,7 @@ export default async function handler(req, res) {
     });
   } catch {
     return res.status(502).json({
-      error: "Could not connect to Hypixel Bazaar right now.",
-      configured: Boolean(key)
+      error: "Could not connect to Hypixel Bazaar right now."
     });
   }
 }
