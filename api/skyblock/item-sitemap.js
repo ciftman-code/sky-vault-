@@ -1,5 +1,5 @@
 const blocked = new Set(["SWORD","BOW","WAND","DAGGER","AXE","WEAPON","CROSSBOW","SHORTBOW","LONGSWORD"]);
-function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase();return !blocked.has(c)&&!/(SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+" "+m)&&x.name&&x.id&&/^[A-Z0-9_]{2,100}$/.test(x.id);}
+function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase();return !blocked.has(c)&&!/(WEAPON|SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+" "+m)&&x.name&&x.id&&/^[A-Z0-9_]{2,100}$/.test(x.id);}
 export default async function handler(req,res){
  res.setHeader("Content-Type","application/xml; charset=utf-8");
  res.setHeader("Cache-Control","s-maxage=3600, stale-while-revalidate=86400");
