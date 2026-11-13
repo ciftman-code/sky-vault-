@@ -97,15 +97,29 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 const starterItems=[
 ['Aspect of the End','Weapon','🗡️','Teleport utility sword','ASPECT_OF_THE_END'],['Aspect of the Dragons','Weapon','🐉','Dragon-themed sword','ASPECT_OF_THE_DRAGONS'],['Void Sword','Weapon','⚔️','Early progression weapon','VOID_SWORD'],['Hyperion','Weapon','✨','Wither Blade variant','HYPERION'],['Terminator','Weapon','🏹','Powerful bow','TERMINATOR'],['Necron’s Armor','Armor','🛡️','Dungeon armor set','NECRON'],['Storm’s Armor','Armor','🌩️','Mage-oriented armor set','STORM'],['Tarantula Armor','Armor','🕷️','Spider-themed armor','TARANTULA'],['Young Dragon Armor','Armor','🐲','Dragon armor set','YOUNG_DRAGON'],['Golden Dragon','Pet','🐉','Legendary dragon pet','GOLDEN_DRAGON'],['Rock Pet','Pet','🪨','Mining pet','ROCK'],['Enderman Pet','Pet','👾','Combat pet','ENDERMAN'],['Blue Whale','Pet','🐋','Defensive pet','BLUE_WHALE'],['Divan’s Drill','Mining','⛏️','Mining tool','DIVANS_DRILL'],['Mithril','Mining','💠','Mining resource','MITHRIL'],['Gemstone Gauntlet','Mining','💎','Mining tool','GEMSTONE_GAUNTLET'],['Titanium','Mining','🔩','Mining resource','TITANIUM'],['Jungle Axe','Farming','🪓','Woodcutting tool','JUNGLE_AXE'],['Melon Dicer','Farming','🍉','Farming tool','MELON_DICER'],['Rancher’s Boots','Armor','🥾','Farming utility boots','RANCHERS_BOOTS'],['Enchanted Diamond','Other','💎','Crafting material','ENCHANTED_DIAMOND'],['Enchanted Sugar Cane','Other','🎋','Crafting material','ENCHANTED_SUGAR_CANE'],['Summoning Eye','Other','👁️','End-related item','SUMMONING_EYE'],['Booster Cookie','Other','🍪','Utility consumable','BOOSTER_COOKIE'],['God Potion','Other','🧪','Potion item','GOD_POTION'],['Recombobulator 3000','Other','🔮','Item upgrade material','RECOMBOBULATOR_3000'],['Enchanted Hopper','Other','🪣','Minion upgrade','ENCHANTED_HOPPER'],['Minion','Other','🤖','Island resource generator','MINION'],['Crystal Hollows','Mining','💎','Mining area','CRYSTAL_HOLLOWS'],['Garden','Farming','🌱','Farming island area','GARDEN']
 ].map(x=>({name:x[0],cat:x[1],icon:x[2],desc:x[3],id:x[4]}));
-function isCatalogItemAllowed(x){const c=String(x.category||x.type||x.cat||'').toUpperCase(),m=String(x.material||'').toUpperCase();return x.cat!=='Weapon'&&!/(^|_)(SWORD|BOW|WAND|DAGGER|AXE|WEAPON)(_|$)/.test(c)&&!/(SWORD|BOW|DAGGER|WAND)/.test(m)}
-function itemTextureUrl(x){const m=String(x.material||'').toLowerCase().replace(/^minecraft:/,'').replace(/[^a-z0-9_]/g,'');return m?'https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/'+m+'.png':''}
-function itemIconMarkup(x){const u=itemTextureUrl(x);return u?'<img loading="lazy" alt="'+escapeHtml(x.name)+' item texture" src="'+u+'" onerror="this.style.display=\'none\';this.parentElement.textContent=\'📦\'">':escapeHtml(x.icon||'📦')}
+function isCatalogItemAllowed(x){
+ const c=String(x.category||x.type||x.cat||'').toUpperCase(),m=String(x.material||'').toUpperCase(),id=String(x.id||'').toUpperCase(),name=String(x.name||'');
+ const blocked=/(^|_)(SWORD|BOW|WAND|DAGGER|AXE|WEAPON|CROSSBOW|SHORTBOW|LONGSWORD)(_|$)/;
+ return x.cat!=='Weapon'&&!blocked.test(c)&&!blocked.test(m)&&!blocked.test(id)&&!/\\b(sword|bow|wand|dagger|axe)\\b/i.test(name);
+}
+function itemTextureSources(x){
+ const raw=String(x.material||'').toUpperCase().replace(/^MINECRAFT:/,'').replace(/[^A-Z0-9_]/g,'');
+ if(!raw)return {legacy:'',modern:'',block:''};
+ const aliases={SKULL_ITEM:'skull',SKULL:'skull',INK_SACK:'dye_powder',MONSTER_EGG:'spawn_egg',POTION:'potion_bottle_drinkable',ENCHANTED_BOOK:'book_enchanted',GOLDEN_APPLE:'apple_golden',EXP_BOTTLE:'experience_bottle',WATCH:'clock',BOOK_AND_QUILL:'writable_book',WRITTEN_BOOK:'written_book',WOOD_DOOR:'door_wood',IRON_DOOR:'door_iron'};
+ const name=(aliases[raw]||raw).toLowerCase();
+ return {legacy:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/items/'+name+'.png',modern:'https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/'+raw.toLowerCase()+'.png',block:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/blocks/'+name+'.png'};
+}
+function itemIconMarkup(x){
+ const p=itemTextureSources(x);
+ if(!p.legacy)return escapeHtml(x.icon||'📦');
+ return '<img loading="lazy" decoding="async" alt="'+escapeHtml(x.name)+' Minecraft item icon" src="'+p.legacy+'" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==='1'&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display=\'none\';this.parentElement.textContent=\'📦\'}">';
+}
 let items=starterItems.filter(isCatalogItemAllowed);
 const guides=[
 ['🌱','Beginner progression','Start with profile basics, collections, minions and accessible gear. Set one goal at a time.','Beginner'],
 ['⛏️','Mining progression','Learn mining areas, commissions, powder systems and how gear progression fits together.','Mining'],
 ['🌾','Garden & farming','Understand plots, crop milestones, farming tools and how to organize a farming session.','Farming'],
-['⚔️','Combat fundamentals','Compare survivability, damage, weapon abilities and armor choices for your stage.','Combat'],
+
 ['🐾','Pets explained','Learn pet rarity, leveling, pet items and why different pets suit different activities.','Pets'],
 ['💰','Making coins','Compare activities by setup cost, time, risk and market changes rather than chasing one fixed method.','Economy'],
 ['🏰','Dungeons overview','Prepare a class, understand floors, team roles and gear requirements before entering.','Dungeons'],
@@ -119,7 +133,7 @@ function globalSearch(){
  const q=document.getElementById('globalSearch').value.trim().toLowerCase(),box=document.getElementById('globalResult');
  if(!q){box.innerHTML='<b>Type a search term first.</b>';box.classList.add('show');return}
  const matches=items.filter(x=>searchable(x).includes(q)).slice(0,8), gm=guides.filter(x=>x.join(' ').toLowerCase().includes(q)).slice(0,5), esc=escapeHtml;
- box.innerHTML=(matches.length||gm.length)?`<b>Search results</b><p>${matches.length} item(s), ${gm.length} guide(s) found.</p>${matches.map(x=>`<div class="checkrow"><span>${esc(x.icon||'📦')}</span><span><b>${esc(x.name)}</b><small class="muted"> ${esc(x.cat||'Item')} · ${esc(x.id||'')}</small></span></div>`).join('')}${gm.map(x=>`<div class="checkrow"><span>${esc(x[0])}</span><span><b>${esc(x[1])}</b><small class="muted"> Guide · ${esc(x[3])}</small></span></div>`).join('')}<button class="btn secondary" onclick="openSearchInItems()">See matching items</button>`:'<b>No match found.</b><p>Try a shorter term, item ID, weapon, pet, mining, farming or guide topic.</p>';
+ box.innerHTML=(matches.length||gm.length)?`<b>Search results</b><p>${matches.length} item(s), ${gm.length} guide(s) found.</p>${matches.map(x=>`<div class="checkrow"><span>${esc(x.icon||'📦')}</span><span><b>${esc(x.name)}</b><small class="muted"> ${esc(x.cat||'Item')} · ${esc(x.id||'')}</small></span></div>`).join('')}${gm.map(x=>`<div class="checkrow"><span>${esc(x[0])}</span><span><b>${esc(x[1])}</b><small class="muted"> Guide · ${esc(x[3])}</small></span></div>`).join('')}<button class="btn secondary" onclick="openSearchInItems()">See matching items</button>`:'<b>No match found.</b><p>Try a shorter term, item ID, pet, mining, farming or guide topic.</p>';
  box.classList.add('show');
 }
 function openSearchInItems(){const q=document.getElementById('globalSearch').value.trim();showView('items');document.getElementById('itemSearch').value=q;renderItems()}
