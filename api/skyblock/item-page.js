@@ -1,6 +1,6 @@
 const blocked = new Set(["SWORD","BOW","WAND","DAGGER","AXE","WEAPON","CROSSBOW","SHORTBOW","LONGSWORD"]);
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase();return !blocked.has(c)&&!/(SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+" "+m)&&x.name&&x.id;}
+function safe(x){const c=String(x.category||"").toUpperCase(),m=String(x.material||"").toUpperCase();return !blocked.has(c)&&!/(WEAPON|SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+" "+m)&&x.name&&x.id;}
 function money(v){return typeof v==="number"?v.toLocaleString("en-US")+" coins":"";}
 export default async function handler(req,res){
   const id=String(req.query?.id||"").toUpperCase();
