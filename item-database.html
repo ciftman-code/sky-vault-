@@ -33,7 +33,7 @@
 <script>
 const $=id=>document.getElementById(id);let all=[];
 const blocked=new Set(['SWORD','BOW','WAND','DAGGER','AXE','WEAPON']);
-function safeItem(x){const c=String(x.category||'').toUpperCase(),m=String(x.material||'').toUpperCase();return !blocked.has(c)&&!/(SWORD|BOW|DAGGER|WAND)/.test(c+' '+m)&&x.name&&x.id}
+function safeItem(x){const c=String(x.category||'').toUpperCase(),m=String(x.material||'').toUpperCase();return !blocked.has(c)&&!/(WEAPON|SWORD|BOW|DAGGER|WAND|CROSSBOW)/.test(c+' '+m)&&x.name&&x.id}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function materialPath(x,folder='item'){let m=String(x.material||'').toLowerCase().replace(/^minecraft:/,'').replace(/[^a-z0-9_]/g,'');return m?'https://mcasset.cloud/1.21.4/assets/minecraft/textures/'+folder+'/'+m+'.png':''}
 function skyItemUrl(x){return 'https://sky.shiiyu.moe/api/item/'+encodeURIComponent(x.id)}
