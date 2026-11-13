@@ -35,22 +35,23 @@ const $=id=>document.getElementById(id);let all=[];
 const blocked=new Set(['SWORD','BOW','WAND','DAGGER','AXE','WEAPON','CROSSBOW','SHORTBOW','LONGSWORD']);
 function safeItem(x){const c=String(x.category||'').toUpperCase(),m=String(x.material||'').toUpperCase(),id=String(x.id||'').toUpperCase(),name=String(x.name||'');const bad=/(^|_)(WEAPON|SWORD|BOW|DAGGER|WAND|AXE|CROSSBOW|SHORTBOW|LONGSWORD)(_|$)/;return !blocked.has(c)&&!bad.test(c)&&!bad.test(m)&&!bad.test(id)&&!(/\b(sword|bow|wand|dagger|axe)\b/i.test(name))&&x.name&&x.id}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function categoryGroup(x){const c=String(x.category||'').toUpperCase(),n=String(x.name||'').toLowerCase(),id=String(x.id||'').toUpperCase();if(/PET/.test(c)||/\bpet\b/.test(n)||id.startsWith('PET_'))return 'Pets';if(/MINION/.test(c)||/minion/.test(n)||id.includes('MINION'))return 'Minions';if(/ACCESSORY|TALISMAN|RING|ARTIFACT|RELIC|NECKLACE|BRACELET|CLOAK|BELT/.test(c))return 'Accessories';if(/HELMET|CHESTPLATE|LEGGINGS|BOOTS|ARMOR/.test(c))return 'Armor';if(/MINING|DRILL|PICKAXE|GEMSTONE|ORE/.test(c)||/mithril|titanium|gemstone|ore|powder/.test(n))return 'Mining';if(/FARM|HOE|CROP|SEED/.test(c)||/farm|crop|wheat|carrot|potato|melon|pumpkin/.test(n))return 'Farming';if(/FISH|BAIT|ROD/.test(c)||/fishing|bait/.test(n))return 'Fishing';if(/POTION|CONSUMABLE|FOOD|COOKIE/.test(c)||/potion|cookie|booster/.test(n))return 'Consumables';if(/RESOURCE|MATERIAL|ENCHANT|ESSENCE|GEMSTONE|DYE|BLOCK|COLLECTION/.test(c)||/enchanted|material|resource/.test(n))return 'Resources';if(/TOOL/.test(c))return 'Tools';return 'Other'}
 function materialSources(x){
  const raw=String(x.material||'').toUpperCase().replace(/^MINECRAFT:/,'').replace(/[^A-Z0-9_]/g,'');
  if(!raw)return {legacy:'',modern:'',block:''};
- const aliases={SKULL_ITEM:'skull',SKULL:'skull',INK_SACK:'dye_powder',MONSTER_EGG:'spawn_egg',POTION:'potion_bottle_drinkable',ENCHANTED_BOOK:'book_enchanted',GOLDEN_APPLE:'apple_golden',EXP_BOTTLE:'experience_bottle',WATCH:'clock',BOOK_AND_QUILL:'writable_book',WRITTEN_BOOK:'written_book',WOOD_DOOR:'door_wood',IRON_DOOR:'door_iron'};
+ const aliases={SKULL_ITEM:'skull',SKULL:'skull',INK_SACK:'dye_powder',MONSTER_EGG:'spawn_egg',POTION:'potion_bottle_drinkable',ENCHANTED_BOOK:'book_enchanted',GOLDEN_APPLE:'apple_golden',EXP_BOTTLE:'experience_bottle',WATCH:'clock',BOOK_AND_QUILL:'writable_book',WRITTEN_BOOK:'written_book',WOOD_DOOR:'door_wood',IRON_DOOR:'door_iron',CARROT_ITEM:'carrot',POTATO_ITEM:'potato',SUGAR_CANE:'reeds',WHEAT:'wheat',PUMPKIN_SEEDS:'seeds_pumpkin',MELON_SEEDS:'seeds_melon',WHEAT_SEEDS:'seeds_wheat',WORKBENCH:'crafting_table',HARD_CLAY:'hardened_clay',STAINED_CLAY:'stained_hardened_clay',ENDER_STONE:'end_stone',HAY_BLOCK:'hay_block_side',QUARTZ_BLOCK:'quartz_block_side',LOG:'log_oak',LOG_2:'log_acacia',LEAVES:'leaves_oak',LEAVES_2:'leaves_acacia',WOOD:'planks_oak'};
  const name=(aliases[raw]||raw).toLowerCase();
- return {legacy:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/items/'+name+'.png',modern:'https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/'+raw.toLowerCase()+'.png',block:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/blocks/'+name+'.png'};
+ return {legacy:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/items/'+name+'.png',project:'https://project-crafting.github.io/minecraft-auto-updated-textures-api/items/'+name+'.png',modern:'https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/'+raw.toLowerCase()+'.png',block:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/blocks/'+name+'.png'};
 }
 function imgHtml(x){
  const p=materialSources(x);
  if(!p.legacy)return '<span class="fallback">📦</span>';
- return '<img loading="lazy" decoding="async" src="'+p.legacy+'" alt="'+esc(x.name)+' Minecraft item icon" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.modern){this.dataset.step=1;this.src=this.dataset.modern}else if(this.dataset.step==1&&this.dataset.block){this.dataset.step=2;this.src=this.dataset.block}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'}"><span class="fallback" style="display:none">📦</span>';
+ return '<img loading="lazy" decoding="async" src="'+p.legacy+'" alt="'+esc(x.name)+' Minecraft item icon" data-project="'+p.project+'" data-modern="'+p.modern+'" data-block="'+p.block+'" onerror="if(!this.dataset.step&&this.dataset.project){this.dataset.step=1;this.src=this.dataset.project}else if(this.dataset.step==1&&this.dataset.modern){this.dataset.step=2;this.src=this.dataset.modern}else if(this.dataset.step==2&&this.dataset.block){this.dataset.step=3;this.src=this.dataset.block}else{this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'}"><span class="fallback" style="display:none">📦</span>';
 }
 let shown=60,filteredItems=[];
 function render(){
  const q=$('q').value.trim().toLowerCase(),cat=$('cat').value,tier=$('tier').value,sort=$('sort').value;
- filteredItems=all.filter(x=>(!cat||x.category===cat)&&(!tier||x.tier===tier)&&(x.name.toLowerCase().includes(q)||x.id.toLowerCase().includes(q)));
+ filteredItems=all.filter(x=>(!cat||x.hubCategory===cat)&&(!tier||x.tier===tier)&&([x.name,x.id,x.category,x.hubCategory].filter(Boolean).join(' ').toLowerCase().includes(q)));
  const rarity={COMMON:1,UNCOMMON:2,RARE:3,EPIC:4,LEGENDARY:5,MYTHIC:6,DIVINE:7,SPECIAL:8,'VERY SPECIAL':9};
  filteredItems.sort((a,b)=>sort==='rarity'?(rarity[a.tier]||99)-(rarity[b.tier]||99)||a.name.localeCompare(b.name):sort==='price'?(Number(b.npc_sell_price)||0)-(Number(a.npc_sell_price)||0):a.name.localeCompare(b.name));
  const visible=filteredItems.slice(0,shown);
@@ -64,16 +65,16 @@ function openDetails(x){
  if(!x)return;
  $('dname').textContent=x.name;
  const p=materialSources(x),img=$('dimg'),placeholder=$('dplaceholder');
- img.dataset.step='';img.dataset.modern=p.modern;img.dataset.block=p.block;
- img.onerror=()=>{if(!img.dataset.step&&img.dataset.modern){img.dataset.step='1';img.src=img.dataset.modern}else if(img.dataset.step==='1'&&img.dataset.block){img.dataset.step='2';img.src=img.dataset.block}else{img.style.display='none';placeholder.style.display='block'}};
+ img.dataset.step='';img.dataset.project=p.project;img.dataset.modern=p.modern;img.dataset.block=p.block;
+ img.onerror=()=>{if(!img.dataset.step&&img.dataset.project){img.dataset.step='1';img.src=img.dataset.project}else if(img.dataset.step==='1'&&img.dataset.modern){img.dataset.step='2';img.src=img.dataset.modern}else if(img.dataset.step==='2'&&img.dataset.block){img.dataset.step='3';img.src=img.dataset.block}else{img.style.display='none';placeholder.style.display='block'}};
  if(p.legacy){img.src=p.legacy;img.style.display='block';placeholder.style.display='none'}else{img.style.display='none';placeholder.style.display='block'}
  $('dlink').href='/item/'+encodeURIComponent(x.id);
- $('dmeta').textContent=[x.category,x.tier,x.id].filter(Boolean).join(' · ');
- const info={material:x.material,rarity:x.tier,category:x.category,npc_sell_price:x.npc_sell_price,stats:x.stats,requirements:x.requirements};
+ $('dmeta').textContent=[x.hubCategory,x.category,x.tier,x.id].filter(Boolean).join(' · ');
+ const info={material:x.material,rarity:x.tier,category:x.category,hub_category:x.hubCategory,npc_sell_price:x.npc_sell_price,stats:x.stats,requirements:x.requirements};
  $('dstats').textContent=JSON.stringify(Object.fromEntries(Object.entries(info).filter(([,v])=>v!==undefined)),null,2);
  $('detail').classList.add('open');
 }
 $('close').onclick=()=>$('detail').classList.remove('open');$('detail').addEventListener('click',e=>{if(e.target===$('detail'))$('detail').classList.remove('open')});$('q').addEventListener('input',()=>{shown=60;render()});$('cat').addEventListener('change',()=>{shown=60;render()});$('tier').addEventListener('change',()=>{shown=60;render()});$('sort').addEventListener('change',()=>{shown=60;render()});$('loadMore').onclick=()=>{shown+=60;render()};$('reset').onclick=()=>{$('q').value='';$('cat').value='';$('tier').value='';$('sort').value='name';shown=60;render()};
-async function init(){try{const r=await fetch('/api/skyblock/items',{headers:{Accept:'application/json'}});const d=await r.json();if(!r.ok||!Array.isArray(d.items))throw Error(d.error||'Public item service unavailable');all=d.items.filter(safeItem);const cats=[...new Set(all.map(x=>x.category).filter(Boolean))].sort();$('cat').innerHTML='<option value="">All categories</option>'+cats.map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join('');$('status').textContent='Connected to public Hypixel item resources · no personal API key used.';render()}catch(e){$('status').textContent='Could not load the public catalog right now. Please try again later.';$('grid').innerHTML='<div class="empty">The item service is temporarily unavailable. Your filters will work again when the catalog reconnects.</div>'}}
+async function init(){try{const r=await fetch('/api/skyblock/items',{headers:{Accept:'application/json'}});const d=await r.json();if(!r.ok||!Array.isArray(d.items))throw Error(d.error||'Public item service unavailable');all=d.items.filter(safeItem).map(x=>({...x,hubCategory:categoryGroup(x)}));const cats=[...new Set(all.map(x=>x.hubCategory).filter(Boolean))].sort();$('cat').innerHTML='<option value="">All categories</option>'+cats.map(c=>'<option value="'+esc(c)+'">'+esc(c)+'</option>').join('');$('status').textContent='Connected to public Hypixel item resources · no personal API key used.';render()}catch(e){$('status').textContent='Could not load the public catalog right now. Please try again later.';$('grid').innerHTML='<div class="empty">The item service is temporarily unavailable. Your filters will work again when the catalog reconnects.</div>'}}
 init();
 </script></body></html>
