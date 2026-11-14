@@ -6,7 +6,10 @@
 <meta name="description" content="Explore Hypixel SkyBlock with a free searchable item database, Minecraft item textures, Bazaar tools, crafting calculators, minion planner, Garden guides and resource research guides. No API key needed for public item data.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://skyblock-vault.vercel.app/">
-<meta name="twitter:card" content="summary_large_image">\n<meta name="twitter:title" content="SkyBlock Hub — Hypixel SkyBlock Companion">\n<meta name="twitter:description" content="Explore SkyBlock items, market tools, crafting guides and progression resources.">\n<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SkyBlock Hub — Hypixel SkyBlock Companion">
+<meta name="twitter:description" content="Explore SkyBlock items, market tools, crafting guides and progression resources.">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Skyblock Hub — Hypixel SkyBlock Companion">
 <meta property="og:description" content="Explore Hypixel SkyBlock items, Bazaar and Craft Flip tools, NPC price comparisons, Garden guides, calculators and player tools.">
 <meta property="og:url" content="https://skyblock-vault.vercel.app/">
@@ -85,7 +88,7 @@ main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.vie
 <div class="sectionhead"><h2>🧑 Live player profile</h2><span class="badge">Hypixel API integration</span></div>
 <div class="panel">
 <p class="muted">Enter a Minecraft Java username. Skyblock Hub will ask its own backend for the player's public SkyBlock profile and display the available data here.</p>
-<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button></div>
+<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button><button class="btn secondary" onclick="openPublicProfile()">Open public profile · No key</button></div>
 <div class="notice">Player profile lookup is optional and requires a Hypixel developer key on the server. The item catalog, Bazaar prices, calculators and guides work without a key. Never paste an API key, Minecraft password or Microsoft login details into this page or into chat.</div>
 <div id="profileLoading" class="muted" aria-live="polite"></div>
 <div id="profileResult" class="resultbox"></div>
@@ -157,6 +160,7 @@ function toggleQuest(i,v){quests[i].done=v;saveQuests();renderQuests()}
 function addQuest(){let el=document.getElementById('newQuest'),t=el.value.trim();if(!t)return;quests.push({t,done:false});el.value='';saveQuests();renderQuests()}
 function resetQuests(){if(!confirm('Reset your checklist to the default goals?'))return;quests=defaultQuests.map(t=>({t,done:false}));saveQuests();renderQuests()}
 function describeStat(title,description){const box=document.getElementById('statDescription');box.innerHTML='<b>'+escapeHtml(title)+'</b><p>'+escapeHtml(description)+'</p><button class="btn secondary" onclick="window.open(\'https://sky.shiiyu.moe/stats/bec5e6f707b1457a996dfabee70f0fe3/10c7aa0e-9a02-48c8-a216-52f84dcbd5db\',\'_blank\',\'noopener\')">Open profile ↗</button>';box.classList.add('show')}
+function openPublicProfile(){const name=document.getElementById('playerName').value.trim();if(!/^[A-Za-z0-9_]{3,16}$/.test(name)){const box=document.getElementById('profileResult');box.innerHTML='<b>Enter a valid Minecraft Java username first.</b>';box.classList.add('show');return}window.open('https://sky.shiiyu.moe/stats/'+encodeURIComponent(name),'_blank','noopener,noreferrer')}
 async function profileLookup(){
  const name=document.getElementById('playerName').value.trim();
  const box=document.getElementById('profileResult');
