@@ -1,0 +1,59 @@
+
+/* Shared SkyBlock Hub world theme for every tool and guide page */
+:root{color-scheme:dark;--bg:#080d18;--panel:#132238;--line:#3a526a;--text:#f2f7f3;--muted:#a9bac8;--green:#aee58e;--gold:#ffd36e;--cyan:#83dce3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0!important;background:linear-gradient(90deg,#ffffff05 1px,transparent 1px),linear-gradient(#ffffff05 1px,transparent 1px),radial-gradient(ellipse at 50% -15%,#223d56 0,transparent 46%),#080d18!important;background-size:32px 32px,32px 32px,auto,auto!important;color:var(--text)!important;font:15px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+a{color:#c5edaa}a:hover{color:#e5ffd4}
+header{position:sticky;top:0;z-index:40;background:#08111eef!important;border-bottom:1px solid #425a71!important;backdrop-filter:blur(16px);box-shadow:0 5px 18px #02071188}
+header .wrap,header .nav{max-width:1280px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+header .brand,.brand{color:#f5f9f3!important;font-weight:1000!important;letter-spacing:1px;text-decoration:none!important;text-transform:uppercase}
+header .brand span,header .brand em,.brand span,.brand em{font-style:normal;color:#b7ed98!important}
+header nav,.navlinks,.links{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+header nav a,header .links a,header a:not(.brand){padding:7px 10px;border-radius:6px;color:#b7c8d6;text-decoration:none;font-size:12px;font-weight:850}
+header nav a:hover,header .links a:hover,header a:not(.brand):hover{background:#20364a;color:#fff}
+main,.wrap{max-width:1280px;margin:0 auto;padding-left:22px;padding-right:22px}
+main{padding-top:28px;padding-bottom:65px}
+h1,h2,h3,h4{color:#f3f8f2;line-height:1.2;letter-spacing:-.4px}
+h1{font-size:clamp(34px,5vw,56px);text-transform:uppercase;text-shadow:0 3px 0 #07111b;margin:10px 0 16px}
+h2{font-size:clamp(21px,3vw,30px);margin:24px 0 13px}
+h3{font-size:18px;margin:17px 0 8px}
+p,li{color:#c0cfda}
+small,.muted{color:var(--muted)!important}
+.hero{padding:30px!important;border:1px solid #49657d!important;border-radius:12px!important;background:linear-gradient(120deg,#0f2032f5,#182c40eF)!important;box-shadow:0 5px 0 #050c15,0 15px 28px #0003}
+.eyebrow{color:#b8ed9b!important;font-size:10px!important;letter-spacing:1.7px!important;font-weight:1000!important;text-transform:uppercase}
+.panel,.article,.side,.content,.detailbox,.faq,.callout,.tip,.mini,.step,.result,.saved,.stat,.card,.check,.toc{background:linear-gradient(145deg,#172a40,#101c2b)!important;border:1px solid #3c536a!important;border-radius:9px!important;box-shadow:0 4px 0 #050c15}
+.panel,.article,.side,.content,.detailbox,.faq,.callout,.tip,.mini,.step,.result,.saved,.card,.check,.toc{padding:17px}
+.grid,.layout,.cards,.statgrid,.stats,.result-grid{gap:13px}
+.btn,button{border-radius:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px!important;background:linear-gradient(180deg,#a5df84,#68a65c)!important;border:1px solid #d3f4af!important;color:#102018!important;font-weight:950!important;text-transform:uppercase;font-size:11px;letter-spacing:.45px;text-decoration:none!important;box-shadow:0 4px 0 #355b43;cursor:pointer}
+.btn:hover{filter:brightness(1.09);transform:translateY(-1px)}
+.btn.secondary,.btn.alt,button.secondary{background:linear-gradient(180deg,#294461,#1a2d43)!important;border-color:#62829d!important;color:#f0f6fa!important;box-shadow:0 4px 0 #0a1727}
+input,select,textarea,.field{background:#081421!important;border:1px solid #435d73!important;border-radius:6px!important;color:#f3f8f7!important;padding:10px 12px!important;max-width:100%}
+input::placeholder,textarea::placeholder{color:#8297aa}
+.status,.notice,.callout,.tip{background:#142b2b!important;border-color:#4e7961!important;color:#d0ecd3!important;padding:13px 15px;border-radius:8px}
+table{width:100%;border-collapse:collapse;color:#dce7e8}
+th{background:#213b50;color:#d8f2d0;text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+th,td{padding:11px 12px;border-bottom:1px solid #334a5f}
+tr:nth-child(even) td{background:#142437}
+.tablewrap{overflow-x:auto;border:1px solid #3b536a;border-radius:8px}
+.toc a,.faq a{color:#c7efab}
+.footer{border-top:1px solid #3b5268;color:#95aabc;padding:24px;text-align:center;font-size:12px}
+.item{background:#0d1a29;border:1px solid #3a526a;border-radius:8px}
+.name{color:#f3f9f4}.meta{color:#aabac8}
+.pill{background:#20392b;color:#c8f0b2;border:1px solid #4f785a;border-radius:4px}
+.progress{background:#2d3d50;border-radius:5px;overflow:hidden}.progress span{background:linear-gradient(90deg,#77b96c,#b7ec92)}
+.check input{accent-color:#8bcf73}
+hr{border:0;border-top:1px solid #344b61;margin:24px 0}
+details{background:#102034;border:1px solid #3b536a;border-radius:7px;padding:12px}
+summary{cursor:pointer;color:#e8f3ed;font-weight:800}
+:focus-visible{outline:2px solid #b9f49a;outline-offset:3px}
+@media(max-width:760px){
+ header .wrap,header .nav{padding:10px 13px}
+ header nav,.navlinks,.links{gap:3px}
+ header nav a,header .links a,header a:not(.brand){font-size:10px;padding:6px}
+ main,.wrap{padding-left:13px;padding-right:13px}
+ main{padding-top:18px;padding-bottom:45px}
+ .hero{padding:20px!important}
+ .grid,.layout,.cards,.statgrid,.stats,.result-grid{grid-template-columns:1fr!important}
+}
