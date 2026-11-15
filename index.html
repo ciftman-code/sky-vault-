@@ -160,6 +160,48 @@ main{max-width:1480px!important;margin:auto!important;padding:26px 24px 70px!imp
 .world-shot-copy span{display:block;margin-top:5px;color:#d1ddd2;font-size:10px}
 @media(max-width:900px){.world-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.world-shot{min-height:200px}}
 @media(max-width:520px){.world-gallery{gap:9px}.world-shot{min-height:165px}.world-shot-copy{left:10px;right:10px;bottom:10px}.world-shot-copy b{font-size:15px}.world-shot-copy span{font-size:9px}}
+
+/* Visual-first homepage: less copy, more SkyBlock world imagery */
+.landing-section .section-heading p{display:none}
+.realm-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.realm-card{min-height:265px;padding:16px;background-color:#102027;background-size:cover;background-position:center;isolation:isolate;border-color:#49645b}
+.realm-card:before{display:none}
+.realm-card:after{z-index:1;width:4px}
+.realm-card>*{position:relative;z-index:2}
+.realm-card p{display:none}
+.realm-card h3{margin-top:auto;margin-bottom:5px;font-size:21px;text-shadow:0 2px 8px #000}
+.realm-meta{padding-top:10px}
+.realm-meta span{color:#e0f4c9}
+.realm-garden{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Garden.png')}
+.realm-mines{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Dwarven_Mines.png')}
+.realm-crystal{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Crystal_Hollows.png')}
+.realm-dungeon{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Catacombs.png')}
+.realm-crimson{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Crimson_Isle.png')}
+.realm-rift{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/The_Rift.png')}
+.realm-fishing{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Fishing.png')}
+.realm-slayers{background-image:linear-gradient(180deg,#06101610 5%,#06101645 42%,#061016f2 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Slayer_Quests.png')}
+.account-grid{gap:14px}
+.account-card{min-height:112px;align-items:center;background:linear-gradient(115deg,#1b3536,#11242a);border-color:#49645b}
+.account-card p{display:none}
+.account-card b{font-size:16px}
+.account-card a{display:inline-block;margin-top:8px}
+.account-icon{flex-basis:54px;height:54px;font-size:27px}
+.tool-grid{gap:14px}
+.tool-card{min-height:145px;position:relative;overflow:hidden;background:linear-gradient(145deg,#203b3b,#102128);border-color:#49645b}
+.tool-card small{display:none}
+.tool-card>span{width:44px;height:44px;display:grid;place-items:center;border:1px solid #658274;border-radius:9px;background:#294943;font-size:26px}
+.tool-card>b{font-size:15px}
+.tool-card i{margin-top:auto}
+.route-steps article{min-height:130px}
+.route-steps article p{display:none}
+.route-steps article b{font-size:15px}
+.official-links a{min-height:76px}
+.world-gallery{margin-bottom:64px}
+.world-shot{min-height:250px}
+.hero-copy>p{max-width:560px}
+@media(max-width:900px){.realm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.realm-card{min-height:230px}.world-shot{min-height:210px}}
+@media(max-width:560px){.realm-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.realm-card{min-height:190px;padding:11px}.realm-card h3{font-size:16px}.realm-icon{width:36px;height:36px;font-size:20px}.realm-number{font-size:7px}.realm-meta{display:block}.realm-meta span{display:block;margin-bottom:4px}.realm-meta b{font-size:8px}.account-grid{grid-template-columns:1fr}.account-card{min-height:95px}.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-card{min-height:132px;padding:13px}.tool-card>b{font-size:13px}.world-shot{min-height:170px}}
+
 </style>
 </head>
 <body>
