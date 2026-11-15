@@ -101,3 +101,46 @@ th{background:#233e39;color:#d9edbf}
 @media(max-width:900px){.guide-layout,.layout{grid-template-columns:1fr}.guide-aside{position:static}.guide-grid{grid-template-columns:1fr}.guide-aside nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){header .wrap,header .nav,.top .nav{padding:10px 13px}.brand{font-size:13px}header nav,.navlinks,.links{gap:3px}header nav a,header .links a,header a:not(.brand){font-size:9px;padding:6px}main,.wrap{padding-left:13px;padding-right:13px}main{padding-top:16px;padding-bottom:44px}.hero,.guide-hero{padding:20px!important}.grid,.layout,.cards,.statgrid,.stats,.result-grid,.tiles{grid-template-columns:1fr!important}.guide-section{padding:15px!important}.guide-table{font-size:11px}.statgrid,.stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* 2026 visual refresh — shared across every SkyBlock tool and field guide */
+body{background-attachment:fixed!important}
+main{max-width:1320px;padding-top:34px!important}
+.hero{min-height:260px;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,48px)!important;border-radius:14px!important;background-size:cover!important;background-position:center!important;isolation:isolate}
+.hero:after{right:-40px;top:-90px;width:310px;height:310px;border-color:#d9f0b022;box-shadow:0 0 0 25px #d9f0b00c,0 0 0 55px #d9f0b008}
+.hero h1{max-width:850px;font-size:clamp(34px,5.4vw,64px);text-wrap:balance;text-shadow:0 3px 20px #0009}
+.hero p{max-width:680px;font-size:clamp(13px,1.3vw,16px);line-height:1.65}
+body.page-start .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Private_Island.png')!important}
+body.page-mining .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Crystal_Hollows.png')!important}
+body.page-garden .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Garden.png')!important}
+body.page-dungeons .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Catacombs.png')!important}
+body.page-combat .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Crimson_Isle.png')!important}
+body.page-fishing .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Water_Hydra.png')!important}
+body.page-rift .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/The_Rift.png')!important}
+body.page-items .hero,body.page-item-guide .hero,body.page-resources .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Hub.png')!important}
+body.page-minions .hero{background-image:linear-gradient(90deg,#07171beF 0%,#102923d9 55%,#10292355 100%),url('https://hypixel-skyblock.fandom.com/wiki/Special:FilePath/Minion.png')!important}
+.guide-section,.panel,.article,.side{border-radius:12px!important;box-shadow:0 10px 28px #020a0c44!important}
+.guide-section{position:relative;overflow:hidden;padding:clamp(16px,2.5vw,26px)!important}
+.guide-section:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--moss),transparent)}
+.guide-section h2{font-size:clamp(19px,2.3vw,25px);letter-spacing:-.5px}
+.guide-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.guide-grid>div,.guide-tip,.tile,.stat,.step{border-radius:10px!important;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.guide-grid>div:hover,.tile:hover,.step:hover{transform:translateY(-3px);border-color:#91b979!important}
+.guide-grid>div{background:linear-gradient(145deg,#24443a,#12282b);padding:16px}
+.guide-tip{background:linear-gradient(135deg,#263c2d,#192c28)!important}
+.tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.tile{min-height:120px;padding:18px!important;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#24443a,#12282b)!important}
+.statgrid,.stats{gap:12px}
+.stat{padding:17px!important;background:linear-gradient(145deg,#203d38,#11262a)!important}
+.stat b,.stat strong{font-size:clamp(20px,2.5vw,28px)}
+.toc a{border-radius:999px;padding:8px 13px}
+.guide-aside{padding:14px;border:1px solid #36534f;border-radius:12px;background:#0c1c20}
+.tablewrap{border-radius:10px}
+th{position:sticky;top:65px}
+input,select,textarea,.field{min-height:43px}
+button,.btn{cursor:pointer}
+body.page-bazaar main,body.page-npc main,body.page-craft main{padding-top:48px!important}
+body.page-bazaar main>h1,body.page-npc main>h1,body.page-craft main>h1{font-size:clamp(34px,5vw,58px);padding:28px;border:1px solid #49665b;border-radius:14px;background:linear-gradient(110deg,#183b34,#172d35 55%,#302b45);box-shadow:0 14px 32px #02090c77}
+.footer{margin-top:40px}
+@media(max-width:900px){.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){main{padding-top:18px!important}.hero{min-height:220px;padding:20px!important}.guide-grid,.tiles{grid-template-columns:1fr}.guide-section{margin:12px 0!important}.guide-aside nav{grid-template-columns:1fr 1fr}.statgrid,.stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
