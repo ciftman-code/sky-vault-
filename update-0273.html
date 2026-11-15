@@ -62,6 +62,7 @@
 }
 </script>
 <style>
+.skip{position:absolute;left:-9999px;top:8px;background:#fff;color:#111;padding:10px 14px;z-index:5}.skip:focus{left:8px}a:focus-visible{outline:3px solid #83d8d2;outline-offset:3px;border-radius:4px}
 .update-shell{max-width:1120px;margin:0 auto}
 .update-hero{padding:clamp(24px,5vw,42px)!important;margin-bottom:18px}
 .update-hero h1{max-width:900px}
@@ -99,7 +100,7 @@
 <link rel="stylesheet" href="/skyblock-world.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to update summary</a>
+<a class="skip" href="#main">Skip to update summary</a>
 <header>
   <div class="wrap">
     <div class="nav">
@@ -154,7 +155,7 @@
           <li>Mining Spread skips blocks that already have partial breaking progress.</li>
           <li>Hard Stone in the Crystal Hollows can be instant-mined client-side.</li>
           <li>The Cactus Knife can instant-mine Cactus client-side.</li>
-          <li>Teleporting with items such as the Aspect of the End or using Ender Pearls no longer changes head rotation.</li>
+          <li>Teleporting with certain items or using Ender Pearls no longer changes head rotation.</li>
           <li>A short mining delay when switching to the Dungeonbreaker was fixed.</li>
         </ul>
         <div class="update-callout"><strong>Practical note:</strong> the Hard Stone change is specifically described for the Crystal Hollows. Do not assume the same client-side behavior applies to every mining area or block.</div>
