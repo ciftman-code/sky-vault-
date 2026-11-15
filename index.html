@@ -3,413 +3,346 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b1726">
-<meta name="description" content="A dedicated Hypixel SkyBlock companion: item vault, Bazaar and crafting tools, minion planner, player lookup and practical progression guides.">
+<meta name="description" content="A dedicated Hypixel SkyBlock world atlas with Garden, mining, Catacombs, Crimson Isle, Rift and fishing guides, plus item, Bazaar, crafting and minion tools.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://skyblock-vault.vercel.app/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SkyBlock Hub — Hypixel SkyBlock Toolkit">
-<meta name="twitter:description" content="Plan your SkyBlock progression with item, market, crafting and player tools.">
+<meta name="twitter:title" content="SkyBlock Hub — Hypixel SkyBlock World Atlas">
+<meta name="twitter:description" content="Explore SkyBlock systems, account progression, items, Bazaar data and player tools.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="SkyBlock Hub — Hypixel SkyBlock Toolkit">
-<meta property="og:description" content="A dedicated Hypixel SkyBlock companion for items, progression, market planning and player tools.">
+<meta property="og:title" content="SkyBlock Hub — Hypixel SkyBlock World Atlas">
+<meta property="og:description" content="A dedicated Hypixel SkyBlock companion for Garden, mining, Catacombs, Crimson Isle, the Rift and more.">
 <meta property="og:url" content="https://skyblock-vault.vercel.app/">
-<title>SkyBlock Hub — Hypixel SkyBlock Toolkit, Item Vault & Guides</title>
+<title>SkyBlock Hub — Hypixel SkyBlock World Atlas, Item Vault & Player Tools</title>
 <style>
-:root{--bg:#090b15;--panel:#13172a;--panel2:#1b2038;--line:#2b3151;--text:#f4f5ff;--muted:#a8aecb;--purple:#8757ff;--purple2:#6035d7;--cyan:#57d9e8;--gold:#ffd166;--green:#65dfa0;--red:#ff7888}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#33235d 0,transparent 45%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit}
-header{position:sticky;top:0;z-index:20;background:#0c1020ed;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{max-width:1320px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-weight:950;font-size:20px;white-space:nowrap;letter-spacing:.4px}.brand i{font-style:normal;color:var(--gold)}nav{display:flex;gap:5px;align-items:center;flex-wrap:wrap}nav button,.navright button,.navlink{border:0;background:transparent;color:var(--muted);padding:9px 11px;border-radius:10px;font-weight:700}nav button:hover,nav button.active,.navlink:hover{color:white;background:#292044}.navlink{color:var(--muted);padding:9px 11px;border-radius:10px;font-weight:700;text-decoration:none;white-space:nowrap}.navright{display:flex;gap:7px}.navright .menu{display:none}
-main{max-width:1320px;margin:auto;padding:24px 22px 65px}.view{display:none}.view.active{display:block}.hero{padding:54px 24px 32px;border:1px solid #463779;border-radius:25px;text-align:center;background:linear-gradient(110deg,#171a31ed,#261746e8),radial-gradient(circle at 18% 22%,#7951bb,transparent 42%);position:relative;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#9564ff20;filter:blur(8px)}.hero:before{width:260px;height:260px;left:-110px;bottom:-140px}.hero:after{width:260px;height:260px;right:-100px;top:-130px}.eyebrow{color:var(--cyan);letter-spacing:2px;text-transform:uppercase;font-size:12px;font-weight:900}.hero h1{font-size:clamp(40px,7vw,72px);line-height:1;margin:13px 0}.hero h1 span{color:var(--gold);text-shadow:0 4px 30px #ffbd4c55}.hero p{color:#c8c9df;max-width:680px;margin:0 auto 22px;font-size:17px}.searchbar{max-width:760px;margin:auto;display:flex;gap:8px;padding:7px;background:#0b0e1d;border:1px solid #51477b;border-radius:15px;position:relative;z-index:1}.searchbar input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;padding:10px}.btn{border:0;border-radius:11px;background:linear-gradient(135deg,#9165ff,#6336df);color:white;padding:11px 17px;font-weight:850}.btn:hover{filter:brightness(1.12)}.btn.secondary{background:#252b47;border:1px solid var(--line)}.btn.ghost{background:transparent;border:1px solid var(--line)}.shortcuts{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;margin:17px 0 23px}.shortcut,.panel,.tile,.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px}.shortcut{padding:15px;text-align:left;color:white}.shortcut:hover,.tile:hover{border-color:#8061dd;transform:translateY(-2px)}.shortcut b{display:block;margin-top:6px}.shortcut small,.muted{color:var(--muted)}.emoji{font-size:25px}.grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.panel{padding:19px;margin-bottom:16px}.panel h2{font-size:19px;margin:0 0 14px}.panel h3{font-size:16px;margin:15px 0 8px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:13px;border:1px solid var(--line);border-radius:13px;background:#0d1121}.stat strong{display:block;font-size:23px;color:var(--gold)}.stat span{color:var(--muted);font-size:12px}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.tile{padding:15px;transition:.18s}.tile b{display:block;margin:5px 0}.tile small{color:var(--muted)}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:5px 0 14px}.sectionhead h2{margin:0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.field{background:#0c1020;border:1px solid var(--line);border-radius:10px;color:white;padding:10px 12px;min-width:0}.toolbar .field{flex:1;min-width:145px}.itemgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.item{padding:13px;background:#101528;border:1px solid var(--line);border-radius:13px;display:flex;gap:12px;align-items:center}.item .ico{width:52px;height:52px;border-radius:11px;background:#272044;display:grid;place-items:center;font-size:22px;flex-shrink:0}.item .ico img{width:42px;height:42px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 4px 4px #0008)}.item b{display:block}.item small{color:var(--muted)}.badge{font-size:10px;border-radius:20px;padding:3px 7px;background:#33275b;color:#d7caff}.guidegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:17px}.card h3{margin:8px 0 5px}.card p{color:var(--muted);margin:0;font-size:13px}.card .emoji{font-size:27px}.calcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.calcbox{padding:16px;border:1px solid var(--line);border-radius:14px;background:#101426}.calcbox h3{margin:0 0 5px}.calcbox p{margin:0 0 12px;color:var(--muted);font-size:13px}.calcbox .field{width:100%;margin:4px 0}.output{margin-top:10px;padding:10px;border-radius:10px;background:#24203e;color:var(--gold);font-weight:800;min-height:42px}.checklist{display:grid;gap:8px}.checkrow{padding:11px;background:#0e1324;border:1px solid var(--line);border-radius:10px;display:flex;gap:10px;align-items:center}.checkrow input{accent-color:var(--purple);width:17px;height:17px}.progress{height:9px;background:#292e48;border-radius:9px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--cyan));transition:.2s}.notice{padding:12px 14px;background:#211d37;border:1px solid #51417d;border-radius:12px;color:#d9d2f5;font-size:13px;margin:10px 0}.resultbox{padding:15px;background:#0e1324;border:1px solid var(--line);border-radius:12px;margin-top:12px;display:none}.resultbox.show{display:block}.resultbox p{margin:4px 0;color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.footer{text-align:center;color:var(--muted);padding:26px;border-top:1px solid var(--line);font-size:13px}.smalllink{color:#c7b7ff;text-decoration:none}.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed #3b4263;border-radius:13px;grid-column:1/-1}
-@media(max-width:1000px){.shortcuts{grid-template-columns:repeat(3,1fr)}.itemgrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.nav{padding:10px 13px}.navright .menu{display:block}nav{display:none;position:absolute;top:59px;left:0;right:0;background:#101427;padding:12px;box-shadow:0 12px 24px #0008}nav.open{display:grid;grid-template-columns:repeat(3,1fr)}nav button,.navlink{text-align:center}main{padding:16px 13px 45px}.hero{padding:40px 15px 25px}.grid2{grid-template-columns:1fr}.guidegrid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.shortcuts{grid-template-columns:repeat(2,1fr)}.itemgrid,.guidegrid,.calcgrid,.two{grid-template-columns:1fr}.searchbar{flex-wrap:wrap}.searchbar input{flex-basis:100%}.searchbar .btn{width:100%}.brand{font-size:17px}.navright .pillhide{display:none}}
 
-/* MMORPG-inspired world landing refresh */
-.world-hero{min-height:420px;text-align:left;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;padding:48px 5%;background:linear-gradient(110deg,#10182ceF 0%,#1c1c3beF 52%,#33204bE8 100%);isolation:isolate}
-.world-hero .hero-copy{position:relative;z-index:2;text-align:left}.world-hero .hero-copy p{margin:0 0 22px}.world-hero .hero-copy h1{font-size:clamp(42px,6vw,76px);letter-spacing:-2px}.world-hero .hero-copy .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border:1px solid #6c5a9b;border-radius:30px;background:#16172e;color:#b8f4ff}
-.world-art{position:relative;min-height:310px;display:grid;place-items:center;overflow:hidden;border-radius:22px;background:radial-gradient(ellipse at 50% 55%,#8061bd44,transparent 55%),linear-gradient(180deg,#17254488,#10162922)}
-.world-art:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:#6e6cff20;filter:blur(28px);top:0;left:22%}
-.floating-island{position:absolute;width:78%;height:210px;top:46px;left:11%;filter:drop-shadow(0 20px 18px #0009);animation:floatIsland 7s ease-in-out infinite}
-@keyframes floatIsland{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-.loot-chip{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #ffffff30;border-radius:14px;background:#11182be8;box-shadow:0 12px 25px #0005;backdrop-filter:blur(8px);font-weight:800}
-.loot-chip span{font-size:24px}.loot-one{top:22px;left:4%;transform:rotate(-5deg)}.loot-two{right:2%;top:75px;transform:rotate(5deg)}.loot-three{bottom:22px;left:14%;transform:rotate(3deg)}
-.hero-bottom{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.hero-bottom .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-.world-section{margin:26px 0}.world-section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 0 13px}.world-section-head h2{font-size:22px;margin:0}.world-section-head p{color:var(--muted);margin:3px 0 0;font-size:13px}
-.realm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.realm-card{min-height:174px;padding:17px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#222b4a,#111728);text-decoration:none;transition:.2s}.realm-card:hover{transform:translateY(-4px);border-color:#a18aff;box-shadow:0 12px 28px #0004}.realm-card:after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-42px;bottom:-58px;background:var(--glow,#7a65ff);opacity:.16;filter:blur(5px)}.realm-card .realm-icon{font-size:34px;display:block;margin-bottom:10px}.realm-card b{display:block;font-size:16px}.realm-card small{display:block;color:#b5bdd7;margin-top:4px;max-width:210px}.realm-card .realm-tag{display:inline-block;margin-top:12px;padding:3px 8px;border:1px solid #ffffff24;border-radius:20px;color:#d9d2ff;font-size:10px;text-transform:uppercase;letter-spacing:.7px}
-.loot-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.loot-card{min-height:135px;padding:13px 9px;text-align:center;border:1px solid var(--line);border-radius:15px;background:linear-gradient(160deg,#202746,#101526);transition:.2s}.loot-card:hover{transform:translateY(-3px);border-color:#8b75dc}.loot-card .loot-icon{width:62px;height:62px;margin:0 auto 8px;border-radius:17px;display:grid;place-items:center;font-size:34px;background:radial-gradient(circle,#6c56a855,#28234a)}.loot-card b{font-size:12px;display:block}.loot-card small{font-size:10px;color:var(--muted)}
-.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.path-card{padding:17px;border-radius:16px;border:1px solid var(--line);background:#11172a}.path-card .step{font-size:11px;color:var(--cyan);font-weight:900;letter-spacing:1px}.path-card h3{margin:7px 0}.path-card p{color:var(--muted);font-size:13px;margin:0 0 13px}
-.home-search-hint{color:#9fa8c8;font-size:11px;margin:8px auto 0;max-width:720px;text-align:center}
-@media(max-width:900px){.world-hero{grid-template-columns:1fr;padding:36px 22px}.world-art{min-height:260px}.realm-grid{grid-template-columns:repeat(2,1fr)}.loot-gallery{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:520px){.world-hero{padding:30px 15px}.world-art{min-height:220px}.floating-island{width:95%;left:2%;top:34px}.loot-chip{padding:7px 9px;font-size:11px}.loot-chip span{font-size:19px}.loot-one{left:0}.loot-two{right:0}.loot-three{left:4%}.realm-grid{grid-template-columns:repeat(2,1fr);gap:9px}.realm-card{padding:13px;min-height:160px}.loot-gallery{grid-template-columns:repeat(3,1fr);gap:7px}.loot-card{padding:10px 5px}.loot-card .loot-icon{width:50px;height:50px;font-size:28px}.path-grid{grid-template-columns:1fr}}
-
-
-/* SKYBLOCK WORLD UI — complete visual system refresh */
-:root{
-  --bg:#080d18;--panel:#111b2b;--panel2:#17263a;--line:#2d4058;
-  --text:#f3f7ee;--muted:#a9b8c7;--purple:#9b7cff;--purple2:#7354cf;
-  --cyan:#75e3e5;--gold:#ffd36e;--green:#8de0a0;--red:#ff8792;
-  --stone:#25364b;--grass:#8acb74;--wood:#a7774c;
-  --pixel-shadow:0 8px 0 #050914,0 14px 30px #02061188;
-}
+:root{color-scheme:dark;--ink:#eef3e9;--muted:#aab7b4;--night:#09131a;--deep:#0d1c22;--panel:#13262c;--panel-2:#192f34;--line:#30494c;--moss:#a7d67e;--moss-dark:#507c52;--gold:#e6c477;--ice:#83d8d2;--violet:#aa9be6;--danger:#f08c83;--shadow:0 18px 55px #02090db0}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
- margin:0;color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
- background:
-  linear-gradient(90deg,#ffffff05 1px,transparent 1px),
-  linear-gradient(#ffffff05 1px,transparent 1px),
-  radial-gradient(ellipse at 50% -15%,#233d5a 0,transparent 46%),
-  radial-gradient(ellipse at 100% 60%,#182b3c66,transparent 35%),var(--bg);
- background-size:32px 32px,32px 32px,auto,auto,auto;
-}
-a{color:inherit}button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-header{
- position:sticky;top:0;z-index:50;background:#08111eeF;
- backdrop-filter:blur(18px);border-bottom:1px solid #40546b;
- box-shadow:0 5px 20px #02071188
-}
-.nav{max-width:1440px;min-height:72px;margin:auto;padding:10px 24px;display:flex;align-items:center;gap:22px}
-.brand{display:flex;align-items:center;gap:9px;font-size:17px;font-weight:1000;letter-spacing:1.1px;white-space:nowrap;text-transform:uppercase}
-.brand i{font-style:normal;color:#b7ee9b}
-.brand:before{content:"";width:29px;height:29px;display:inline-block;background:linear-gradient(135deg,#a7e18a 0 48%,#4d8f65 49% 100%);border:2px solid #d5f3a8;box-shadow:4px 4px 0 #304e48;transform:rotate(0deg)}
-nav{display:flex;align-items:center;gap:5px;flex:1;justify-content:center;flex-wrap:nowrap}
-nav button,.navlink,.navright button:not(.btn){border:1px solid transparent;background:transparent;color:#b9c7d6;padding:9px 11px;border-radius:8px;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.45px;white-space:nowrap;text-decoration:none}
-nav button:hover,nav button.active,.navlink:hover{color:#f6fbe9;background:#203249;border-color:#435a70}
-.navright{display:flex;align-items:center;gap:7px;flex-shrink:0}
-.navright .menu{display:none}
-.navright .btn{padding:10px 14px}
-main{max-width:1440px;margin:auto;padding:28px 24px 72px}
+body{margin:0!important;background:radial-gradient(ellipse at 14% -8%,#294c43 0,transparent 32%),radial-gradient(ellipse at 90% 12%,#2b3150 0,transparent 28%),linear-gradient(180deg,#09131a,#0a151b 60%,#091219)!important;color:var(--ink)!important;font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important}
+a{color:#c8e8c1}a:hover{color:#fff}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.site-header{position:sticky;top:0;z-index:50;background:#08151beF!important;border-bottom:1px solid #36504b!important;backdrop-filter:blur(18px);box-shadow:0 8px 24px #02090b88}
+.nav{max-width:1480px;min-height:74px;margin:auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;color:#f4f6e9!important;text-decoration:none!important;min-width:190px}
+.brand-mark{width:34px;height:34px;display:grid;place-items:center;border:1px solid #a3ca85;background:linear-gradient(145deg,#8cbe72,#365d48);color:#f4f3bd;font-size:20px;box-shadow:4px 4px 0 #243a36}
+.brand-name{font-size:15px;font-weight:1000;letter-spacing:1px;line-height:1.05}
+.brand-name i{font-style:normal;color:var(--moss)}
+.brand-name small{display:block;margin-top:4px;color:#92a6a0;font-size:8px;letter-spacing:1.5px}
+nav{display:flex;justify-content:center;align-items:center;gap:4px;flex:1;flex-wrap:wrap}
+nav button,.navlink{border:1px solid transparent!important;background:transparent!important;color:#b1c1bd!important;padding:9px 10px!important;border-radius:6px!important;font-size:10px!important;font-weight:900!important;letter-spacing:.8px!important;text-transform:uppercase!important;text-decoration:none!important;white-space:nowrap}
+nav button:hover,nav button.active,.navlink:hover{color:#f5f6e8!important;background:#203735!important;border-color:#42605a!important}
+.navright{display:flex;gap:8px;align-items:center;flex-shrink:0}.navright .menu{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #b7d891!important;border-radius:6px!important;background:linear-gradient(180deg,#b5df8b,#7eae65)!important;color:#132218!important;padding:12px 16px!important;font-size:10px!important;font-weight:1000!important;letter-spacing:.8px!important;text-decoration:none!important;text-transform:uppercase!important;box-shadow:0 4px 0 #3f6244!important;transition:transform .16s,filter .16s,box-shadow .16s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 6px 0 #3f6244!important}
+.btn.secondary{background:linear-gradient(180deg,#233a3d,#172c31)!important;border-color:#4f706b!important;color:#e4eee2!important;box-shadow:0 4px 0 #081318!important}
+.btn.ghost{background:transparent!important;border-color:#506864!important;color:#d8e3df!important;box-shadow:none!important}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #d3ef9a;outline-offset:3px}
+main{max-width:1480px!important;margin:auto!important;padding:26px 24px 70px!important}
 .view{display:none}.view.active{display:block}
-.hero{position:relative}
-.world-hero{
- min-height:490px;display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:24px;
- padding:52px 5.5%;text-align:left;overflow:hidden;border:1px solid #47617b;border-radius:18px;
- background:
-  linear-gradient(110deg,#0b1727F5 0%,#10243aF0 48%,#162d40C9 100%),
-  radial-gradient(circle at 80% 42%,#8ad8b955,transparent 36%);
- box-shadow:var(--pixel-shadow);isolation:isolate
-}
-.world-hero:before{content:"";position:absolute;inset:auto 0 0;height:9px;background:repeating-linear-gradient(90deg,#8acb74 0 28px,#4f9865 28px 56px);opacity:.9}
-.world-hero:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(135deg,transparent 45%,#9de4e015 45% 46%,transparent 46% 100%)}
-.world-hero .hero-copy{position:relative;z-index:3;max-width:650px;text-align:left}
-.world-hero .hero-copy .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid #577b76;background:#102c31;color:#a9f0cf;border-radius:6px;font-size:11px;letter-spacing:1.5px}
-.world-hero .hero-copy h1{margin:17px 0 16px;font-size:clamp(42px,6.2vw,82px);line-height:.99;letter-spacing:-2.7px;text-transform:uppercase;text-shadow:0 5px 0 #08101b}
-.world-hero .hero-copy h1 span{color:#b6ed91;text-shadow:0 5px 0 #365d47,0 0 35px #8ee4a044}
-.world-hero .hero-copy p{max-width:570px;margin:0 0 23px;color:#c5d3df;font-size:17px;line-height:1.72}
-.hero-bottom{display:flex;gap:11px;flex-wrap:wrap;margin-top:22px}
-.btn{border:1px solid #c8f0a2;border-radius:7px;background:linear-gradient(180deg,#a5df84,#68a65c);color:#102018;padding:13px 18px;font-weight:950;text-transform:uppercase;letter-spacing:.4px;font-size:12px;box-shadow:0 4px 0 #355b43;transition:transform .15s,filter .15s,box-shadow .15s}
-.btn:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 6px 0 #355b43}
-.btn.secondary{background:linear-gradient(180deg,#294461,#1a2d43);border-color:#62829d;color:#f0f6fa;box-shadow:0 4px 0 #0a1727}
-.btn.ghost{background:#142338;border-color:#415971;color:#d9e4e8;box-shadow:none}
-.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #b9f49a;outline-offset:3px}
-.home-search-hint{margin:13px 0 0;color:#98afbf;font-size:12px;text-align:left}
-.searchbar{position:relative;z-index:4;display:flex;gap:8px;max-width:680px;margin:22px 0 0;padding:7px;background:#07111e;border:1px solid #526d80;border-radius:9px}
-.searchbar input{min-width:0;flex:1;background:transparent;border:0;outline:0;color:#f7fbff;padding:10px 12px}
-.searchbar input::placeholder{color:#8498a9}
-.world-art{position:relative;min-height:360px;display:grid;place-items:center;overflow:visible;border-radius:12px;background:radial-gradient(ellipse at 50% 58%,#83d6a344,transparent 55%),linear-gradient(180deg,#12263d33,transparent)}
-.world-art:before{content:"";position:absolute;width:300px;height:300px;left:25%;top:6%;border-radius:50%;background:#7bdcb633;filter:blur(45px)}
-.world-art:after{content:"";position:absolute;bottom:15px;left:10%;right:10%;height:20px;background:#02091477;filter:blur(16px);border-radius:50%}
-.floating-island{position:relative;z-index:2;width:min(100%,560px);height:auto;filter:drop-shadow(0 25px 18px #020712aa);animation:sky-island-float 7s ease-in-out infinite}
-@keyframes sky-island-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
-.loot-chip{z-index:3;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #6f8c99;border-radius:7px;background:#0c1c2deF;color:#e8f3f0;box-shadow:0 5px 0 #07111b;font-size:12px;font-weight:900;letter-spacing:.4px}
-.loot-chip span{font-size:22px}
-.loot-one{position:absolute;top:12%;left:0;transform:rotate(-4deg)}
-.loot-two{position:absolute;top:33%;right:-1%;transform:rotate(4deg)}
-.loot-three{position:absolute;bottom:9%;left:6%;transform:rotate(2deg)}
-.resultbox{background:#0b1727;border:1px solid #57718a;border-radius:8px;color:#eef7f3}
-.world-section{margin:42px 0}
-.world-section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:0 0 17px}
-.world-section-head h2{margin:0;font-size:clamp(21px,3vw,29px);letter-spacing:-.5px}
-.world-section-head p{margin:4px 0 0;color:#9fb0c0;font-size:13px}
-.world-section-head .badge{border:1px solid #49644f;background:#15291f;color:#c5eeb0;padding:6px 10px;border-radius:5px;white-space:nowrap}
-.realm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.realm-card{min-height:188px;position:relative;overflow:hidden;padding:18px;border:1px solid #3b5066;border-radius:10px;background:linear-gradient(145deg,#1a2c40,#101c2b);text-decoration:none;transition:.2s;box-shadow:0 5px 0 #050c15}
-.realm-card:after{content:"";position:absolute;right:-35px;bottom:-55px;width:145px;height:145px;background:var(--glow,#8acb74);opacity:.12;filter:blur(3px);transform:rotate(45deg);border:12px solid #ffffff18}
-.realm-card:hover{transform:translateY(-4px);border-color:#a8dc93;box-shadow:0 9px 0 #050c15}
-.realm-card .realm-icon{width:48px;height:48px;display:grid;place-items:center;margin-bottom:13px;border:1px solid #506982;border-radius:8px;background:#0d1d2c;font-size:27px}
-.realm-card b{display:block;font-size:16px;color:#f1f6ef}
-.realm-card small{display:block;position:relative;z-index:1;max-width:240px;margin-top:5px;color:#aabac7;font-size:12px;line-height:1.55}
-.realm-card .realm-tag{display:inline-block;margin-top:13px;padding:4px 7px;border:1px solid #4f735d;border-radius:4px;color:#b8e5a4;background:#14271e;font-size:9px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
-.loot-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:11px}
-.loot-card{min-height:144px;padding:14px 9px;border:1px solid #3c5268;border-radius:9px;background:linear-gradient(155deg,#192c43,#0e1a29);color:#f2f6f4;transition:.2s;box-shadow:0 4px 0 #050c15}
-.loot-card:hover{transform:translateY(-3px);border-color:#b6ed91;background:#20364a}
-.loot-card .loot-icon{width:62px;height:62px;margin:0 auto 10px;display:grid;place-items:center;border:1px solid #50687e;border-radius:8px;background:linear-gradient(145deg,#273e51,#122438);font-size:34px}
-.loot-card b{display:block;font-size:12px}.loot-card small{display:block;color:#9eafbf;font-size:10px;margin-top:3px}
-.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.path-card{position:relative;overflow:hidden;padding:21px;border:1px solid #3c526a;border-radius:10px;background:linear-gradient(145deg,#192b3f,#101b29);box-shadow:0 5px 0 #050c15}
-.path-card:after{content:"";position:absolute;right:-17px;top:-25px;width:90px;height:90px;border:14px solid #91ce8540;transform:rotate(45deg)}
-.path-card .step{font-size:10px;color:#aee6a0;font-weight:1000;letter-spacing:1.6px}
-.path-card h3{margin:9px 0 7px;font-size:19px}
-.path-card p{margin:0 0 14px;color:#aab9c7;font-size:13px;line-height:1.7}
-.smalllink{color:#c5edae;text-decoration:none;font-weight:850}
-.smalllink:hover{text-decoration:underline}
-.shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0}
-.shortcut{display:flex;align-items:center;gap:13px;min-height:77px;padding:14px;text-align:left;color:#f0f6f1;background:linear-gradient(145deg,#1a2b40,#101b2b);border:1px solid #3c5168;border-radius:9px;box-shadow:0 4px 0 #050c15;transition:.2s;text-decoration:none}
-.shortcut:hover{border-color:#a9e29a;transform:translateY(-2px)}
-.shortcut .emoji{font-size:25px}.shortcut b{display:block;font-size:13px}.shortcut small{display:block;color:#a6b6c5;font-size:11px;margin-top:2px}
-.panel,.tile,.card{background:linear-gradient(145deg,#17283c,#101b2b);border:1px solid #364d64;border-radius:10px;box-shadow:0 4px 0 #050c15}
-.panel{padding:20px;margin-bottom:17px}
-.panel h2{font-size:19px;margin:0 0 15px}
-.panel h3{font-size:16px;margin:15px 0 8px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-.stat{padding:15px;border:1px solid #3b536a;border-radius:8px;background:#0b1726}
-.stat strong{display:block;font-size:22px;color:#b8ec9c}
-.stat span{color:#9fb1c0;font-size:11px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.tile{display:block;padding:14px;transition:.18s;text-decoration:none;color:#f1f7f3;cursor:pointer}
-.tile:hover{border-color:#9fd78b;transform:translateY(-2px)}
-.tile b{display:block;margin:5px 0}.tile small{color:#a8b7c5}
-.itemgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
-.item{padding:13px;background:#0d1a29;border:1px solid #364e64;border-radius:8px;display:flex;gap:12px;align-items:center}
-.item .ico{width:52px;height:52px;border:1px solid #536a7c;border-radius:7px;background:#182b3e;display:grid;place-items:center;flex-shrink:0}
-.item .ico img{width:42px;height:42px;object-fit:contain;image-rendering:pixelated}
-.item b{display:block}.item small{color:#a7b7c7}
-.badge{font-size:10px;border-radius:4px;padding:4px 7px;background:#1b3429;color:#c6efb1;border:1px solid #4a7054}
-.guidegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.card{padding:17px}.card h3{margin:8px 0 5px}.card p{color:#aab9c7;margin:0;font-size:13px}.card .emoji{font-size:27px}
-.calcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.calcbox{padding:16px;border:1px solid #3b536a;border-radius:9px;background:#0e1a29}
-.calcbox h3{margin:0 0 5px}.calcbox p{margin:0 0 12px;color:#aab9c7;font-size:13px}
-.field{background:#081421;border:1px solid #415a70;border-radius:7px;color:#f4f8fa;padding:10px 12px}
-.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.toolbar .field{flex:1;min-width:145px}
-.notice{padding:13px 15px;background:#172b2b;border:1px solid #4b7862;border-radius:8px;color:#c6e9d0;font-size:13px;margin:10px 0}
-.output{margin-top:10px;padding:12px;border-radius:7px;background:#203628;border:1px solid #557a59;color:#d2f1b5;font-weight:850;min-height:42px}
-.checkrow{padding:11px;background:#0d1928;border:1px solid #344b61;border-radius:7px;display:flex;gap:10px;align-items:center}
-.progress{height:10px;background:#28394a;border-radius:5px;overflow:hidden}.progress span{background:linear-gradient(90deg,#76b96b,#b8ea94)}
-.resultbox.show{display:block}.empty{padding:28px;text-align:center;color:#a5b6c5;border:1px dashed #526a7c;border-radius:8px;grid-column:1/-1}
-.footer{text-align:center;color:#97aabd;padding:28px;border-top:1px solid #344b61;font-size:12px}
-#home .panel .stats .stat strong{color:#b6eb98}
-#home .grid2 .panel{min-height:220px}
-#apiStatus{line-height:1.7}
-@media(max-width:1180px){
- .nav{gap:12px;padding:10px 17px}.brand{font-size:15px}
- nav button,.navlink{padding:8px 7px;font-size:10px}
- .navright .navlink{display:none}
- .realm-grid{grid-template-columns:repeat(2,1fr)}
- .loot-gallery{grid-template-columns:repeat(3,1fr)}
- .shortcuts{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:760px){
- header .nav{min-height:62px;padding:9px 13px;justify-content:space-between}
- .brand{font-size:14px}
- nav{display:none;position:absolute;top:61px;left:0;right:0;z-index:60;padding:13px;background:#0b1726;border-bottom:1px solid #425a71;box-shadow:0 14px 20px #0008;grid-template-columns:repeat(2,1fr);justify-content:stretch}
- nav.open{display:grid}
- nav button,.navlink{font-size:11px;text-align:center;padding:11px 7px}
- .navright .menu{display:block}
- .navright .pillhide{display:none}
- main{padding:17px 13px 48px}
- .world-hero{grid-template-columns:1fr;min-height:0;padding:30px 19px 34px;gap:6px}
- .world-hero .hero-copy h1{font-size:clamp(42px,12vw,67px)}
- .world-hero .hero-copy p{font-size:15px}
- .world-art{min-height:260px;margin-top:10px}
- .floating-island{max-width:520px}
- .loot-one{top:7%;left:0}.loot-two{top:32%;right:0}.loot-three{bottom:4%;left:5%}
- .world-section{margin:31px 0}
- .grid2{grid-template-columns:1fr}
- .stats{grid-template-columns:repeat(2,1fr)}
- .itemgrid,.guidegrid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:520px){
- .realm-grid{grid-template-columns:1fr 1fr;gap:9px}
- .realm-card{min-height:176px;padding:13px}
- .realm-card .realm-icon{width:41px;height:41px;font-size:23px}
- .realm-card b{font-size:14px}
- .realm-card small{font-size:11px}
- .loot-gallery{grid-template-columns:repeat(3,1fr);gap:7px}
- .loot-card{min-height:127px;padding:10px 5px}
- .loot-card .loot-icon{width:49px;height:49px;font-size:27px}
- .path-grid{grid-template-columns:1fr}
- .shortcuts{grid-template-columns:repeat(2,1fr);gap:8px}
- .shortcut{min-height:70px;padding:10px;gap:9px}
- .shortcut .emoji{font-size:21px}
- .tiles,.calcgrid,.two{grid-template-columns:1fr}
- .itemgrid,.guidegrid{grid-template-columns:1fr}
- .searchbar{flex-wrap:wrap}
- .searchbar input{flex-basis:100%}
- .searchbar .btn{width:100%}
- .world-section-head{align-items:start;flex-direction:column}
- .world-section-head .badge{white-space:normal}
- .world-art{min-height:220px}
- .loot-chip{padding:7px 8px;font-size:10px}
- .loot-chip span{font-size:18px}
-}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.landing-wrap{max-width:1440px;margin:auto}
+.landing-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(400px,.98fr);gap:30px;align-items:center;min-height:570px;padding:52px 5%;overflow:hidden;border:1px solid #557168;border-radius:12px;background:linear-gradient(115deg,#101e23f5 0%,#13292af2 47%,#242b41ed 100%);box-shadow:var(--shadow);isolation:isolate}
+.landing-hero:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(135deg,transparent 0 48%,#a5dc8b08 48% 48.3%,transparent 48.3%),repeating-linear-gradient(0deg,#ffffff06 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,#ffffff06 0 1px,transparent 1px 34px);opacity:.6}
+.landing-hero:after{content:"";position:absolute;bottom:0;left:0;right:0;height:8px;background:repeating-linear-gradient(90deg,#9dcc7a 0 34px,#527c4d 34px 68px)}
+.hero-copy{position:relative;z-index:2;max-width:720px}
+.eyebrow{display:flex;align-items:center;gap:9px;color:#b3e0aa;font-size:10px;font-weight:1000;letter-spacing:2px;text-transform:uppercase}
+.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#b9e58b;box-shadow:0 0 14px #b9e58b}
+.landing-hero h1{margin:18px 0 17px;font-size:clamp(47px,6vw,83px);font-weight:1000;line-height:.97;letter-spacing:-3px;text-transform:uppercase;text-shadow:0 5px 0 #061015}
+.landing-hero h1 em{font-style:normal;color:#b7e792;text-shadow:0 5px 0 #405f47,0 0 28px #93d77a45}
+.landing-hero .hero-copy>p{max-width:590px;margin:0;color:#c7d5d0;font-size:16px;line-height:1.8}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.searchbar{display:flex;align-items:center;gap:10px;max-width:690px;margin:25px 0 0;padding:7px 8px 7px 14px;border:1px solid #617873;border-radius:7px;background:#09171be8;box-shadow:inset 0 1px 0 #ffffff08}
+.search-symbol{color:#afd68d;font-size:26px;line-height:1}
+.searchbar input{flex:1;min-width:0;border:0!important;outline:0!important;background:transparent!important;color:#f5f5e7!important;padding:11px 2px!important;font-size:13px}
+.searchbar input::placeholder{color:#7e9690}
+.searchbar .btn{white-space:nowrap}
+.home-search-hint{margin:8px 0 0;color:#91a8a0;font-size:11px}
+.resultbox{display:none;padding:14px;border:1px solid #60756e;border-radius:8px;background:#0e2023}.resultbox.show{display:block}
+.hero-art-wrap{position:relative;min-width:0}
+.hero-art-label,.hero-art-foot{display:flex;justify-content:space-between;align-items:center;color:#a9c4b6;font-size:9px;font-weight:900;letter-spacing:1.8px}
+.hero-art-label{padding:0 12px 12px}.hero-art-label b{color:#e5d49c}
+.hero-art{position:relative;min-height:395px;overflow:hidden;border:1px solid #526c69;border-radius:9px;background:radial-gradient(ellipse at 50% 58%,#9eaf7d27,transparent 48%),radial-gradient(ellipse at 50% 15%,#4c6b7c55,transparent 48%),linear-gradient(180deg,#172b36,#0c1a22 80%);box-shadow:inset 0 0 70px #020b1088}
+.hero-art:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#ffffff08 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,#ffffff08 0 1px,transparent 1px 28px);opacity:.5}
+.art-orbit{position:absolute;border:1px solid #c6e9c020;border-radius:50%;left:50%;top:49%;transform:translate(-50%,-50%) rotate(-18deg);pointer-events:none}
+.orbit-a{width:85%;height:48%}.orbit-b{width:67%;height:74%;transform:translate(-50%,-50%) rotate(65deg)}
+.art-stars{position:absolute;inset:0;color:#d6e7bd;pointer-events:none}.art-stars i{position:absolute;font-style:normal;opacity:.8}.art-stars i:nth-child(1){left:13%;top:19%;font-size:20px}.art-stars i:nth-child(2){left:77%;top:25%}.art-stars i:nth-child(3){left:86%;top:64%;font-size:21px}.art-stars i:nth-child(4){left:23%;top:72%}.art-stars i:nth-child(5){left:58%;top:12%;font-size:13px}.art-stars i:nth-child(6){left:67%;top:82%}.art-stars i:nth-child(7){left:8%;top:52%;font-size:19px}
+.island-art{position:absolute;left:50%;top:48%;width:98%;height:90%;transform:translate(-50%,-50%);filter:drop-shadow(0 22px 20px #02090dbb);z-index:1}
+.floating-rock{transform-origin:50% 50%;animation:islandHover 8s ease-in-out infinite}
+@keyframes islandHover{0%,100%{transform:translateY(2px)}50%{transform:translateY(-9px)}}
+.map-pin{position:absolute;z-index:3;display:flex;flex-direction:column;gap:1px;padding:9px 11px;border:1px solid #71877a;border-radius:5px;background:#0b1c20ed;box-shadow:0 8px 20px #02090c88;line-height:1.2}
+.map-pin span{float:left;font-size:17px}.map-pin b{font-size:8px;letter-spacing:1px;color:#e4eddb}.map-pin small{font-size:7px;color:#a6c0b3;letter-spacing:.8px}
+.pin-garden{top:13%;left:4%}.pin-mining{top:20%;right:3%}.pin-dungeon{bottom:12%;right:8%}
+.hero-art-foot{padding:11px 9px 0;font-size:8px;color:#829a91}
+.atlas-ribbon{display:grid;grid-template-columns:repeat(4,1fr);margin:17px 0 52px;border:1px solid #344f4b;border-radius:8px;background:#102127}
+.atlas-ribbon>div{display:grid;grid-template-columns:28px 1fr;column-gap:10px;align-items:center;padding:15px 17px;border-right:1px solid #304947}
+.atlas-ribbon>div:last-child{border:0}
+.atlas-ribbon>div>span{grid-row:span 2;color:#b3d58c;font-size:15px;font-weight:1000}
+.atlas-ribbon b{font-size:10px;letter-spacing:1px}
+.atlas-ribbon small{color:#98ada6;font-size:10px}
+.landing-section{margin:0 0 58px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:19px}
+.section-heading h2{margin:7px 0 3px;font-size:clamp(27px,3.6vw,43px);line-height:1.1;letter-spacing:-1.3px}
+.section-heading h2 em{font-style:normal;color:#b6df91}
+.section-heading p{margin:7px 0 0;color:#a7b7b1;font-size:13px}
+.section-index{color:#90aaa0;font-size:9px;font-weight:900;letter-spacing:1.5px;white-space:nowrap}
+.realm-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.realm-card{--realm:#86b77a;position:relative;display:flex;flex-direction:column;min-height:245px;padding:17px 17px 14px;overflow:hidden;text-decoration:none;border:1px solid #395650;border-radius:8px;background:linear-gradient(150deg,#1b3236,#112229 70%);transition:transform .18s,border-color .18s,box-shadow .18s}
+.realm-card:before{content:"";position:absolute;width:190px;height:190px;right:-88px;top:-100px;border:1px solid var(--realm);border-radius:50%;opacity:.22;box-shadow:0 0 0 18px color-mix(in srgb,var(--realm) 7%,transparent),0 0 0 38px color-mix(in srgb,var(--realm) 5%,transparent)}
+.realm-card:after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--realm);opacity:.8}
+.realm-card:hover{transform:translateY(-4px);border-color:var(--realm);box-shadow:0 14px 25px #02090c65}
+.realm-garden{--realm:#a7d67e}.realm-mines{--realm:#c7ad7f}.realm-crystal{--realm:#80d9d9}.realm-dungeon{--realm:#ae9be9}.realm-crimson{--realm:#db9277}.realm-rift{--realm:#b4a0f2}.realm-fishing{--realm:#80c5e2}.realm-slayers{--realm:#e0bd72}
+.realm-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.realm-icon{width:46px;height:46px;display:grid;place-items:center;border:1px solid #ffffff20;border-radius:6px;background:#08171a88;font-size:25px}
+.realm-number{color:#98ada3;font-size:8px;font-weight:1000;letter-spacing:1.1px}
+.realm-card h3{margin:17px 0 6px;font-size:19px;line-height:1.2;color:#f1f4e7}
+.realm-card p{margin:0;color:#aebdb6;font-size:12px;line-height:1.6}
+.realm-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:15px}
+.realm-meta span{color:var(--realm);font-size:8px;font-weight:1000;letter-spacing:.8px}
+.realm-meta b{font-size:8px;color:#d7e4db;letter-spacing:.6px}
+.account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.account-card{display:flex;gap:15px;padding:19px;border:1px solid #354e4d;border-radius:8px;background:linear-gradient(140deg,#172c30,#101f25)}
+.account-icon{flex:0 0 43px;height:43px;display:grid;place-items:center;border:1px solid #55766a;border-radius:6px;background:#213b37;font-size:21px}
+.account-card b{font-size:15px;color:#e5eddf}
+.account-card p{margin:5px 0 10px;color:#a9b8b1;font-size:12px}
+.account-card a{font-size:9px;font-weight:1000;letter-spacing:.9px;text-decoration:none;color:#b7e391}
+.tool-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tool-card{min-height:170px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:17px;text-align:left;color:inherit;text-decoration:none;border:1px solid #354c4a;border-radius:8px;background:linear-gradient(150deg,#192e34,#102027);transition:transform .18s,border-color .18s}
+.tool-card:hover{transform:translateY(-3px);border-color:#8ab579}
+.tool-card>span{font-size:24px}.tool-card>b{font-size:14px;color:#edf2e6}.tool-card small{color:#a4b5ae;font-size:11px;line-height:1.55}.tool-card i{margin-top:auto;color:#b8e595;font-size:8px;font-style:normal;font-weight:1000;letter-spacing:.8px}
+.market-note{display:flex;gap:15px;align-items:center;margin-top:14px;padding:14px 16px;border:1px solid #776644;border-radius:7px;background:#282317}.market-note b{flex:0 0 auto;color:#f0d48d;font-size:9px;letter-spacing:1px}.market-note span{color:#d6c7a6;font-size:11px}
+.route-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.route-steps article{display:flex;gap:14px;padding:17px;border:1px solid #344c49;border-radius:8px;background:#112329}
+.route-steps article>span{font-size:27px;font-weight:1000;color:#a8d782}
+.route-steps b{color:#e9eee2;font-size:14px}.route-steps p{margin:5px 0 0;color:#9fb0a9;font-size:11px}
+.route-actions{display:flex;align-items:center;gap:18px;margin-top:18px;flex-wrap:wrap}.text-link{color:#b8df96;font-size:9px;font-weight:1000;letter-spacing:.8px;text-decoration:none}
+.data-panel{display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;margin:0 0 55px;padding:24px;border:1px solid #3d5d56;border-radius:8px;background:linear-gradient(110deg,#17322f,#13262e)}
+.data-panel h2{margin:6px 0;font-size:25px}.data-panel p{margin:4px 0;color:#c4d2c7;font-size:13px}.data-panel small{color:#97aaa0;font-size:10px}
+.data-count{display:flex;flex-direction:column;align-items:flex-end;gap:5px}.data-count strong{font-size:39px;color:#b7e594;line-height:1}.data-count>span{color:#a9beb0;font-size:8px;font-weight:1000;letter-spacing:1px}.data-count>b{color:#f0d18a;font-size:8px;letter-spacing:1px}.data-count .btn{margin-top:7px}
+.official-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.official-links a{display:flex;gap:12px;align-items:center;padding:16px;border:1px solid #354e4a;border-radius:7px;background:#122329;text-decoration:none}
+.official-links a>span{font-size:23px}.official-links b{display:block;color:#eaf0e4;font-size:12px}.official-links small{display:block;color:#9aada5;font-size:10px}
+.site-footer{display:grid;grid-template-columns:220px 1fr auto;gap:20px;align-items:center;padding:22px 0;border-top:1px solid #304743;color:#93a79e}
+.footer-brand{display:grid;grid-template-columns:35px 1fr;align-items:center;column-gap:9px}.footer-brand .brand-mark{grid-row:span 2}.footer-brand b{font-size:11px;color:#edf3e7;letter-spacing:1px}.footer-brand small{font-size:7px;letter-spacing:1px}
+.site-footer p{margin:0;font-size:10px}.footer-links{display:flex;gap:12px;flex-wrap:wrap}.footer-links a{font-size:9px;color:#badb9c;text-decoration:none}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:5px 0 14px}.sectionhead h2{margin:0}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.field{background:#0a171b!important;border:1px solid #3c5854!important;border-radius:6px!important;color:#edf4e8!important;padding:10px 12px!important;min-width:0}.toolbar .field{flex:1;min-width:145px}
+.panel,.card,.calcbox{background:linear-gradient(145deg,#192f34,#112329)!important;border:1px solid #36514d!important;border-radius:8px!important;box-shadow:none!important}
+.panel{padding:19px;margin-bottom:16px}.panel h2{font-size:18px;margin:0 0 12px}.panel h3{font-size:15px;margin:15px 0 8px}
+.card{padding:17px}.card h3{margin:8px 0 5px}.card p{color:#aab9b1;margin:0;font-size:12px}
+.guidegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.guide-library-card{display:flex;flex-direction:column;gap:8px;min-height:210px}.guide-library-top{display:flex;justify-content:space-between;align-items:center}.guide-library-card .btn{margin-top:auto;align-self:flex-start}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:13px;border:1px solid #36534d;border-radius:7px;background:#0d1d22}.stat strong{display:block;font-size:22px;color:#e9cf88}.stat span{color:#a8b9b0;font-size:11px}
+.itemgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.item{padding:13px;background:#102228!important;border:1px solid #354d4b!important;border-radius:7px!important;display:flex;gap:12px;align-items:center}.item .ico{width:52px;height:52px;border-radius:7px;background:#203b38;display:grid;place-items:center;font-size:22px;flex-shrink:0}.item .ico img{width:42px;height:42px;object-fit:contain;image-rendering:pixelated}.item b{display:block}.item small{color:#a8b8b0}
+.badge{font-size:9px;border-radius:4px;padding:4px 7px;background:#304e3d!important;color:#d1edb1!important;letter-spacing:.6px}
+.emoji{font-size:24px}.muted{color:#aab9b1!important}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.tile{padding:15px;background:#14282c;border:1px solid #35504b;border-radius:7px}.tile b{display:block;margin:5px 0}.tile small{color:#a9b9b1}
+.calcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.calcbox{padding:16px}.calcbox h3{margin:0 0 5px}.calcbox p{margin:0 0 12px;color:#a6b5ad;font-size:12px}.calcbox .field{width:100%;margin:4px 0}.output{margin-top:10px;padding:10px;border-radius:6px;background:#2c3529;color:#e8d38d;font-weight:800;min-height:42px}
+.checklist{display:grid;gap:8px}.checkrow{padding:11px;background:#0e2025!important;border:1px solid #344c49!important;border-radius:7px;display:flex;gap:10px;align-items:center}.checkrow input{accent-color:#a8d980;width:17px;height:17px}
+.progress{height:9px;background:#263e3a;border-radius:8px;overflow:hidden}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#81b76d,#d7d58a);transition:width .2s}
+.notice{padding:12px 14px;background:#252318;border:1px solid #776645;border-radius:7px;color:#e2d3a7;font-size:12px;margin:10px 0}
+.resultbox p{margin:4px 0;color:#aebcb4}.empty{padding:28px;text-align:center;color:#a5b6ad;border:1px dashed #4c6660;border-radius:8px;grid-column:1/-1}
+.footer{text-align:center;color:#a4b4ac;padding:26px;border-top:1px solid #304743;font-size:12px}
+@media(max-width:1120px){.nav{gap:10px}.brand{min-width:165px}.brand-name{font-size:13px}nav button,.navlink{padding:8px 7px!important;font-size:9px!important}.landing-hero{grid-template-columns:1fr 0.9fr;padding:42px 3.5%}.realm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.nav{padding:10px 15px}.navright .menu{display:inline-flex}nav{display:none;position:absolute;top:72px;left:10px;right:10px;z-index:5;padding:12px;background:#102228;border:1px solid #405c55;border-radius:8px;box-shadow:0 18px 35px #0009}nav.open{display:grid;grid-template-columns:repeat(3,1fr)}nav button,.navlink{width:100%;text-align:center}.landing-hero{grid-template-columns:1fr;gap:28px;padding:34px 24px}.hero-art{min-height:360px}.atlas-ribbon{grid-template-columns:repeat(2,1fr)}.atlas-ribbon>div:nth-child(2){border-right:0}.atlas-ribbon>div:nth-child(-n+2){border-bottom:1px solid #304947}.tool-grid{grid-template-columns:repeat(2,1fr)}.site-footer{grid-template-columns:1fr 1fr}.footer-links{grid-column:1/-1}.guidegrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){main{padding:15px 12px 45px!important}.brand{min-width:0}.brand-name{font-size:12px}.nav-cta{display:none!important}.landing-hero{padding:28px 16px;min-height:0}.landing-hero h1{font-size:clamp(40px,12vw,58px);letter-spacing:-2px}.landing-hero .hero-copy>p{font-size:13px}.hero-art{min-height:285px}.island-art{width:115%;height:96%}.map-pin{padding:6px 7px}.map-pin b{font-size:7px}.map-pin small{font-size:6px}.pin-garden{top:10%;left:1%}.pin-mining{top:17%;right:1%}.pin-dungeon{bottom:9%;right:2%}.hero-art-foot{font-size:6px}.hero-cta{display:grid;grid-template-columns:1fr}.hero-cta .btn{width:100%}.searchbar{flex-wrap:wrap}.searchbar input{flex-basis:calc(100% - 42px)}.searchbar .btn{width:100%}.atlas-ribbon{margin-bottom:38px}.atlas-ribbon>div{padding:12px 10px;grid-template-columns:23px 1fr}.atlas-ribbon small{font-size:8px}.section-heading{align-items:flex-start}.section-heading h2{font-size:28px}.section-index{display:none}.realm-grid,.account-grid,.tool-grid,.route-steps,.official-links,.guidegrid,.calcgrid,.two{grid-template-columns:1fr}.realm-card{min-height:205px}.account-card{padding:15px}.market-note{display:block}.market-note span{display:block;margin-top:6px}.data-panel{grid-template-columns:1fr}.data-count{align-items:flex-start}.site-footer{grid-template-columns:1fr}.footer-links{grid-column:auto}.stats{grid-template-columns:repeat(2,1fr)}.itemgrid{grid-template-columns:1fr}.tiles{grid-template-columns:1fr}nav.open{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
 </style>
 </head>
 <body>
-<header>
+<header class="site-header">
  <div class="nav">
-  <a class="brand" href="/" aria-label="SkyBlock Hub home"><i>SKYBLOCK</i> HUB</a>
+  <a class="brand" href="/" aria-label="SkyBlock Hub home"><span class="brand-mark" aria-hidden="true">✦</span><span class="brand-name">SKYBLOCK <i>HUB</i><small>HYPIXEL FIELD COMPANION</small></span></a>
   <nav id="nav" aria-label="Main navigation">
-   <button class="active" data-view="home">Home</button>
+   <button class="active" data-view="home">Atlas</button>
    <a class="navlink" href="/start-here">Progression</a>
    <a class="navlink" href="/item-database">Item Vault</a>
    <a class="navlink" href="/bazaar">Bazaar</a>
-   <a class="navlink" href="/craft-flip">Crafting</a>
    <a class="navlink" href="/minion-planner">Minions</a>
    <a class="navlink" href="/greenhouse-guide">Garden</a>
    <button data-view="guides">Field Guides</button>
    <button data-view="profile">Player Profile</button>
-   <button data-view="tools">Calculators</button>
   </nav>
   <div class="navright">
-   <a class="navlink" href="/start-here">Start Here</a>
    <button class="menu btn secondary" aria-label="Open navigation" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
-   <button class="pillhide" aria-label="Toggle theme" onclick="toggleTheme()">☼</button>
-   <button class="btn" onclick="showView('profile')">Player Lookup</button>
+   <button class="btn nav-cta" onclick="showView('items')">Open Item Vault <span>↗</span></button>
   </div>
  </div>
 </header>
 <main>
 <section class="view active" id="home">
- <div class="hero world-hero">
-  <div class="hero-copy">
-   <div class="eyebrow">✦ HYPIXEL SKYBLOCK · PLAYER COMPANION</div>
-   <h1>YOUR ISLAND.<br><span>YOUR LEGEND.</span></h1>
-   <p>From your first minion to the deepest floors, rare drops and endgame grinds. Plan your next move, understand every item and make every SkyBlock session count.</p>
-   <div class="hero-bottom">
-    <a class="btn" href="/start-here">⚔ Start your progression</a>
-    <a class="btn secondary" href="/item-database">▣ Explore the Item Vault</a>
+ <div class="landing-wrap">
+  <section class="landing-hero" aria-labelledby="landing-title">
+   <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> INDEPENDENT HYPIXEL SKYBLOCK COMPANION</div>
+    <h1 id="landing-title">THE ISLAND<br>IS ONLY THE <em>START.</em></h1>
+    <p>From your first minion to the far edges of the Rift. Explore the systems, understand the grind, compare resources and choose your next SkyBlock milestone with a plan.</p>
+    <div class="hero-cta">
+     <a class="btn" href="/start-here">START YOUR ROUTE <span>→</span></a>
+     <a class="btn secondary" href="/item-database">BROWSE THE ITEM VAULT</a>
+    </div>
+    <div class="searchbar">
+     <span class="search-symbol" aria-hidden="true">⌕</span>
+     <input id="globalSearch" aria-label="Search SkyBlock items and guides" placeholder="Search an item, collection, area or guide…" onkeydown="if(event.key==='Enter')globalSearch()">
+     <button class="btn" onclick="globalSearch()">SEARCH <span>↗</span></button>
+    </div>
+    <div class="home-search-hint">Search the public item catalogue and field-guide library. No sign-in needed.</div>
+    <div class="resultbox" id="globalResult" style="max-width:690px;margin-top:10px"></div>
    </div>
-   <div class="searchbar">
-    <input id="globalSearch" aria-label="Search SkyBlock items and guides" placeholder="Search an item, pet, collection, weapon or guide..." onkeydown="if(event.key==='Enter')globalSearch()">
-    <button class="btn" onclick="globalSearch()">Search Vault</button>
+   <div class="hero-art-wrap">
+    <div class="hero-art-label"><span>WORLD ATLAS</span><b>SKYBLOCK / 01</b></div>
+    <div class="hero-art" role="img" aria-label="Original pixel-art floating island with a portal, farm plots, crystals and a mining outcrop">
+     <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+     <div class="art-stars"><i>✦</i><i>·</i><i>✧</i><i>·</i><i>✦</i><i>·</i><i>✧</i></div>
+     <svg class="island-art" viewBox="0 0 620 470" role="img" aria-labelledby="island-title">
+      <title id="island-title">Floating SkyBlock island, built from original geometric artwork</title>
+      <defs>
+       <linearGradient id="grassTop" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b6e78d"/><stop offset="1" stop-color="#6fae65"/></linearGradient>
+       <linearGradient id="dirtSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a87854"/><stop offset="1" stop-color="#493b40"/></linearGradient>
+       <linearGradient id="stoneSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#72869a"/><stop offset="1" stop-color="#29394e"/></linearGradient>
+       <linearGradient id="portalGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8ef2cf"/><stop offset=".55" stop-color="#70b9ec"/><stop offset="1" stop-color="#b88bff"/></linearGradient>
+       <filter id="portalBlur"><feGaussianBlur stdDeviation="13"/></filter>
+      </defs>
+      <g class="clouds" fill="#b5d7df" opacity=".18"><path d="M63 96h90v13H63zm23-15h50v15H86zm353 17h90v13h-90zm22-15h51v15h-51z"/></g>
+      <ellipse cx="310" cy="385" rx="205" ry="30" fill="#050a13" opacity=".45"/>
+      <g class="floating-rock">
+       <path d="M74 243 142 183 242 148 326 127 416 153 508 190 557 245 513 295 445 338 369 386 283 414 203 378 134 329Z" fill="url(#stoneSide)" stroke="#9aabba" stroke-opacity=".3" stroke-width="4"/>
+       <path d="m117 264 66-59 75-23 74-24 82 27 71 31 36 45-57 47-69 39-68 39-76-22-64-35-79-39Z" fill="url(#dirtSide)"/>
+       <path d="m74 243 68-60 100-35 84-21 90 26 92 37 49 55-63 18-86-17-84 21-82 12-80-19-68 25Z" fill="url(#grassTop)" stroke="#d4f3ad" stroke-width="4"/>
+       <path d="m111 234 60-54 54-19 17 26-51 38-54 29Z" fill="#c3ef91"/>
+       <path d="m327 127 89 26 92 37 49 55-63 18-86-17-81-19Z" fill="#6ca86a"/>
+       <path d="m223 256 38 1 27 36-30 25-37-29Z" fill="#526a7c"/>
+       <path d="m351 269 43-31 36 17-12 37-39 22Z" fill="#617b89"/>
+       <path d="m445 253 42-17 28 25-31 33-32-9Z" fill="#445b6c"/>
+       <path d="m177 313 34 14-7 34-40-20Z" fill="#36495c"/>
+       <path d="m290 344 42 3 15 22-42 26-38-24Z" fill="#40556a"/>
+      </g>
+      <g class="farm-patch">
+       <path d="m112 222 41-38 54-19 34 11-44 34-53 26Z" fill="#416b47"/>
+       <path d="m117 218 16-15 17 6-17 15Zm25-20 16-13 17 7-16 13Zm26 7 17-13 16 8-16 13Z" fill="#9edb74"/>
+       <path d="m122 227 16-14 17 7-17 14Zm25-20 16-13 16 7-16 14Z" fill="#75b965"/>
+       <path d="m413 183 43 13 43 20-28 13-48-14Z" fill="#416b47"/>
+       <path d="m427 189 18 6-11 12-18-7Zm27 9 18 7-10 12-18-7Z" fill="#abd980"/>
+      </g>
+      <g class="island-trees">
+       <path d="M256 178v-59h15v59" fill="#74513b"/><path d="M235 126h56v31h-56z" fill="#4b9360"/><path d="M246 106h42v29h-42z" fill="#74ba72"/><path d="M253 91h27v23h-27z" fill="#a5db7b"/>
+       <path d="M463 207v-34h10v34" fill="#74513b"/><path d="M447 177h43v26h-43z" fill="#4e925b"/><path d="M455 159h28v24h-28z" fill="#80c171"/>
+      </g>
+      <g class="portal">
+       <path d="M305 208h73v98h-73z" fill="#354c62" stroke="#b9d5dc" stroke-width="5"/>
+       <path d="M316 220h51v78h-51z" fill="url(#portalGlow)" opacity=".65" filter="url(#portalBlur)"/>
+       <path d="M316 220h51v78h-51z" fill="url(#portalGlow)" stroke="#d6fff0" stroke-width="3"/>
+       <path d="M300 304h84v11h-84z" fill="#8196a3"/>
+       <path d="M305 209v-15h10v15m53 0v-15h10v15" fill="#d0e7dc"/>
+      </g>
+      <g class="crystals" stroke-width="3">
+       <path d="m94 186 16-43 16 43v34H94z" fill="#71d8db" stroke="#c6ffff"/>
+       <path d="m500 169 18-46 18 46v38h-36z" fill="#75aef0" stroke="#d9efff"/>
+       <path d="m429 222 12-31 12 31v25h-24z" fill="#b69aff" stroke="#e7d7ff"/>
+       <path d="m187 279 10-23 10 23v18h-20z" fill="#e7c96c" stroke="#fff0ae"/>
+      </g>
+      <g fill="#f1df9b"><rect x="159" y="242" width="13" height="13"/><rect x="414" y="258" width="12" height="12"/><rect x="265" y="321" width="10" height="10"/></g>
+     </svg>
+     <div class="map-pin pin-garden"><span>🌿</span><b>THE GARDEN</b><small>CROPS / VISITORS</small></div>
+     <div class="map-pin pin-mining"><span>💎</span><b>CRYSTAL HOLLOWS</b><small>POWDER / GEMSTONES</small></div>
+     <div class="map-pin pin-dungeon"><span>🏰</span><b>CATACOMBS</b><small>FLOORS / SECRETS</small></div>
+    </div>
+    <div class="hero-art-foot"><span>FIELD NOTES · 08 SYSTEMS</span><span>NOT AFFILIATED WITH HYPIXEL</span></div>
    </div>
-   <div class="home-search-hint">Search across the SkyBlock item catalogue and field guides. No account sign-in required.</div>
-   <div class="resultbox" id="globalResult" style="max-width:680px;margin-top:10px"></div>
-  </div>
-  <div class="world-art" aria-label="Voxel-style floating island, portal and crystals">
-   <div class="loot-chip loot-one"><span>💎</span> GEMSTONE GRIND</div>
-   <div class="loot-chip loot-two"><span>⚔️</span> DUNGEON READY</div>
-   <div class="loot-chip loot-three"><span>🌿</span> GARDEN BUILDER</div>
-   <svg class="floating-island" viewBox="0 0 620 430" role="img" aria-label="Original voxel-inspired floating SkyBlock island illustration">
-    <defs>
-     <linearGradient id="skyGrass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b7ee8b"/><stop offset="1" stop-color="#4d9b63"/></linearGradient>
-     <linearGradient id="skyDirt" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#80634c"/><stop offset="1" stop-color="#3d3c4b"/></linearGradient>
-     <linearGradient id="skyRock" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7893a6"/><stop offset="1" stop-color="#263d56"/></linearGradient>
-     <linearGradient id="skyPortal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9f7e0"/><stop offset=".5" stop-color="#60a7ee"/><stop offset="1" stop-color="#9f6af3"/></linearGradient>
-     <filter id="skyGlow"><feGaussianBlur stdDeviation="8"/></filter>
-    </defs>
-    <g opacity=".65" fill="#b7d5e8"><path d="M65 87h62v12H65zM85 74h35v13H85zM480 66h75v12h-75zM500 54h38v12h-38z"/></g>
-    <circle cx="316" cy="191" r="130" fill="#71d8c4" opacity=".08" filter="url(#skyGlow)"/>
-    <g transform="translate(0 22)">
-     <path d="M76 224L141 165L225 147L307 118L394 145L488 163L548 218L498 279L430 324L354 365L280 388L205 353L137 315Z" fill="url(#skyRock)" stroke="#a5bdca" stroke-opacity=".32" stroke-width="4"/>
-     <path d="M111 243L167 201L241 185L316 160L397 180L481 194L523 230L474 274L410 310L349 344L279 359L211 329L152 297Z" fill="url(#skyDirt)"/>
-     <path d="M76 224L141 165L225 147L307 118L394 145L488 163L548 218L498 235L430 219L354 235L280 249L205 238L137 254Z" fill="url(#skyGrass)" stroke="#d5f5a4" stroke-width="4"/>
-     <path d="M111 227L164 180L218 168L229 192L171 222L131 251Z" fill="#a9e67c"/>
-     <path d="M355 164L394 145L488 163L548 218L498 235L430 219Z" fill="#6fbb6b"/>
-     <path d="M208 242L247 251L267 288L238 307L203 282Z" fill="#44566a"/>
-     <path d="M310 258L347 239L385 253L370 289L332 302Z" fill="#536b7c"/>
-     <path d="M428 248L468 235L490 257L461 284L431 277Z" fill="#405b68"/>
-    </g>
-    <g transform="translate(0 18)">
-     <rect x="264" y="111" width="19" height="64" fill="#78583e"/><rect x="245" y="89" width="58" height="31" fill="#9a6f4b"/>
-     <rect x="230" y="68" width="30" height="35" fill="#478b5e"/><rect x="259" y="51" width="39" height="45" fill="#5ba66b"/><rect x="296" y="72" width="28" height="30" fill="#3d7f58"/>
-     <rect x="384" y="141" width="12" height="35" fill="#72523e"/><rect x="370" y="121" width="38" height="25" fill="#8acb74"/>
-     <rect x="181" y="153" width="26" height="26" fill="#81c96f"/><rect x="197" y="139" width="20" height="21" fill="#5da66b"/>
-     <path d="M319 185l20-30 20 30v42h-40z" fill="#405b75" stroke="#b7dddb" stroke-width="4"/>
-     <path d="M327 185l12-18 12 18v34h-24z" fill="url(#skyPortal)" filter="url(#skyGlow)"/>
-     <path d="M327 185l12-18 12 18v34h-24z" fill="url(#skyPortal)" stroke="#d2fff0" stroke-width="3"/>
-     <path d="M315 227h48v10h-48z" fill="#718a9a"/>
-     <g fill="#5de5e5" stroke="#c6ffff" stroke-width="2"><path d="M111 168l13-31 13 31v26h-26z"/><path d="M469 164l14-34 14 34v28h-28z"/></g>
-     <g fill="#b2a0ff" stroke="#e5d7ff" stroke-width="2"><path d="M432 199l10-23 10 23v17h-20z"/></g>
-     <g fill="#f4d27a"><rect x="168" y="215" width="15" height="15"/><rect x="403" y="211" width="14" height="14"/></g>
-    </g>
-    <g fill="#d6e7ed" opacity=".8"><rect x="64" y="143" width="5" height="5"/><rect x="537" y="105" width="5" height="5"/><rect x="475" y="37" width="4" height="4"/><rect x="132" y="48" width="4" height="4"/><rect x="563" y="271" width="4" height="4"/></g>
-   </svg>
-  </div>
- </div>
+  </section>
 
- <div class="world-section">
-  <div class="world-section-head"><div><h2>Choose your next grind</h2><p>Every major SkyBlock path, with a clear place to start.</p></div><span class="badge">THE WORLD IS YOURS</span></div>
-  <div class="realm-grid">
-   <a class="realm-card" href="/mining-guide" style="--glow:#79d9e8"><span class="realm-icon">⛏️</span><b>Mining & Gemstones</b><small>Commissions, Heart of the Mountain, powder and gemstone progression.</small><span class="realm-tag">Dwarven Mines · Crystal Hollows</span></a>
-   <a class="realm-card" href="/greenhouse-guide" style="--glow:#73d37d"><span class="realm-icon">🌾</span><b>Garden & Farming</b><small>Crop milestones, farming fortune, plots, visitors and tool upgrades.</small><span class="realm-tag">Garden path</span></a>
-   <a class="realm-card" href="/dungeons-guide" style="--glow:#a68aff"><span class="realm-icon">🏰</span><b>Dungeons & Combat</b><small>Class roles, gear choices, secrets and a sensible floor-by-floor plan.</small><span class="realm-tag">Catacombs</span></a>
-   <a class="realm-card" href="/combat-guide#crimson-isle" style="--glow:#ff9c6a"><span class="realm-icon">🔥</span><b>Crimson Isle</b><small>Faction reputation, combat preparation, Kuudra and island progression.</small><span class="realm-tag">Late-game island</span></a>
-   <a class="realm-card" href="/combat-guide#slayers" style="--glow:#e2bb6c"><span class="realm-icon">🐉</span><b>Slayers & Drops</b><small>Understand boss progression, useful gear and the drops worth tracking.</small><span class="realm-tag">Boss progression</span></a>
-   <a class="realm-card" href="/fishing-guide" style="--glow:#66c6da"><span class="realm-icon">🎣</span><b>Fishing & Collections</b><small>Build collections, improve your setup and learn what each milestone unlocks.</small><span class="realm-tag">Skill progression</span></a>
-   <a class="realm-card" href="/rift-guide" style="--glow:#a88cff"><span class="realm-icon">🌀</span><b>The Rift</b><small>A different dimension with its own quests, time, currency and discoveries.</small><span class="realm-tag">Rift journey</span></a>
-   <a class="realm-card" href="/item-database" style="--glow:#8ad39e"><span class="realm-icon">🐾</span><b>Pets, Museum & Gear</b><small>Compare items, learn pet roles and keep your equipment choices organized.</small><span class="realm-tag">Build your loadout</span></a>
-  </div>
- </div>
+  <section class="atlas-ribbon" aria-label="Game systems covered">
+   <div><span>01</span><b>PROGRESSION</b><small>Levels · Skills · Collections</small></div>
+   <div><span>02</span><b>ISLAND SYSTEMS</b><small>Garden · Mines · Rift</small></div>
+   <div><span>03</span><b>PLAYER MARKET</b><small>Bazaar · Crafting · NPC</small></div>
+   <div><span>04</span><b>ACCOUNT TOOLS</b><small>Items · Minions · Profiles</small></div>
+  </section>
 
- <div class="world-section">
-  <div class="world-section-head"><div><h2>Tools built for the grind</h2><p>Useful calculators and lookup tools, not filler pages.</p></div><a class="smalllink" href="/item-database">Open the full vault →</a></div>
-  <div class="loot-gallery">
-   <button class="loot-card" onclick="openItemSearch('dragon')"><div class="loot-icon">🐉</div><b>Dragon Gear</b><small>Armor & equipment</small></button>
-   <button class="loot-card" onclick="openItemSearch('gemstone')"><div class="loot-icon">💎</div><b>Gemstones</b><small>Mining resources</small></button>
-   <button class="loot-card" onclick="openItemSearch('pet')"><div class="loot-icon">🐾</div><b>Pets</b><small>Companions</small></button>
-   <button class="loot-card" onclick="openItemSearch('enchanted')"><div class="loot-icon">✨</div><b>Enchanted Items</b><small>Materials & upgrades</small></button>
-   <button class="loot-card" onclick="openItemSearch('drill')"><div class="loot-icon">⛏️</div><b>Mining Tools</b><small>Drills & pickaxes</small></button>
-   <button class="loot-card" onclick="openItemSearch('farming')"><div class="loot-icon">🌱</div><b>Farm Supplies</b><small>Crops & tools</small></button>
-  </div>
- </div>
-
- <div class="world-section">
-  <div class="world-section-head"><div><h2>Your progression compass</h2><p>A practical route through the game. Your profile and playstyle decide the pace.</p></div></div>
-  <div class="path-grid">
-   <article class="path-card"><span class="step">01 / EARLY GAME</span><h3>Build your foundations</h3><p>Unlock core areas, collect easy accessory upgrades, improve your minions, raise skills and learn the basic economy. Focus on account-wide progress before chasing expensive gear.</p><a class="smalllink" href="/start-here">Read the starter route →</a></article>
-   <article class="path-card"><span class="step">02 / MID GAME</span><h3>Specialize your setup</h3><p>Choose a main activity such as mining, farming, dungeons or combat. Invest in the right tools, pets and upgrades for that activity instead of spreading coins across everything.</p><a class="smalllink" href="/mining-guide">Explore activity guides →</a></article>
-   <article class="path-card"><span class="step">03 / LATE GAME</span><h3>Optimize every upgrade</h3><p>Compare opportunity cost, track rare drops, refine your equipment and plan long grinds. Check prices and recipes before committing a large amount of coins.</p><a class="smalllink" href="/bazaar">Open market tools →</a></article>
-  </div>
- </div>
-
- <div class="shortcuts">
-  <a class="shortcut" href="/bazaar"><span class="emoji">📈</span><span><b>Bazaar Watch</b><small>Compare buy & sell prices</small></span></a>
-  <a class="shortcut" href="/craft-flip"><span class="emoji">⚒️</span><span><b>Crafting Bench</b><small>Recipe cost & margins</small></span></a>
-  <a class="shortcut" href="/npc-flips"><span class="emoji">🏪</span><span><b>NPC Price Check</b><small>Compare vendor values</small></span></a>
-  <a class="shortcut" href="/minion-planner"><span class="emoji">🤖</span><span><b>Minion Workshop</b><small>Plan island production</small></span></a>
-  <button class="shortcut" onclick="showView('items')"><span class="emoji">📦</span><span><b>Item Vault</b><small>Search SkyBlock items</small></span></button>
-  <button class="shortcut" onclick="showView('profile')"><span class="emoji">🧑‍🚀</span><span><b>Player Inspector</b><small>Look up a profile</small></span></button>
-  <button class="shortcut" onclick="showView('quests')"><span class="emoji">📜</span><span><b>Goal Tracker</b><small>Track your next milestone</small></span></button>
-  <button class="shortcut" onclick="showView('tools')"><span class="emoji">🧮</span><span><b>Coin Calculators</b><small>Plan costs & targets</small></span></button>
- </div>
-
- <div class="grid2">
-  <div class="panel">
-   <h2>🧭 Start with a real objective</h2>
-   <div class="tiles">
-    <a class="tile" href="/start-here"><b>First hour in SkyBlock</b><small>Understand the first unlocks, collections and useful habits.</small></a>
-    <a class="tile" href="/skyblock-item-guide"><b>How to compare gear</b><small>Stats, abilities, rarity and the actual use-case of an item.</small></a>
-    <a class="tile" href="/skyblock-resource-guide"><b>Resource progression</b><small>What to gather, what it unlocks and where it fits.</small></a>
-    <a class="tile" href="/greenhouse-guide"><b>Garden planning</b><small>Make each farming session move your setup forward.</small></a>
+  <section class="landing-section" id="world-atlas">
+   <div class="section-heading">
+    <div><div class="eyebrow">EXPLORE THE GAME, NOT GENERIC GAME TIPS</div><h2>Choose your <em>next grind.</em></h2><p>Each destination below points to a real Hypixel SkyBlock system and a focused guide.</p></div>
+    <span class="section-index">WORLD ATLAS / 01</span>
    </div>
-  </div>
-  <div class="panel">
-   <h2>📡 Data connection</h2>
-   <p class="muted" id="apiStatus">Connecting to the public SkyBlock item catalogue…</p>
-   <button class="btn secondary" onclick="loadLiveItems()">↻ Retry item data</button>
-   <div class="notice">Item data can load without a personal API key. Player profile lookup may require a server-side Hypixel developer key. Never enter your Microsoft password or account credentials here.</div>
-  </div>
- </div>
+   <div class="realm-grid">
+    <a class="realm-card realm-garden" href="/greenhouse-guide"><div class="realm-top"><span class="realm-icon">🌾</span><span class="realm-number">01 / FARMING</span></div><h3>The Garden</h3><p>Plot unlocks, crop milestones, Garden visitors, pests, Composter upgrades and Farming Fortune.</p><div class="realm-meta"><span>FARMING</span><b>OPEN FIELD GUIDE ↗</b></div></a>
+    <a class="realm-card realm-mines" href="/mining-guide"><div class="realm-top"><span class="realm-icon">⛏️</span><span class="realm-number">02 / MINING</span></div><h3>Dwarven Mines</h3><p>Commissions, Heart of the Mountain, Token of the Mountain, powder and Forge planning.</p><div class="realm-meta"><span>HOTM / POWDER</span><b>OPEN FIELD GUIDE ↗</b></div></a>
+    <a class="realm-card realm-crystal" href="/mining-guide#crystal-hollows"><div class="realm-top"><span class="realm-icon">💎</span><span class="realm-number">03 / GEMSTONES</span></div><h3>Crystal Hollows & Glacite</h3><p>Crystal routes, gemstone types, Glacite Tunnels, Mineshaft discoveries and cold management.</p><div class="realm-meta"><span>MINING ENDGAME</span><b>READ MINING NOTES ↗</b></div></a>
+    <a class="realm-card realm-dungeon" href="/dungeons-guide"><div class="realm-top"><span class="realm-icon">🏰</span><span class="realm-number">04 / CATACOMBS</span></div><h3>The Catacombs</h3><p>Class roles, floor readiness, room clearing, puzzles, secrets, score and boss phases.</p><div class="realm-meta"><span>DUNGEONS</span><b>OPEN FIELD GUIDE ↗</b></div></a>
+    <a class="realm-card realm-crimson" href="/combat-guide#crimson-isle"><div class="realm-top"><span class="realm-icon">🔥</span><span class="realm-number">05 / CRIMSON ISLE</span></div><h3>Crimson Isle</h3><p>Faction questlines, reputation, island activities, dojo challenges and Kuudra preparation.</p><div class="realm-meta"><span>ISLAND PROGRESSION</span><b>READ COMBAT NOTES ↗</b></div></a>
+    <a class="realm-card realm-rift" href="/rift-guide"><div class="realm-top"><span class="realm-icon">🌀</span><span class="realm-number">06 / DIMENSION</span></div><h3>The Rift</h3><p>Timecharms, Motes, region-specific rules, NPC quest chains and permanent unlocks.</p><div class="realm-meta"><span>RIFT JOURNEY</span><b>OPEN FIELD GUIDE ↗</b></div></a>
+    <a class="realm-card realm-fishing" href="/fishing-guide"><div class="realm-top"><span class="realm-icon">🎣</span><span class="realm-number">07 / FISHING</span></div><h3>Fishing & Trophy Fish</h3><p>Fishing Speed, Sea Creature Chance, lava fishing, Trophy Fish and Crimson Isle waters.</p><div class="realm-meta"><span>FISHING SKILL</span><b>OPEN FIELD GUIDE ↗</b></div></a>
+    <a class="realm-card realm-slayers" href="/combat-guide#slayers"><div class="realm-top"><span class="realm-icon">🧿</span><span class="realm-number">08 / BOSS PROGRESSION</span></div><h3>Slayers & Bestiary</h3><p>Quest tiers, boss mechanics, combat milestones, collections and drop planning.</p><div class="realm-meta"><span>COMBAT</span><b>READ COMBAT NOTES ↗</b></div></a>
+   </div>
+  </section>
 
- <div class="panel">
-  <h2>🧰 Inside the SkyBlock Hub</h2>
-  <div class="stats">
-   <div class="stat"><strong id="itemCount">—</strong><span>Items available to search</span></div>
-   <div class="stat"><strong>Market</strong><span>Bazaar & NPC comparison tools</span></div>
-   <div class="stat"><strong>Progress</strong><span>Guides for major game paths</span></div>
-   <div class="stat"><strong>Profile</strong><span>Player lookup & personal goals</span></div>
-  </div>
- </div>
+  <section class="landing-section account-section">
+   <div class="section-heading">
+    <div><div class="eyebrow">ACCOUNT-WIDE PROGRESSION</div><h2>Build your profile, <em>not just your purse.</em></h2><p>SkyBlock has several progression tracks running at once. These are the ones worth understanding early.</p></div>
+    <span class="section-index">PROFILE SYSTEMS / 02</span>
+   </div>
+   <div class="account-grid">
+    <article class="account-card"><span class="account-icon">✦</span><div><b>SkyBlock Levels & XP</b><p>Profile-wide milestones from discovering systems, completing tasks and advancing different parts of the game. Check the SkyBlock Level menu to see what your profile is missing.</p><a href="/start-here#profile-basics">BUILD YOUR BASELINE ↗</a></div></article>
+    <article class="account-card"><span class="account-icon">🔮</span><div><b>Accessories & Magical Power</b><p>Accessories belong in the Accessory Bag. Maxwell lets you choose a Power and tune your stats; more accessories are not the same thing as a carefully selected setup.</p><a href="https://wiki.hypixel.net/Thaumaturgist" target="_blank" rel="noopener noreferrer">LEARN ABOUT MAXWELL ↗</a></div></article>
+    <article class="account-card"><span class="account-icon">🏛️</span><div><b>Museum & Collections</b><p>Donations, collection milestones and unlocks give your account long-term goals beyond buying the next expensive item.</p><a href="/skyblock-resource-guide">RESOURCE FIELD NOTES ↗</a></div></article>
+    <article class="account-card"><span class="account-icon">🤖</span><div><b>Minions & Island Economy</b><p>Minions create resources while you are away. Their tier, action speed, fuel, storage and collection unlocks all matter when planning an island setup.</p><a href="/minion-planner">OPEN MINION PLANNER ↗</a></div></article>
+   </div>
+  </section>
 
- <div class="panel" id="community">
-  <h2>🌐 Official game resources</h2>
-  <p class="muted">Use primary sources for game rules, patch notes and account support. SkyBlock Hub is an independent fan project.</p>
-  <div class="tiles">
-   <a class="tile smalllink" href="https://wiki.hypixel.net/" target="_blank" rel="noopener noreferrer">📚 <b>Hypixel SkyBlock Wiki</b><small>Game mechanics, items and updates ↗</small></a>
-   <a class="tile smalllink" href="https://hypixel.net/" target="_blank" rel="noopener noreferrer">🛡️ <b>Hypixel Network</b><small>Official network information ↗</small></a>
-   <a class="tile smalllink" href="https://api.hypixel.net/" target="_blank" rel="noopener noreferrer">🔌 <b>Hypixel API</b><small>Developer resources ↗</small></a>
-   <a class="tile smalllink" href="https://support.hypixel.net/" target="_blank" rel="noopener noreferrer">🎫 <b>Hypixel Support</b><small>Help and account support ↗</small></a>
-  </div>
+  <section class="landing-section tools-section">
+   <div class="section-heading">
+    <div><div class="eyebrow">THE HUB TOOLKIT</div><h2>Research first. <em>Spend second.</em></h2><p>Tools for checking data and comparing options. Estimates are not guaranteed profit or live account advice.</p></div>
+    <span class="section-index">TOOL ROOM / 03</span>
+   </div>
+   <div class="tool-grid">
+    <a class="tool-card" href="/item-database"><span>📦</span><b>Item Vault</b><small>Find exact item names, IDs, categories and resource fields.</small><i>OPEN DATABASE ↗</i></a>
+    <a class="tool-card" href="/bazaar"><span>📈</span><b>Bazaar Explorer</b><small>Compare buy orders, sell offers, volume and market spread.</small><i>VIEW MARKET ↗</i></a>
+    <a class="tool-card" href="/craft-flip"><span>⚒️</span><b>Crafting Calculator</b><small>Compare ingredient cost with the crafted item estimate.</small><i>CHECK RECIPES ↗</i></a>
+    <a class="tool-card" href="/npc-flips"><span>🏪</span><b>NPC Value Check</b><small>Review NPC values beside market values before selling.</small><i>COMPARE VALUES ↗</i></a>
+    <a class="tool-card" href="/minion-planner"><span>🤖</span><b>Minion Planner</b><small>Organize minion tiers, fuel assumptions and collection plans.</small><i>PLAN ISLAND OUTPUT ↗</i></a>
+    <button class="tool-card" onclick="showView('profile')"><span>🧑‍🚀</span><b>Player Inspector</b><small>Request the public SkyBlock profile data available for a player.</small><i>LOOK UP PROFILE ↗</i></button>
+    <button class="tool-card" onclick="showView('tools')"><span>🧮</span><b>Coin Calculators</b><small>Estimate margins, hourly rates and savings targets.</small><i>OPEN CALCULATORS ↗</i></button>
+    <button class="tool-card" onclick="showView('quests')"><span>📜</span><b>Goal Tracker</b><small>Keep a local checklist of the next account milestones.</small><i>TRACK YOUR GOALS ↗</i></button>
+   </div>
+   <div class="market-note"><b>MARKET REALITY CHECK</b><span>A Bazaar spread is not guaranteed profit. Fees, order competition, item quantity and fill time can change the result. Always re-check the current in-game market.</span></div>
+  </section>
+
+  <section class="landing-section route-section">
+   <div class="section-heading">
+    <div><div class="eyebrow">A BETTER WAY TO PLAN A SESSION</div><h2>One objective. <em>One useful upgrade.</em></h2><p>Use this loop to turn random grinding into visible account progress.</p></div>
+    <span class="section-index">SESSION ROUTE / 04</span>
+   </div>
+   <div class="route-steps">
+    <article><span>01</span><div><b>Choose a system</b><p>Garden, mining, Catacombs, fishing, Rift or a profile-wide unlock. Pick one main focus.</p></div></article>
+    <article><span>02</span><div><b>Check the requirement</b><p>Read the in-game menu, unlock condition and resource cost before buying or crafting anything.</p></div></article>
+    <article><span>03</span><div><b>Track the result</b><p>Record the milestone you reached, update your checklist and choose the next practical step.</p></div></article>
+   </div>
+   <div class="route-actions"><a class="btn" href="/start-here">OPEN THE STARTER ROUTE →</a><a class="text-link" href="/skyblock-resource-guide">HOW TO RESEARCH SKYBLOCK ITEMS ↗</a></div>
+  </section>
+
+  <section class="data-panel">
+   <div><div class="eyebrow">PUBLIC GAME DATA</div><h2>Item catalogue connection</h2><p id="apiStatus">Connecting to the public SkyBlock item catalogue…</p><small>Public item data can work without a personal API key. Player profile access is a separate feature.</small></div>
+   <div class="data-count"><strong id="itemCount">—</strong><span>ITEMS AVAILABLE TO SEARCH</span><b id="dbBadge">STARTER CATALOGUE</b><button class="btn secondary" onclick="loadLiveItems()">RETRY DATA ↻</button></div>
+  </section>
+
+  <section class="landing-section official-section">
+   <div class="section-heading">
+    <div><div class="eyebrow">CHECK THE PRIMARY SOURCE</div><h2>Game details can <em>change.</em></h2><p>Use the current in-game menus and official community references for exact requirements and updates.</p></div>
+    <span class="section-index">REFERENCE DESK / 05</span>
+   </div>
+   <div class="official-links">
+    <a href="https://wiki.hypixel.net/" target="_blank" rel="noopener noreferrer"><span>📚</span><div><b>Hypixel SkyBlock Wiki</b><small>Mechanics, areas, items and current details ↗</small></div></a>
+    <a href="https://hypixel.net/" target="_blank" rel="noopener noreferrer"><span>🛡️</span><div><b>Hypixel Network</b><small>Official network and announcements ↗</small></div></a>
+    <a href="https://support.hypixel.net/" target="_blank" rel="noopener noreferrer"><span>🎫</span><div><b>Hypixel Support</b><small>Account and network support ↗</small></div></a>
+   </div>
+  </section>
+
+  <footer class="site-footer">
+   <div class="footer-brand"><span class="brand-mark">✦</span><b>SKYBLOCK HUB</b><small>AN INDEPENDENT PLAYER COMPANION</small></div>
+   <p>SkyBlock Hub is a fan-made project and is not affiliated with Hypixel or Mojang. Minecraft, Hypixel and related marks belong to their respective owners.</p>
+   <div class="footer-links"><a href="/about">About</a><a href="/privacy-policy">Privacy</a><a href="/terms-of-use">Terms</a><a href="/sitemap.xml">Sitemap</a></div>
+  </footer>
  </div>
- <div class="footer">SkyBlock Hub is an independent fan-made companion and is not affiliated with Hypixel or Mojang. Game names and marks belong to their respective owners.</div>
 </section>
-
 <section class="view" id="items"><div class="sectionhead"><h2>📦 Item database</h2><span class="badge" id="dbBadge">Starter catalog</span></div><p class="muted">Search the starter catalog and the live Hypixel item database. Search checks item names, IDs, categories and descriptions.</p><div class="toolbar"><input class="field" id="itemSearch" placeholder="Search by item name, ID, material or rarity..." oninput="itemLimit=60;renderItems()"><select class="field" id="itemCategory" onchange="itemLimit=60;renderItems()"><option value="all">All categories</option><option>Armor</option><option>Accessories</option><option>Pets</option><option>Minions</option><option>Mining</option><option>Farming</option><option>Fishing</option><option>Consumables</option><option>Resources</option><option>Tools</option><option>Cosmetics</option><option>Progression</option><option>Miscellaneous</option><option>Other</option></select><button class="btn secondary" onclick="loadLiveItems()">Refresh live data</button></div><div class="itemgrid" id="itemGrid"></div><div style="text-align:center;margin:18px 0"><button class="btn secondary" id="loadMoreItems" onclick="itemLimit+=60;renderItems()" style="display:none">Load more items</button></div><div class="notice">Item names and IDs come from Hypixel public resources when available. This is not a live Bazaar price feed.</div></section>
 <section class="view" id="mods">
 <div class="sectionhead"><h2>🧩 Mods & safe downloads</h2><span class="badge">Official sources</span></div>
@@ -468,14 +401,15 @@ function itemIconMarkup(x){
 }
 let items=starterItems.filter(isCatalogItemAllowed);
 const guides=[
-['🌱','Beginner progression','Start with profile basics, collections, minions and accessible gear. Set one goal at a time.','Beginner'],
-['⛏️','Mining progression','Learn mining areas, commissions, powder systems and how gear progression fits together.','Mining'],
-['🌾','Garden & farming','Understand plots, crop milestones, farming tools and how to organize a farming session.','Farming'],
-
-['🐾','Pets explained','Learn pet rarity, leveling, pet items and why different pets suit different activities.','Pets'],
-['💰','Making coins','Compare activities by setup cost, time, risk and market changes rather than chasing one fixed method.','Economy'],
-['🏰','Dungeons overview','Prepare a class, understand floors, team roles and gear requirements before entering.','Dungeons'],
-['🧭','Exploration & collections','Track collections, unlocks, NPC tasks and useful island areas as you explore.','Progression']
+['🌱','The Garden: Farming Route','Plots, crop milestones, visitors, pests, the Composter, Farming Fortune and a repeatable crop-session checklist.','GARDEN','/greenhouse-guide'],
+['⛏️','Mining: Dwarven Mines to Glacite','Commissions, Heart of the Mountain, powder, Forge planning, Crystal Hollows and Glacite Mineshafts.','MINING','/mining-guide'],
+['🏰','Catacombs: Dungeon Field Manual','Class responsibilities, room flow, puzzles, secrets, score, floor readiness and boss preparation.','DUNGEONS','/dungeons-guide'],
+['🔥','Combat, Slayers & Crimson Isle','Slayer quest loops, boss milestones, faction reputation, Crimson Isle activities and Kuudra team roles.','COMBAT','/combat-guide'],
+['🎣','Fishing & Trophy Fish','Fishing Speed, Sea Creature Chance, lava fishing, Trophy Fish and Crimson Isle fishing routes.','FISHING','/fishing-guide'],
+['🌀','The Rift: Time & Motes','Rift-specific rules, Timecharms, Motes, region objectives, NPC chains and long-term unlocks.','THE RIFT','/rift-guide'],
+['🧭','Start Here: Account Roadmap','A real early-game route through profile basics, collections, minions, accessories, skills and your first specialty.','PROGRESSION','/start-here'],
+['📦','Item IDs & Resource Research','Read the item catalogue, understand rarity and material fields, and know what the public data can and cannot tell you.','ITEM KNOWLEDGE','/skyblock-item-guide'],
+['🤖','Resources, Collections & Minions','Compare raw and crafted resources, understand minion output assumptions and connect collections to account upgrades.','RESOURCE PLANNING','/skyblock-resource-guide']
 ];
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('nav button[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===id));document.getElementById('nav').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});if(id==='items')renderItems();if(id==='guides')renderGuides()}
 document.querySelectorAll('nav button[data-view]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
@@ -494,68 +428,8 @@ let itemLimit=60;
 function renderItems(){const q=(document.getElementById('itemSearch')?.value||'').trim().toLowerCase(),cat=document.getElementById('itemCategory')?.value||'all';const list=items.filter(x=>(cat==='all'||x.cat===cat)&&searchable(x).includes(q));document.getElementById('itemGrid').innerHTML=list.length?list.slice(0,itemLimit).map(x=>`<div class="item"><div class="ico">${itemIconMarkup(x)}</div><div><b>${escapeHtml(x.name)}</b><small>${escapeHtml(x.cat||'Other')} · ${escapeHtml(x.id||'')}</small><div class="muted" style="font-size:12px">${escapeHtml(x.desc||x.tier||'Hypixel SkyBlock item')}</div></div></div>`).join(''):'<div class="empty">No items found. Clear the filter or try another search.</div>';document.getElementById('itemCount').textContent='Showing '+Math.min(list.length,itemLimit).toLocaleString()+' of '+list.length.toLocaleString()+' matching · '+items.length.toLocaleString()+' total';document.getElementById('loadMoreItems').style.display=list.length>itemLimit?'inline-block':'none';document.getElementById('dbBadge').textContent=liveItemsLoaded?'Hypixel live catalog':'Starter catalog'}
 let liveItemsLoaded=false;
 async function loadLiveItems(){itemLimit=60;const status=document.getElementById('apiStatus');status.textContent='Loading Hypixel item database…';try{const response=await fetch('/api/skyblock/items',{headers:{'Accept':'application/json'}}),payload=await response.json();if(!response.ok)throw new Error(payload.error||'Item service unavailable');const raw=Array.isArray(payload.items)?payload.items:[];const mapped=raw.map(x=>({name:x.name||x.id||'Unknown item',id:x.id||'',cat:inferCategory(x),icon:'📦',material:x.material,category:x.category,color:x.color,stats:x.stats,npc_sell_price:x.npc_sell_price,desc:[x.tier,x.category,x.npc_sell_price!=null?`NPC sell ${Number(x.npc_sell_price).toLocaleString()}`:''].filter(Boolean).join(' · '),tier:x.tier,type:x.category})).filter(x=>x.name&&isCatalogItemAllowed(x));if(mapped.length){const byId=new Map();[...starterItems.filter(isCatalogItemAllowed),...mapped].forEach(x=>byId.set(x.id||x.name,x));items=[...byId.values()];liveItemsLoaded=true;status.textContent=payload.stale?`Showing ${mapped.length.toLocaleString()} cached items · live refresh is temporarily unavailable.`:`Connected: ${mapped.length.toLocaleString()} items loaded from Hypixel resources.`}else status.textContent='Hypixel returned no item entries. Showing starter catalog.'}catch(error){status.textContent='Live item data unavailable: '+error.message+' Showing starter catalog.'}renderItems()}
-function renderGuides(){let q=(document.getElementById('guideSearch')?.value||'').toLowerCase();let list=guides.filter(x=>x.join(' ').toLowerCase().includes(q));document.getElementById('guideGrid').innerHTML=list.map(x=>`<article class="card"><span class="emoji">${x[0]}</span><h3>${escapeHtml(x[1])}</h3><p>${escapeHtml(x[2])}</p><div style="margin-top:12px"><span class="badge">${x[3]}</span></div></article>`).join('')||'<div class="empty">No guides match that filter.</div>'}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-const num=id=>Number(document.getElementById(id).value);
-function profitCalc(){let s=num('sell'),c=num('cost');document.getElementById('profitOut').textContent=document.getElementById('sell').value===''||document.getElementById('cost').value===''?'Enter both values.':(s-c>=0?'Estimated profit: ':'Estimated loss: ')+Math.abs(s-c).toLocaleString()+' coins'}
-function bazaarCalc(){let b=num('buy'),s=num('ask'),q=num('qty');let out=document.getElementById('bazaarOut');if(['buy','ask','qty'].some(x=>document.getElementById(x).value==='')||q<=0){out.textContent='Enter valid prices and quantity.';return}let margin=s-b;out.textContent=`Margin: ${margin.toLocaleString()} coins/item · Total: ${(margin*q).toLocaleString()} coins (${b>0?(margin/b*100).toFixed(2):'—'}%) before fees`}
-function hourCalc(){let e=num('earned'),m=num('minutes');document.getElementById('hourOut').textContent=document.getElementById('earned').value===''||m<=0?'Enter earned coins and minutes.':Math.round(e/m*60).toLocaleString()+' coins/hour (estimated)'}
-function targetCalc(){let c=num('currentCoins'),t=num('targetCoins'),p=num('perSession');document.getElementById('targetOut').textContent=['currentCoins','targetCoins','perSession'].some(x=>document.getElementById(x).value==='')||p<=0?'Enter all values.':Math.max(0,Math.ceil((t-c)/p))+' session(s) estimated'}
-const defaultQuests=['Unlock the Garden','Visit the Dwarven Mines','Complete a commission','Reach a new skill milestone','Upgrade a minion','Improve your equipment','Explore a new area','Complete a personal coin goal'];
-let quests;try{quests=JSON.parse(localStorage.getItem('skyhub_quests'))||defaultQuests.map(t=>({t,done:false}))}catch(e){quests=defaultQuests.map(t=>({t,done:false}))}
-let gardenItems=[];try{const saved=JSON.parse(localStorage.getItem('skyhub_garden_list')||'[]');if(Array.isArray(saved))gardenItems=saved.filter(x=>x&&typeof x.text==='string').map(x=>({text:x.text.slice(0,80),done:!!x.done})).slice(0,100)}catch(e){}
-function saveGardenItems(){try{localStorage.setItem('skyhub_garden_list',JSON.stringify(gardenItems))}catch(e){const count=document.getElementById('gardenListCount');if(count)count.textContent='Storage unavailable — list may not persist'}}
-function renderGardenItems(){const list=document.getElementById('gardenShoppingList');if(!list)return;const count=document.getElementById('gardenListCount');if(count)count.textContent=gardenItems.length+' item(s) · '+gardenItems.filter(x=>x.done).length+' ready';list.innerHTML=gardenItems.length?gardenItems.map((item,i)=>'<div class="checkrow"><input type="checkbox" '+(item.done?'checked':'')+' aria-label="Mark '+escapeHtml(item.text)+' complete" onchange="toggleGardenItem('+i+',this.checked)"><span style="flex:1;'+(item.done?'text-decoration:line-through;color:#8990aa':'')+'">'+escapeHtml(item.text)+'</span><button class="btn ghost" type="button" onclick="removeGardenItem('+i+')" aria-label="Remove '+escapeHtml(item.text)+'">Remove</button></div>').join(''):'<div class="empty">Your Garden list is empty. Add your first visitor item above.</div>'}
-function addGardenItem(){const input=document.getElementById('gardenItemInput'),value=input.value.trim();if(!value)return;if(gardenItems.length>=100){document.getElementById('gardenListCount').textContent='List limit reached (100 items)';return}gardenItems.push({text:value,done:false});input.value='';saveGardenItems();renderGardenItems()}
-function toggleGardenItem(i,done){if(!gardenItems[i])return;gardenItems[i].done=done;saveGardenItems();renderGardenItems()}
-function removeGardenItem(i){gardenItems.splice(i,1);saveGardenItems();renderGardenItems()}
-function clearCompletedGardenItems(){gardenItems=gardenItems.filter(x=>!x.done);saveGardenItems();renderGardenItems()}
-function saveQuests(){try{localStorage.setItem('skyhub_quests',JSON.stringify(quests))}catch(e){}}
-function renderQuests(){let done=quests.filter(q=>q.done).length,pct=quests.length?Math.round(done/quests.length*100):0;document.getElementById('questProgress').textContent=`${done} / ${quests.length} completed`;document.getElementById('questPercent').textContent=pct+'%';document.getElementById('questBar').style.width=pct+'%';document.getElementById('questList').innerHTML=quests.map((q,i)=>`<label class="checkrow"><input type="checkbox" ${q.done?'checked':''} onchange="toggleQuest(${i},this.checked)"><span style="${q.done?'text-decoration:line-through;color:#8990aa':''}">${escapeHtml(q.t)}</span></label>`).join('')||'<div class="empty">No goals yet. Add one above.</div>'}
-function toggleQuest(i,v){quests[i].done=v;saveQuests();renderQuests()}
-function addQuest(){let el=document.getElementById('newQuest'),t=el.value.trim();if(!t)return;quests.push({t,done:false});el.value='';saveQuests();renderQuests()}
-function resetQuests(){if(!confirm('Reset your checklist to the default goals?'))return;quests=defaultQuests.map(t=>({t,done:false}));saveQuests();renderQuests()}
-function describeStat(title,description){const box=document.getElementById('statDescription');box.innerHTML='<b>'+escapeHtml(title)+'</b><p>'+escapeHtml(description)+'</p><button class="btn secondary" onclick="window.open(\'https://sky.shiiyu.moe/stats/bec5e6f707b1457a996dfabee70f0fe3/10c7aa0e-9a02-48c8-a216-52f84dcbd5db\',\'_blank\',\'noopener\')">Open profile ↗</button>';box.classList.add('show')}
-function openPublicProfile(){const name=document.getElementById('playerName').value.trim();if(!/^[A-Za-z0-9_]{3,16}$/.test(name)){const box=document.getElementById('profileResult');box.innerHTML='<b>Enter a valid Minecraft Java username first.</b>';box.classList.add('show');return}window.open('https://sky.shiiyu.moe/stats/'+encodeURIComponent(name),'_blank','noopener,noreferrer')}
-async function profileLookup(){
- const name=document.getElementById('playerName').value.trim();
- const box=document.getElementById('profileResult');
- const loading=document.getElementById('profileLoading');
- if(!/^[A-Za-z0-9_]{3,16}$/.test(name)){box.innerHTML='<b>Enter a valid Minecraft Java username.</b>';box.classList.add('show');return}
- loading.textContent='Loading player and SkyBlock profile…';box.classList.remove('show');
- try{
-  const res=await fetch('/api/skyblock/profile?username='+encodeURIComponent(name));
-  const data=await res.json();
-  if(!res.ok)throw new Error(data.error||'Could not load this profile.');
-  const member=data.member||{};
-  const profile=data.profile||{};
-  const cards=[
-   ['Profile',data.profileName||'Unknown'],
-   ['Purse',formatCoins(member.coin_purse)],
-   ['Bank',formatCoins(profile.banking&&profile.banking.balance)],
-   ['Fairy Souls',member.fairy_souls_collected??'—'],
-   ['Secrets Found',(member.dungeons&&member.dungeons.secrets)??'—'],
-   ['Joined',member.first_join??'—']
-  ];
-  const cardHtml=cards.map(c=>'<div class="stat"><strong>'+escapeHtml(String(c[1]))+'</strong><span>'+escapeHtml(c[0])+'</span></div>').join('');
-  const categories=[
-   ['Skills',member.player_data&&member.player_data.experience_skill||member.experience_skill],
-   ['Slayers',member.slayer_bosses||member.slayer],
-   ['Dungeons',member.dungeons],
-   ['Collections',member.collection],
-   ['Pets',member.pets],
-   ['Garden',member.garden||profile.garden],
-   ['Museum',member.museum||profile.museum],
-   ['Mining',member.mining_core||member.mining],
-   ['Inventory data',member.inventory||member.inv_contents]
-  ];
-  const sections=categories.filter(x=>x[1]!==undefined).map(x=>'<details class="calcbox" style="margin-top:9px"><summary><b>'+escapeHtml(x[0])+'</b></summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere;color:#bfc4df;font-size:12px;max-height:260px;overflow:auto">'+escapeHtml(JSON.stringify(x[1],null,2).slice(0,9000))+'</pre></details>').join('');
-  const dashboard='<h3>✨ '+escapeHtml(data.username||name)+' — '+escapeHtml(data.profileName||'SkyBlock profile')+'</h3><div class="stats">'+cardHtml+'</div><p class="muted" style="margin-top:12px">Data returned by Hypixel. Missing fields may be hidden by the player’s API privacy settings.</p>'+ (sections||'<p class="muted">Detailed category fields were not present in this response.</p>');
-  box.innerHTML=dashboard; box.classList.add('show');
-  const statsTarget=document.getElementById('statsDashboard'); if(statsTarget)statsTarget.innerHTML=dashboard;
- }catch(e){box.innerHTML='<b>Profile unavailable</b><p>'+escapeHtml(e.message)+'</p><p class="muted">Player profile lookup needs a server-side Hypixel developer key. The rest of Skyblock Hub works without one; also check the username and the player’s in-game API settings.</p>';box.classList.add('show')}
- finally{loading.textContent=''}
-}
+function renderGuides(){let q=(document.getElementById('guideSearch')?.value||'').toLowerCase();let list=guides.filter(x=>x.join(' ').toLowerCase().includes(q));document.getElementById('guideGrid').innerHTML=list.map(x=>'<article class="card guide-library-card"><div class="guide-library-top"><span class="emoji">'+escapeHtml(x[0])+'</span><span class="badge">'+escapeHtml(x[3])+'</span></div><h3>'+escapeHtml(x[1])+'</h3><p>'+escapeHtml(x[2])+'</p><a class="btn secondary" href="'+escapeHtml(x[4])+'">OPEN FIELD GUIDE →</a></article>').join('')||'<div class="empty">No guides match that filter.</div>'}
+
 function formatCoins(v){return typeof v==='number'?Math.round(v).toLocaleString()+' coins':(v??'—')}
 function inferCat(x){let c=(x.category||'').toLowerCase(),n=(x.name||'').toLowerCase();if(c.includes('weapon')||n.includes('sword')||n.includes('bow'))return'Weapon';if(c.includes('armor')||n.includes('helmet')||n.includes('boots')||n.includes('chestplate'))return'Armor';if(c.includes('pet'))return'Pet';if(n.includes('drill')||n.includes('mithril')||n.includes('gemstone'))return'Mining';if(n.includes('hoe')||n.includes('dicer'))return'Farming';return'Other'}
 function toggleTheme(){document.body.classList.toggle('light');if(document.body.classList.contains('light')){document.body.style.setProperty('--bg','#e9eafa');document.body.style.setProperty('--panel','#fff');document.body.style.setProperty('--panel2','#f5f5ff');document.body.style.setProperty('--text','#17182b');document.body.style.setProperty('--muted','#5c617e')}else{['--bg','--panel','--panel2','--text','--muted'].forEach((p,i)=>document.body.style.removeProperty(p))}}
