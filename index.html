@@ -440,8 +440,8 @@ main{max-width:1480px!important;margin:auto!important;padding:26px 24px 70px!imp
 <div class="sectionhead"><h2>🧑 Live player profile</h2><span class="badge">Hypixel API integration</span></div>
 <div class="panel">
 <p class="muted">Enter a Minecraft Java username. Skyblock Hub will ask its own backend for the player's public SkyBlock profile and display the available data here.</p>
-<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button><button class="btn secondary" onclick="openPublicProfile()">Open public profile · No key</button></div>
-<div class="notice">Player profile lookup is optional and requires a Hypixel developer key on the server. The item catalog, Bazaar prices, calculators and guides work without a key. Never paste an API key, Minecraft password or Microsoft login details into this page or into chat.</div>
+<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button></div>
+<div class="notice">Player profile lookup is optional and uses the site’s server-side Hypixel integration when available. The page checks service status automatically; it never asks visitors for an API key, Minecraft password or Microsoft login. The item catalog, guides and public tools remain available without profile access.</div>
 <div id="profileLoading" class="muted" aria-live="polite"></div>
 <div id="profileResult" class="resultbox"></div>
 </div>
@@ -463,6 +463,15 @@ function itemTextureSources(x){
  const aliases={SKULL_ITEM:'skull',SKULL:'skull',INK_SACK:'dye_powder',MONSTER_EGG:'spawn_egg',POTION:'potion_bottle_drinkable',ENCHANTED_BOOK:'book_enchanted',GOLDEN_APPLE:'apple_golden',EXP_BOTTLE:'experience_bottle',WATCH:'clock',BOOK_AND_QUILL:'writable_book',WRITTEN_BOOK:'book_written',WOOD_DOOR:'door_wood',IRON_DOOR:'door_iron',CARROT_ITEM:'carrot',POTATO_ITEM:'potato',SUGAR_CANE:'reeds',WHEAT:'wheat',PUMPKIN_SEEDS:'seeds_pumpkin',MELON_SEEDS:'seeds_melon',WHEAT_SEEDS:'seeds_wheat',WORKBENCH:'crafting_table',HARD_CLAY:'hardened_clay',STAINED_CLAY:'stained_hardened_clay',ENDER_STONE:'end_stone',HAY_BLOCK:'hay_block_side',QUARTZ_BLOCK:'quartz_block_side',LOG:'log_oak',LOG_2:'log_acacia',LEAVES:'leaves_oak',LEAVES_2:'leaves_acacia',WOOD:'planks_oak'};
  const name=(aliases[raw]||raw).toLowerCase();
  return {legacy:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/items/'+name+'.png',project:'https://project-crafting.github.io/minecraft-auto-updated-textures-api/items/'+name+'.png',modern:'https://mcasset.cloud/1.21.4/assets/minecraft/textures/item/'+raw.toLowerCase()+'.png',block:'https://mcasset.cloud/1.8.9/assets/minecraft/textures/blocks/'+name+'.png'};
+}
+function escapeHtml(value){
+ return String(value ?? '').replace(/[&<>"']/g, character => ({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ })[character]);
 }
 function itemIconMarkup(x){
  const p=itemTextureSources(x);
@@ -501,6 +510,44 @@ async function loadLiveItems(){itemLimit=60;const status=document.getElementById
 function renderGuides(){let q=(document.getElementById('guideSearch')?.value||'').toLowerCase();let list=guides.filter(x=>x.join(' ').toLowerCase().includes(q));document.getElementById('guideGrid').innerHTML=list.map(x=>'<article class="card guide-library-card"><div class="guide-library-top"><span class="emoji">'+escapeHtml(x[0])+'</span><span class="badge">'+escapeHtml(x[3])+'</span></div><h3>'+escapeHtml(x[1])+'</h3><p>'+escapeHtml(x[2])+'</p><a class="btn secondary" href="'+escapeHtml(x[4])+'">OPEN FIELD GUIDE →</a></article>').join('')||'<div class="empty">No guides match that filter.</div>'}
 
 function formatCoins(v){return typeof v==='number'?Math.round(v).toLocaleString()+' coins':(v??'—')}
+async function profileLookup(){
+ const input=document.getElementById('playerName');
+ const status=document.getElementById('profileLoading');
+ const result=document.getElementById('profileResult');
+ const username=input.value.trim();
+ result.classList.remove('show');
+ result.textContent='';
+ if(!/^[A-Za-z0-9_]{3,16}$/.test(username)){
+  status.textContent='Enter a valid Minecraft Java username (3–16 letters, numbers or underscores).';
+  return;
+ }
+ status.textContent='Checking profile service...';
+ try{
+  const healthResponse=await fetch('/api/health',{headers:{Accept:'application/json'},cache:'no-store'});
+  const health=await healthResponse.json().catch(()=>({}));
+  if(!healthResponse.ok||health.ok!==true)throw new Error('Profile service is temporarily unavailable. Please try again later.');
+  if(health.hypixelConfigured!==true){
+   status.textContent='Player stats are temporarily unavailable because the site’s server-side Hypixel profile integration is not configured. No API key or password is requested from visitors. The item database, guides and public tools remain available.';
+   return;
+  }
+  status.textContent='Loading public SkyBlock profile...';
+  const response=await fetch('/api/skyblock/profile?username='+encodeURIComponent(username),{headers:{Accept:'application/json'},cache:'no-store'});
+  const payload=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(payload.error||'Could not load this profile. Please try again.');
+  const purse=typeof payload.member?.coin_purse==='number'?formatCoins(payload.member.coin_purse):null;
+  result.innerHTML=[
+   '<strong>'+escapeHtml(payload.username||username)+'</strong>',
+   '<p>Selected profile: '+escapeHtml(payload.profileName||'SkyBlock')+'</p>',
+   '<p>Mode: '+escapeHtml(payload.gameMode||'normal')+'</p>',
+   purse===null?'':'<p>Purse: '+purse+'</p>',
+   '<p>Only data available through Hypixel’s public profile API is shown. Other sections may be restricted by the player’s in-game API settings.</p>'
+  ].filter(Boolean).join('');
+  result.classList.add('show');
+  status.textContent='Profile loaded.';
+ }catch(error){
+  status.textContent=error instanceof Error?error.message:'Could not load this profile. Please try again.';
+ }
+}
 function inferCat(x){let c=(x.category||'').toLowerCase(),n=(x.name||'').toLowerCase();if(c.includes('weapon')||n.includes('sword')||n.includes('bow'))return'Weapon';if(c.includes('armor')||n.includes('helmet')||n.includes('boots')||n.includes('chestplate'))return'Armor';if(c.includes('pet'))return'Pet';if(n.includes('drill')||n.includes('mithril')||n.includes('gemstone'))return'Mining';if(n.includes('hoe')||n.includes('dicer'))return'Farming';return'Other'}
 function toggleTheme(){document.body.classList.toggle('light');if(document.body.classList.contains('light')){document.body.style.setProperty('--bg','#e9eafa');document.body.style.setProperty('--panel','#fff');document.body.style.setProperty('--panel2','#f5f5ff');document.body.style.setProperty('--text','#17182b');document.body.style.setProperty('--muted','#5c617e')}else{['--bg','--panel','--panel2','--text','--muted'].forEach((p,i)=>document.body.style.removeProperty(p))}}
 renderItems();renderGuides();renderQuests();renderGardenItems();loadLiveItems();
