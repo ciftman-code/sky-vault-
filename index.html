@@ -548,6 +548,139 @@ async function profileLookup(){
   status.textContent=error instanceof Error?error.message:'Could not load this profile. Please try again.';
  }
 }
+let localStorageAvailable=true;
+function loadLocalList(key){
+ try{
+  const parsed=JSON.parse(window.localStorage.getItem(key)||'[]');
+  if(!Array.isArray(parsed))return [];
+  return parsed.filter(item=>item&&typeof item.text==='string').slice(0,100).map((item,index)=>({
+   id:String(item.id||('saved-'+index)),
+   text:item.text.slice(0,80),
+   done:Boolean(item.done)
+  }));
+ }catch(error){
+  localStorageAvailable=false;
+  return [];
+ }
+}
+function saveLocalList(key,items){
+ try{
+  window.localStorage.setItem(key,JSON.stringify(items));
+  return true;
+ }catch(error){
+  localStorageAvailable=false;
+  return false;
+ }
+}
+function makeLocalId(){
+ return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);
+}
+let quests=loadLocalList('skyblockHubGoalsV1');
+let gardenItems=loadLocalList('skyblockHubGardenListV1');
+function renderQuests(){
+ const list=document.getElementById('questList');
+ const total=quests.length;
+ const completed=quests.filter(item=>item.done).length;
+ const percent=total?Math.round(completed/total*100):0;
+ document.getElementById('questProgress').textContent=completed+' / '+total+' completed'+(localStorageAvailable?'':' · not saved');
+ document.getElementById('questPercent').textContent=percent+'%';
+ document.getElementById('questBar').style.width=percent+'%';
+ list.innerHTML=total?quests.map(item=>'<label class="checkrow"><input type="checkbox" '+(item.done?'checked':'')+' onchange="toggleQuest(\''+escapeHtml(item.id)+'\',this.checked)"><span>'+escapeHtml(item.text)+'</span></label>').join(''):'<p class="muted">No goals yet. Add a personal goal below to start tracking progress.</p>';
+}
+function addQuest(){
+ const input=document.getElementById('newQuest');
+ const text=input.value.trim().slice(0,80);
+ if(!text)return;
+ quests.push({id:makeLocalId(),text,done:false});
+ saveLocalList('skyblockHubGoalsV1',quests);
+ input.value='';
+ renderQuests();
+}
+function toggleQuest(id,done){
+ const item=quests.find(entry=>entry.id===id);
+ if(!item)return;
+ item.done=Boolean(done);
+ saveLocalList('skyblockHubGoalsV1',quests);
+ renderQuests();
+}
+function resetQuests(){
+ quests=[];
+ saveLocalList('skyblockHubGoalsV1',quests);
+ renderQuests();
+}
+function renderGardenItems(){
+ const list=document.getElementById('gardenShoppingList');
+ const count=document.getElementById('gardenListCount');
+ count.textContent=gardenItems.length+' items'+(localStorageAvailable?'':' · not saved');
+ list.innerHTML=gardenItems.length?gardenItems.map(item=>'<label class="checkrow"><input type="checkbox" '+(item.done?'checked':'')+' onchange="toggleGardenItem(\''+escapeHtml(item.id)+'\',this.checked)"><span>'+escapeHtml(item.text)+'</span></label>').join(''):'<p class="muted">Your list is empty. Add a visitor request or preparation item above.</p>';
+}
+function addGardenItem(){
+ const input=document.getElementById('gardenItemInput');
+ const text=input.value.trim().slice(0,80);
+ if(!text)return;
+ gardenItems.push({id:makeLocalId(),text,done:false});
+ saveLocalList('skyblockHubGardenListV1',gardenItems);
+ input.value='';
+ renderGardenItems();
+}
+function toggleGardenItem(id,done){
+ const item=gardenItems.find(entry=>entry.id===id);
+ if(!item)return;
+ item.done=Boolean(done);
+ saveLocalList('skyblockHubGardenListV1',gardenItems);
+ renderGardenItems();
+}
+function clearCompletedGardenItems(){
+ gardenItems=gardenItems.filter(item=>!item.done);
+ saveLocalList('skyblockHubGardenListV1',gardenItems);
+ renderGardenItems();
+}
+function readCalculatorNumber(id){
+ const raw=document.getElementById(id).value.trim();
+ if(!raw)return null;
+ const value=Number(raw);
+ return Number.isFinite(value)&&value>=0?value:null;
+}
+function showCalculatorResult(id,message){
+ document.getElementById(id).textContent=message;
+}
+function profitCalc(){
+ const sell=readCalculatorNumber('sell');
+ const cost=readCalculatorNumber('cost');
+ if(sell===null||cost===null){showCalculatorResult('profitOut','Enter valid non-negative values for both fields.');return;}
+ const result=sell-cost;
+ showCalculatorResult('profitOut',(result>=0?'Estimated difference: ':'Estimated shortfall: ')+formatCoins(Math.abs(result))+'. This is arithmetic using your inputs only.');
+}
+function bazaarCalc(){
+ const buy=readCalculatorNumber('buy');
+ const ask=readCalculatorNumber('ask');
+ const quantity=readCalculatorNumber('qty');
+ if(buy===null||ask===null||quantity===null||quantity<=0||!Number.isInteger(quantity)){
+  showCalculatorResult('bazaarOut','Enter non-negative prices and a whole-number quantity greater than zero.');
+  return;
+ }
+ const totalCost=buy*quantity;
+ const margin=(ask-buy)*quantity;
+ const percent=totalCost>0?(margin/totalCost*100).toFixed(2)+'%':'not available when total cost is zero';
+ showCalculatorResult('bazaarOut','Estimated margin before fees: '+formatCoins(margin)+' ('+percent+'). Uses only the values you entered; no live prices or predictions.');
+}
+function hourCalc(){
+ const earned=readCalculatorNumber('earned');
+ const minutes=readCalculatorNumber('minutes');
+ if(earned===null||minutes===null||minutes<=0){showCalculatorResult('hourOut','Enter non-negative earnings and a time greater than zero minutes.');return;}
+ showCalculatorResult('hourOut','Average rate from your inputs: '+formatCoins(earned*60/minutes)+' per hour.');
+}
+function targetCalc(){
+ const current=readCalculatorNumber('currentCoins');
+ const target=readCalculatorNumber('targetCoins');
+ const perSession=readCalculatorNumber('perSession');
+ if(current===null||target===null||perSession===null||perSession<=0){
+  showCalculatorResult('targetOut','Enter valid non-negative coin amounts and a session amount greater than zero.');
+  return;
+ }
+ const sessions=Math.max(0,Math.ceil((target-current)/perSession));
+ showCalculatorResult('targetOut',sessions===0?'The target is already reached using the values entered.':'Estimated sessions: '+sessions+'. This is a simple estimate, not a guarantee.');
+}
 function inferCat(x){let c=(x.category||'').toLowerCase(),n=(x.name||'').toLowerCase();if(c.includes('weapon')||n.includes('sword')||n.includes('bow'))return'Weapon';if(c.includes('armor')||n.includes('helmet')||n.includes('boots')||n.includes('chestplate'))return'Armor';if(c.includes('pet'))return'Pet';if(n.includes('drill')||n.includes('mithril')||n.includes('gemstone'))return'Mining';if(n.includes('hoe')||n.includes('dicer'))return'Farming';return'Other'}
 function toggleTheme(){document.body.classList.toggle('light');if(document.body.classList.contains('light')){document.body.style.setProperty('--bg','#e9eafa');document.body.style.setProperty('--panel','#fff');document.body.style.setProperty('--panel2','#f5f5ff');document.body.style.setProperty('--text','#17182b');document.body.style.setProperty('--muted','#5c617e')}else{['--bg','--panel','--panel2','--text','--muted'].forEach((p,i)=>document.body.style.removeProperty(p))}}
 renderItems();renderGuides();renderQuests();renderGardenItems();loadLiveItems();
