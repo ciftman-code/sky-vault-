@@ -13,13 +13,16 @@ async function getJson(url, options = {}) {
 }
 
 export default async function handler(req, res) {
+  // Player profile responses contain public account data; never cache them at the CDN or browser.
+  res.setHeader("Cache-Control", "no-store");
+
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).json({ error: "Method not allowed." });
   }
   const key = process.env.HYPIXEL_API_KEY;
   if (!key) {
-    return res.status(503).json({ error: "Server configuration missing: add HYPIXEL_API_KEY in Vercel Environment Variables." });
+    return res.status(503).json({ error: "Player profile lookup is not configured on this site yet." });
   }
   const username = String(req.query.username || "").trim();
   if (!/^[A-Za-z0-9_]{3,16}$/.test(username)) {
