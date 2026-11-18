@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Hypixel SkyBlock Accessory Bag Guide (0.27.3) | SkyBlock Hub</title>
+<meta name="description" content="Learn the Hypixel SkyBlock 0.27.3 Accessory Bag menu: search, sorting, missing accessories, upgrade details, tuning points and the Rift bag.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://skyblock-vault.vercel.app/accessory-bag-guide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hypixel SkyBlock Accessory Bag Guide (0.27.3)">
+<meta property="og:description" content="A practical walkthrough of the redesigned Accessory Bag menu, its summary widget and related quality-of-life changes.">
+<meta property="og:url" content="https://skyblock-vault.vercel.app/accessory-bag-guide">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hypixel SkyBlock Accessory Bag Guide (0.27.3)">
+<meta name="twitter:description" content="Search, sort and review accessory progression after the 0.27.3 update.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Hypixel SkyBlock Accessory Bag Guide (0.27.3)","description":"A practical walkthrough of the redesigned Accessory Bag menu and related quality-of-life changes.","datePublished":"2026-11-18","dateModified":"2026-11-18","mainEntityOfPage":"https://skyblock-vault.vercel.app/accessory-bag-guide","publisher":{"@type":"Organization","name":"SkyBlock Hub"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://skyblock-vault.vercel.app/"},{"@type":"ListItem","position":2,"name":"Start Here","item":"https://skyblock-vault.vercel.app/start-here"},{"@type":"ListItem","position":3,"name":"Accessory Bag Guide","item":"https://skyblock-vault.vercel.app/accessory-bag-guide"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I see which accessories I am missing?","acceptedAnswer":{"@type":"Answer","text":"The redesigned menu gives each accessory its own entry, making missing accessories easier to identify."}},{"@type":"Question","name":"Can I search for an accessory by name?","acceptedAnswer":{"@type":"Answer","text":"Yes. Hypixel's 0.27.3 notes say the menu can search for an accessory by name and sort by name, rarity and game stage."}},{"@type":"Question","name":"Does The Rift have an Accessory Bag now?","acceptedAnswer":{"@type":"Answer","text":"Yes. The official 0.27.3 notes announce an Accessory Bag for The Rift."}},{"@type":"Question","name":"What do enrichments do after the update?","acceptedAnswer":{"@type":"Answer","text":"The official notes say enrichments now provide one Tuning Point rather than a specific stat."}}]}
+</script>
+<link rel="stylesheet" href="/skyblock-world.css">
+<style>
+:root{color-scheme:dark;--bg:#090e1b;--panel:#141d32;--line:#2d3a59;--text:#f5f6ff;--muted:#aeb9d3;--gold:#ffdc91;--cyan:#76e4e2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#302457,transparent 52%),var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,Arial}
+a{color:#c9bbff}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.top{position:sticky;top:0;z-index:5;background:#0b1020ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{max-width:1120px;margin:auto;padding:13px 20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:950;text-decoration:none;color:white;font-size:17px}.brand em{font-style:normal;color:var(--gold)}
+.navlinks{display:flex;gap:15px;flex-wrap:wrap}.navlinks a{font-size:13px;text-decoration:none;color:var(--muted)}
+main{max-width:1120px;margin:30px auto;padding:0 20px 60px}
+.hero,.panel,.side,.faq{background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.hero{padding:30px;background:linear-gradient(120deg,#1b2641,#29204b)}
+.eyebrow{color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:1.8px;text-transform:uppercase}
+.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.08;margin:10px 0}
+.hero p{max-width:820px;color:#c6cce1}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-block;padding:10px 15px;border-radius:10px;background:#7455df;color:white;text-decoration:none;font-weight:850}
+.btn.alt{background:#26324c;border:1px solid var(--line)}
+.toc{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+.toc a{padding:7px 11px;border:1px solid var(--line);border-radius:30px;text-decoration:none;font-size:13px;color:#d8dff3;background:#111a2d}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;margin-top:18px}
+.article,.side,.faq{padding:22px}
+.article h2{margin:25px 0 7px}.article h2:first-child{margin-top:0}
+.article p,.article li,.side p,.faq p{color:var(--muted)}
+.article li{margin:8px 0}
+.side{position:sticky;top:90px;height:max-content}
+.side h2{margin-top:0;font-size:18px}.side a{display:block;margin:12px 0}
+.tip{border-left:3px solid var(--cyan);background:#101a2d;padding:13px 15px;border-radius:0 10px 10px 0;color:#d5def2;margin:16px 0}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.mini{padding:15px;border:1px solid var(--line);border-radius:13px;background:#10182b}
+.mini b{display:block;margin-bottom:4px}.mini p{font-size:14px;margin:0}
+.widget{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.widget div{padding:14px;border:1px solid #42527a;border-radius:12px;background:#10182b}
+.widget span{display:block;color:var(--muted);font-size:12px}.widget b{display:block;margin-top:6px;color:var(--gold);font-size:14px}
+.notice{padding:14px 16px;border:1px solid #5c4c79;background:#211d37;border-radius:12px;color:#ded8f3}
+.faq{margin-top:18px}.faq h2{margin-top:0}
+.faq details{border-top:1px solid var(--line);padding:12px 0}
+.faq summary{cursor:pointer;font-weight:850}.faq p{margin:7px 0}
+.footer{text-align:center;color:var(--muted);border-top:1px solid var(--line);padding:24px;font-size:12px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.side{position:static}.widget{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){main{padding:0 12px 42px}.hero{padding:22px}.article,.side,.faq{padding:17px}.cards{grid-template-columns:1fr}.nav{padding:12px}}
+</style>
+</head>
+<body class="page-accessory-bag">
+<header class="top">
+  <div class="nav">
+    <a class="brand" href="/">☁️ <em>SKYBLOCK</em> HUB</a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="/">Home</a><a href="/start-here">Start Here</a><a href="/skyblock-resource-guide">Resource Guide</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Hypixel SkyBlock · Version 0.27.3 · Guide updated 18 November 2026</div>
+    <h1>The redesigned Accessory Bag</h1>
+    <p>Hypixel's 0.27.3 announcement describes a new menu built around a distinct entry for each accessory. This guide explains the menu features, the summary widget and a sensible first review of your collection. It does not need a player API key.</p>
+    <div class="actions">
+      <a class="btn" href="#first-review">Review your bag</a>
+      <a class="btn alt" href="/start-here">Start Here →</a>
+    </div>
+  </section>
+  <nav class="toc" aria-label="On this page">
+    <a href="#menu">Menu changes</a><a href="#first-review">First review</a><a href="#widget">Summary widget</a><a href="#slots">Slots and costs</a><a href="#compactor">Related changes</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="layout">
+    <article class="article">
+      <section id="menu">
+        <h2>What changed in the menu?</h2>
+        <p>The old open-inventory layout has been replaced by a menu with a dedicated entry for each accessory. Hypixel says this makes the collection easier to inspect and manage.</p>
+        <div class="cards">
+          <div class="mini"><b>Find gaps</b><p>Distinct entries make accessories you do not own easier to spot.</p></div>
+          <div class="mini"><b>Search and sort</b><p>Search by name, or sort by name, rarity and game stage.</p></div>
+          <div class="mini"><b>Check the route</b><p>View an accessory's obtainment method or upgrade method directly in-game.</p></div>
+          <div class="mini"><b>Manage in place</b><p>Toggle or open accessory menus and upgrade accessories without first taking them out of the bag.</p></div>
+        </div>
+        <p>The update also adds an Accessory Bag to The Rift. Treat it as a separate menu to check when you are progressing in that area.</p>
+      </section>
+      <section id="first-review">
+        <h2>A practical first review</h2>
+        <ol>
+          <li><b>Open the Accessory Bag.</b> Start with the in-game menu rather than relying on an old screenshot or a pre-update checklist.</li>
+          <li><b>Read the summary widget.</b> Note your total Accessory Power, selected Power, Tuning Points and available bag slots.</li>
+          <li><b>Sort by game stage.</b> Use the built-in sort to scan the collection in a progression-friendly order; it is an organizing aid, not a personalized recommendation.</li>
+          <li><b>Search for one accessory.</b> Open its entry and read the obtainment or upgrade information before planning around it.</li>
+          <li><b>Check the Rift separately.</b> The official notes announce a Rift Accessory Bag as well.</li>
+        </ol>
+        <div class="tip"><b>Keep it simple:</b> choose one missing accessory or one upgrade path to investigate at a time. The menu helps you find information; it does not mean every missing entry should be pursued immediately.</div>
+      </section>
+      <section id="widget">
+        <h2>Understand the Accessory Bag widget</h2>
+        <p>Hypixel says the new widget shows four pieces of information. These are labels for what the game displays, not values pulled from your account.</p>
+        <div class="widget" aria-label="Illustrative list of Accessory Bag widget fields">
+          <div><span>Total</span><b>Accessory Power</b></div>
+          <div><span>Current choice</span><b>Selected Power</b></div>
+          <div><span>Available</span><b>Tuning Points</b></div>
+          <div><span>Capacity</span><b>Bag Slots</b></div>
+        </div>
+        <p>Accessory Power is now listed first in each accessory's stats. Enrichments now provide one Tuning Point instead of a specific stat. Review your selected Power and tuning in-game; this guide does not prescribe one setup for every activity.</p>
+      </section>
+      <section id="slots">
+        <h2>Extra slots and in-game coin costs</h2>
+        <ul>
+          <li>Hypixel's notes say players receive nine additional Accessory Bag slots by default.</li>
+          <li>The notes say Jacobus slot upgrades now cap at 10 million in-game coins each, and the total cost to max the upgrades is about 870 million in-game coins, down from about 1.8 billion.</li>
+          <li>Hypixel also says earlier tiers are cheaper and that previous spending differences were refunded, so buying before or after the change should lead to the same total coin cost.</li>
+        </ul>
+        <div class="notice"><b>Before spending:</b> these figures refer only to virtual SkyBlock coins in the official 0.27.3 notes. Check Jacobus's current in-game menu before making a purchase; do not treat an old guide as a live quote.</div>
+      </section>
+      <section id="compactor">
+        <h2>Related quality-of-life change: Personal Compactor</h2>
+        <p>The Personal Compactor was changed in the same update, but it is separate from the Accessory Bag. It no longer uses item slots. Instead, you choose which items in your Sacks should be compacted automatically.</p>
+        <ul>
+          <li>Each core skill, plus Husbandry, has its own Personal Compactor unlocked early in that skill's collection.</li>
+          <li>Compacting now happens directly in Sacks.</li>
+          <li>The update adds the <code>/compactor</code> and <code>/deleter</code> Cookie Buff commands for access to those menus.</li>
+        </ul>
+        <p>Check the relevant collection and your in-game menu for the exact unlock requirements.</p>
+      </section>
+      <section class="faq" id="faq">
+        <h2>Frequently asked questions</h2>
+        <details><summary>Can I see which accessories I am missing?</summary><p>Yes. The distinct-entry layout is designed to make missing accessories easier to identify.</p></details>
+        <details><summary>Can I search by name?</summary><p>Yes. Hypixel's notes describe name search and sorting by name, rarity and game stage.</p></details>
+        <details><summary>Does The Rift have its own Accessory Bag?</summary><p>Yes. The official 0.27.3 notes announce an Accessory Bag for The Rift.</p></details>
+        <details><summary>Do enrichments still grant a specific stat?</summary><p>No. The official notes say they now grant one Tuning Point instead.</p></details>
+      </section>
+      <section id="sources">
+        <h2>Sources and update notes</h2>
+        <p>Source note: Hypixel Team’s official SkyBlock 0.27.3 announcement, posted 17 November 2026. This guide summarizes only the Accessory Bag and related quality-of-life details.</p>
+        <p>This is an unofficial fan-made guide. It summarizes public patch notes and does not read private player data or require a personal Hypixel API key. Game menus and requirements can change; verify important details in-game.</p>
+      </section>
+    </article>
+    <aside class="side">
+      <h2>Useful next steps</h2>
+      <p>Use these pages to continue your account research.</p>
+      <a href="/start-here">Start Here →</a>
+      <a href="/skyblock-resource-guide">Resource Guide →</a>
+      <a href="/greenhouse-guide">Garden Guide →</a>
+      <hr style="border:0;border-top:1px solid #2d3a59;margin:18px 0">
+      <p>Unofficial companion. Not affiliated with Hypixel or Mojang.</p>
+    </aside>
+  </div>
+</main>
+<footer class="footer">SkyBlock Hub · Accessory Bag guide · Verify changing details in-game.</footer>
+</body>
+</html>
