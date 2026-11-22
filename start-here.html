@@ -50,7 +50,7 @@ const checklistStatus=$('checklist-progress');
 const checklistStorageKey='skyblockhub:starter-checklist:v1';
 let checklistStorageAvailable=false;
 function updateChecklistStatus(){const done=checklist.reduce((sum,box)=>sum+(box.checked?1:0),0);checklistStatus.textContent=done+' of '+checklist.length+' complete';}
-try{checklistStorageAvailable=true;const saved=JSON.parse(localStorage.getItem(checklistStorageKey)||'null');if(Array.isArray(saved)&&saved.length===checklist.length){checklist.forEach((box,i)=>{if(typeof saved[i]==='boolean')box.checked=saved[i];});}}catch{checklistStorageAvailable=false;}
+try{checklistStorageAvailable=true;const raw=localStorage.getItem(checklistStorageKey);if(raw!==null){try{const saved=JSON.parse(raw);if(Array.isArray(saved)&&saved.length===checklist.length){checklist.forEach((box,i)=>{if(typeof saved[i]==='boolean')box.checked=saved[i];});}}catch{}}}catch{checklistStorageAvailable=false;}
 checklist.forEach(box=>box.addEventListener('change',()=>{updateChecklistStatus();if(checklistStorageAvailable){try{localStorage.setItem(checklistStorageKey,JSON.stringify(checklist.map(box=>box.checked)));}catch{}}}));
 $('reset-checklist').addEventListener('click',()=>{checklist.forEach(box=>box.checked=false);updateChecklistStatus();if(checklistStorageAvailable){try{localStorage.removeItem(checklistStorageKey);}catch{}}});
 updateChecklistStatus();</script></body></html>
