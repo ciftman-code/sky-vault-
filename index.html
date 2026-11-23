@@ -440,7 +440,7 @@ main{max-width:1480px!important;margin:auto!important;padding:26px 24px 70px!imp
 <div class="sectionhead"><h2>🧑 Live player profile</h2><span class="badge">Hypixel API integration</span></div>
 <div class="panel">
 <p class="muted">Enter a Minecraft Java username. Skyblock Hub will ask its own backend for the player's public SkyBlock profile and display the available data here.</p>
-<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button></div>
+<div class="toolbar"><input class="field" id="playerName" placeholder="Minecraft username" maxlength="16" onkeydown="if(event.key==='Enter')profileLookup()"><button class="btn" onclick="profileLookup()">Load player stats</button><button class="btn secondary" onclick="openPublicProfile()">Open SkyCrypt · No key</button></div>
 <div class="notice">Player profile lookup is optional and uses the site’s server-side Hypixel integration when available. The page checks service status automatically; it never asks visitors for an API key, Minecraft password or Microsoft login. The item catalog, guides and public tools remain available without profile access.</div>
 <div id="profileLoading" class="muted" aria-live="polite"></div>
 <div id="profileResult" class="resultbox"></div>
@@ -510,6 +510,24 @@ async function loadLiveItems(){itemLimit=60;const status=document.getElementById
 function renderGuides(){let q=(document.getElementById('guideSearch')?.value||'').toLowerCase();let list=guides.filter(x=>x.join(' ').toLowerCase().includes(q));document.getElementById('guideGrid').innerHTML=list.map(x=>'<article class="card guide-library-card"><div class="guide-library-top"><span class="emoji">'+escapeHtml(x[0])+'</span><span class="badge">'+escapeHtml(x[3])+'</span></div><h3>'+escapeHtml(x[1])+'</h3><p>'+escapeHtml(x[2])+'</p><a class="btn secondary" href="'+escapeHtml(x[4])+'">OPEN FIELD GUIDE →</a></article>').join('')||'<div class="empty">No guides match that filter.</div>'}
 
 function formatCoins(v){return typeof v==='number'?Math.round(v).toLocaleString()+' coins':(v??'—')}
+function openPublicProfile(){
+ const input=document.getElementById('playerName');
+ const status=document.getElementById('profileLoading');
+ const username=input.value.trim();
+ if(!/^[A-Za-z0-9_]{3,16}$/.test(username)){
+  status.textContent='Enter a valid Minecraft Java username (3–16 letters, numbers or underscores) first.';
+  return;
+ }
+ const url='https://sky.shiiyu.moe/stats/'+encodeURIComponent(username);
+ status.textContent='SkyCrypt is an external community viewer; it does not need your API key or Microsoft password. If a new tab was blocked, use this link: ';
+ const link=document.createElement('a');
+ link.href=url;
+ link.target='_blank';
+ link.rel='noopener noreferrer';
+ link.textContent='Open public profile';
+ status.appendChild(link);
+ window.open(url,'_blank','noopener,noreferrer');
+}
 async function profileLookup(){
  const input=document.getElementById('playerName');
  const status=document.getElementById('profileLoading');
