@@ -519,7 +519,7 @@ function openPublicProfile(){
   return;
  }
  const url='https://sky.shiiyu.moe/stats/'+encodeURIComponent(username);
- status.textContent='SkyCrypt is an external community viewer; it does not need your API key or Microsoft password. If a new tab was blocked, use this link: ';
+ status.textContent='SkyCrypt is an external community viewer. Opening it sends this username to that site; never enter passwords or API keys there. If a new tab was blocked, use this link: ';
  const link=document.createElement('a');
  link.href=url;
  link.target='_blank';
